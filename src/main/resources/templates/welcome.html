@@ -1,14 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" isELIgnored="false" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-<%@ include file="/WEB-INF/jsp/common/taglibs.jsp" %>
-<html>
-<head>
-    <%@ include file="/WEB-INF/jsp/common/resource.jspf"%>
-    <%@ include file="/WEB-INF/jsp/common/meta.jsp" %>
-    <title>zdora</title>
-    <script type="text/javascript">
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/common_header::common_header(~{::title})">
+    <title>zdora1</title>
+    <script th:inline="javascript" type="text/javascript">
         var socket;
         if (typeof(WebSocket) == "undefined") {
             console.log("您的浏览器不支持WebSocket");

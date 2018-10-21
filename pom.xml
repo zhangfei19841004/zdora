@@ -41,15 +41,6 @@
             <version>1.2.15</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
@@ -63,35 +54,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <!-- 忽略无web.xml警告 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
         </plugins>
-        <resources>
-            <!-- 打包时将jsp文件拷贝到META-INF目录下-->
-            <resource>
-                <!-- 指定resources插件处理哪个目录下的资源文件 -->
-                <directory>src/main/webapp</directory>
-                <!--注意此次必须要放在此目录下才能被访问到-->
-                <targetPath>META-INF/resources</targetPath>
-                <includes>
-                    <include>**/**</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/**</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-        </resources>
-
     </build>
 
 
