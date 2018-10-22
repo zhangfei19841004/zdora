@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @SpringBootApplication
 @EnableScheduling
 @ServletComponentScan
-@EnableWebMvc
+//@EnableWebMvc
 public class ZdoraApplication {
 
 	public static void main(String[] args) {
