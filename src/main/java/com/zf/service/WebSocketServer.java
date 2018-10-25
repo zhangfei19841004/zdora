@@ -39,7 +39,7 @@ public class WebSocketServer {
 		log.info("有新窗口开始监听:" + sid + ",当前在线人数为" + getOnlineCount());
 		this.sid = sid;
 		try {
-			sendMessage("连接成功");
+			sendMessage("欢迎回来 - "+sid);
 		} catch (IOException e) {
 			log.error("websocket IO异常");
 		}

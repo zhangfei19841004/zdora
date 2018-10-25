@@ -16,7 +16,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Configuration
+@Configuration
 //@EnableWebMvc
 public class HttpConverterConfig implements WebMvcConfigurer {
 

@@ -33,6 +33,7 @@ public class ThymeleafTemplateView   {
 			Map<String, Object> vars = new HashMap<>();
 			vars.put("baseUrl", "http://localhost:8083");
 			viewResolver.setStaticVariables(vars);
+			viewResolver.
 		}
 	}*/
 

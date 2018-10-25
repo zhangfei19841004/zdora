@@ -3,7 +3,46 @@
 <head th:replace="common/common_header::common_header(~{::title})">
     <title>zdora</title>
 </head>
+<body>
+<ul class="layui-nav layui-bg-green" style="text-align: center">
+    <li class="layui-nav-item"><span style="font-size: xx-large;font-family: Consolas; font-weight: 800">DEMO</span>
+    </li>
+</ul>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 5px;">
+    <legend><span id="content" style="font-family: Consolas"></span></legend>
+</fieldset>
+<div style="padding: 20px; background-color: #F2F2F2;">
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <button class="layui-btn layui-btn-sm">小型按钮</button>
+            </div>
+            <div class="layui-card-body">
+                <div class="layui-collapse" lay-accordion="">
+                    <div class="layui-colla-item" th:each="tc,tcStat:${testcases}">
+                        <h2 class="layui-colla-title" style="font-family: Consolas"
+                            th:text="${tc.testCaseFileName}"></h2>
+                        <div th:class="${tcStat.index==0}?'layui-colla-content layui-show':'layui-colla-content'">
+                            <textarea class="layui-textarea" style="font-family: Consolas;height: 400px" th:text="${tc.testCase}"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 <script th:inline="javascript" type="text/javascript">
+    layui.use(['element', 'layer'], function () {
+        var element = layui.element;
+        var layer = layui.layer;
+
+        //监听折叠
+        element.on('collapse(test)', function (data) {
+            layer.msg('展开状态：' + data.show);
+        });
+    });
+
     var socket;
     if (typeof(WebSocket) == "undefined") {
         console.log("您的浏览器不支持WebSocket");
@@ -13,10 +52,10 @@
         console.log(cid);
         //实现化WebSocket对象，指定要连接的服务器地址与端口 建立连接
         // 等同于socket = new WebSocket("ws://localhost:8083/checkcentersys/websocket/20");
-        socket = new WebSocket((ctx+"/websocket/" + cid).replace("http", "ws"));
+        socket = new WebSocket((ctx + "/websocket/" + cid).replace("http", "ws"));
         //打开事件
         socket.onopen = function () {
-            console.log(cid + " Socket 已打开");
+            //console.log(cid + " Socket 已打开");
             //socket.send("这是来自客户端的消息" + location.href + new Date());
         };
         //获得消息事件
@@ -30,13 +69,10 @@
         };
         //发生了错误事件
         socket.onerror = function () {
-            alert("Socket发生了错误");
+            //alert("Socket发生了错误");
             //此时可以尝试刷新页面
         }
     }
 </script>
-<body>
-<span id="content">abc</span>
-</body>
 </html>
 
