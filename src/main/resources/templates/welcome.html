@@ -3,6 +3,11 @@
 <head th:replace="common/common_header::common_header(~{::title})">
     <title>zdora</title>
 </head>
+<style type="text/css">
+    .layui-form-checkbox[lay-skin=primary] {
+        min-height: 28px;
+    }
+</style>
 <body>
 <ul class="layui-nav layui-bg-green" style="text-align: center">
     <li class="layui-nav-item"><span style="font-size: xx-large;font-family: Consolas; font-weight: 800">DEMO</span>
@@ -18,12 +23,18 @@
                 <button class="layui-btn layui-btn-sm">小型按钮</button>
             </div>
             <div class="layui-card-body">
-                <div class="layui-collapse" lay-accordion="">
+                <div class="layui-collapse" lay-filter="test" lay-accordion="">
                     <div class="layui-colla-item" th:each="tc,tcStat:${testcases}">
-                        <h2 class="layui-colla-title" style="font-family: Consolas"
-                            th:text="${tc.testCaseFileName}"></h2>
+                        <h2 class="layui-colla-title" style="font-family: Consolas;">
+                            <div class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+                                <div class="layui-form-item">
+                                    <input lay-skin="primary" th:attr="title=${tc.testCaseFileName}" type="checkbox">
+                                </div>
+                            </div>
+                            <!--<span style="font-family: Consolas" th:text="${tc.testCaseFileName}"></span>-->
+                        </h2>
                         <div th:class="${tcStat.index==0}?'layui-colla-content layui-show':'layui-colla-content'">
-                            <textarea class="layui-textarea" style="font-family: Consolas;height: 400px" th:text="${tc.testCase}"></textarea>
+                            <pre class="layui-code" th:attr="lay-title=${tc.testCaseFileName}" lay-skin="notepad" th:text="${tc.testCase}" style="font-family: Consolas"></pre>
                         </div>
                     </div>
                 </div>
@@ -33,12 +44,21 @@
 </div>
 </body>
 <script th:inline="javascript" type="text/javascript">
+    $(function () {
+    })
+    layui.use('form', function(){
+        var form = layui.form;
+        //各种基于事件的操作，下面会有进一步介绍
+    });
+    layui.use('code', function(){
+        layui.code({about: false});
+    });
     layui.use(['element', 'layer'], function () {
         var element = layui.element;
         var layer = layui.layer;
-
         //监听折叠
-        element.on('collapse(test)', function (data) {
+        element.on('collapse(test)', function (event,data) {
+            event.preventDefault();
             layer.msg('展开状态：' + data.show);
         });
     });
@@ -73,6 +93,7 @@
             //此时可以尝试刷新页面
         }
     }
+
 </script>
 </html>
 
