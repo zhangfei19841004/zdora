@@ -3,6 +3,7 @@ package com.zf.web.controller;
 import com.zf.service.CommonService;
 import com.zf.service.WebSocketServer;
 import com.zf.utils.ResponseUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,12 +22,15 @@ import java.util.Map;
 @Controller
 public class WebController {
 
+	@Value("${workspace.dir}")
+	private String workspaceDir;
+
 	@RequestMapping(value = "/index")
 	public String index(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		//String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 		map.put("cid", CommonService.getIpAddr(request));
 		List<Map<String, Object>> list = new ArrayList<>();
-		File file = new File("C:\\Users\\zhangfei\\Desktop\\cases");
+		File file = new File(workspaceDir);
 		File[] cases = file.listFiles();
 		for (File tcase : cases) {
 			String tcn = tcase.getName();
