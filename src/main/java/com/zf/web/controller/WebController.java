@@ -1,8 +1,10 @@
 package com.zf.web.controller;
 
 import com.zf.service.CommonService;
+import com.zf.service.WebService;
 import com.zf.service.WebSocketServer;
 import com.zf.utils.ResponseUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +26,9 @@ public class WebController {
 
 	@Value("${workspace.dir}")
 	private String workspaceDir;
+
+	@Autowired
+	private WebService webService;
 
 	@RequestMapping(value = "/index")
 	public String index(Map<String, Object> map, HttpServletRequest request) throws Exception {
@@ -53,6 +58,18 @@ public class WebController {
 		} catch (IOException e) {
 			e.printStackTrace();
 			return ResponseUtil.getFailedResponse(cid + "#" + e.getMessage());
+		}
+		return ResponseUtil.getSuccessResponse();
+	}
+
+	@ResponseBody
+	@RequestMapping("/push")
+	public ResponseUtil.ResponseInfo push() {
+		try {
+			webService.executor();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseUtil.getFailedResponse(e.getMessage());
 		}
 		return ResponseUtil.getSuccessResponse();
 	}

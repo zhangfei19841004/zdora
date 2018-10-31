@@ -7,6 +7,10 @@
     .layui-form-checkbox[lay-skin=primary] {
         min-height: 28px;
     }
+
+    body .layer_bg .layui-layer-content{
+        background-color: #393D49;
+    }
 </style>
 <body>
 <ul class="layui-nav layui-bg-green" style="text-align: center">
@@ -20,7 +24,7 @@
     <div class="layui-col-md12">
         <div class="layui-card">
             <div class="layui-card-header">
-                <button class="layui-btn layui-btn-sm">小型按钮</button>
+                <button class="layui-btn layui-btn-sm" th:onclick="'executor()'">执行</button>
             </div>
             <div class="layui-card-body">
                 <div class="layui-collapse" lay-filter="test" lay-accordion="">
@@ -75,7 +79,6 @@
         stopBubbling(event);
     }
 
-
     function stopBubbling(e) {
         e = window.event || e;
         if (e.stopPropagation) {
@@ -84,14 +87,32 @@
             e.cancelBubble = true;   //ie兼容
         }
     }
+    var cid = [[${cid}]];
+
+    function executor() {
+        layer.open({
+            type: 1
+            ,title: false //不显示标题栏
+            ,closeBtn: false
+            ,area: ['80%','80%']
+            ,skin: 'layer_bg'
+            ,shade: 0.8
+            ,id: 'executorProcess' //设定一个id，防止重复弹出
+            ,resize: false
+            ,btnAlign: 'c'
+            ,moveType: 1 //拖拽模式，0或者1
+            ,content: '<div style="padding: 5px; line-height: 22px; color: #fff; font-weight: 300;"></div>'
+        });
+        $.post(ctx+"/push",{},function(data){
+
+        });
+    }
 
     var socket;
     if (typeof(WebSocket) == "undefined") {
         console.log("您的浏览器不支持WebSocket");
     } else {
         console.log("您的浏览器支持WebSocket");
-        var cid = [[${cid}]];
-        console.log(cid);
         //实现化WebSocket对象，指定要连接的服务器地址与端口 建立连接
         // 等同于socket = new WebSocket("ws://localhost:8083/checkcentersys/websocket/20");
         socket = new WebSocket((ctx + "/websocket/" + cid).replace("http", "ws"));
@@ -103,6 +124,9 @@
         //获得消息事件
         socket.onmessage = function (msg) {
             $("#content").text(msg.data);
+            if($("#executorProcess")){
+                $("#executorProcess").append(msg.data+"<br>");
+            }
             //发现消息进入 开始处理前端触发逻辑
         };
         //关闭事件
