@@ -1,5 +1,6 @@
 package com.zf.executor;
 
+import com.zf.service.CommonService;
 import com.zf.service.WebSocketServer;
 
 import java.text.SimpleDateFormat;
@@ -17,16 +18,9 @@ public class ExecutorHandler implements Callable<Object> {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String d = sdf.format(new Date());
             WebSocketServer.sendInfo(d, "0:0:0:0:0:0:0:1");
-            this.sleep(2);
+            CommonService.sleep(2);
         }
         return null;
     }
 
-    public void sleep(int sec){
-        try {
-            Thread.sleep(sec*1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 }

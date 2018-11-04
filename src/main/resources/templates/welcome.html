@@ -96,15 +96,15 @@
             ,closeBtn: false
             ,area: ['80%','80%']
             ,skin: 'layer_bg'
-            ,shade: 0.8
+            ,shade: 0.1
             ,id: 'executorProcess' //设定一个id，防止重复弹出
             ,resize: false
             ,btnAlign: 'c'
             ,moveType: 1 //拖拽模式，0或者1
-            ,content: '<div style="padding: 5px; line-height: 22px; color: #fff; font-weight: 300;"></div>'
+            ,content: '<div style="padding: 5px; line-height: 22px; font-weight: 300; font-color: white"></div>'
         });
         $.post(ctx+"/push",{},function(data){
-
+            //alert(data.retCode);
         });
     }
 
@@ -125,7 +125,7 @@
         socket.onmessage = function (msg) {
             $("#content").text(msg.data);
             if($("#executorProcess")){
-                $("#executorProcess").append(msg.data+"<br>");
+                $("#executorProcess").append("<p style='color:white; margin-left: 10px'>"+msg.data+"</p>");
             }
             //发现消息进入 开始处理前端触发逻辑
         };

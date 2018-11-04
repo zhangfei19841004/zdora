@@ -14,6 +14,8 @@ import java.util.concurrent.Executors;
 @Service
 public class ExecutorCenter {
 
+    public static List<ExecutorInfo> ALL_EXECUTOR = new ArrayList<>();
+
     private int threadPoolSize = 10;
 
     private ExecutorService service = Executors.newFixedThreadPool(threadPoolSize);

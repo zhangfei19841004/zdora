@@ -1,8 +1,12 @@
 package com.zf.service;
 
 import com.zf.executor.ExecutorCenter;
+import com.zf.executor.ExecutorInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by zhangfei on 2018/10/31.
@@ -13,8 +17,33 @@ public class WebService {
     @Autowired
     private ExecutorCenter executorCenter;
 
-    public void executor(){
+    public void executor() {
         executorCenter.executorCenter(1);
     }
+
+    public String getExecutorId() {
+        synchronized (this) {
+            return this.getId();
+        }
+    }
+
+    public String getId() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+        String id = sdf.format(new Date());
+        boolean flag = false;
+        for (ExecutorInfo executorInfo : ExecutorCenter.ALL_EXECUTOR) {
+            if (executorInfo.getExecutorId().equals(id)) {
+                flag = true;
+                break;
+            }
+        }
+        if (flag) {
+            CommonService.sleep(1);
+            return this.getId();
+        } else {
+            return id;
+        }
+    }
+
 
 }
