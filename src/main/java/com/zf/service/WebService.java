@@ -2,6 +2,7 @@ package com.zf.service;
 
 import com.zf.executor.ExecutorCenter;
 import com.zf.executor.ExecutorInfo;
+import com.zf.executor.ExecutorStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,10 @@ public class WebService {
     private ExecutorCenter executorCenter;
 
     public void executor() {
+        ExecutorInfo info = new ExecutorInfo();
+        info.setExecutorId(this.getExecutorId());
+        info.setStatus(ExecutorStatus.STATUS1);
+        //ExecutorCenter.ALL_EXECUTOR.add()
         executorCenter.executorCenter(1);
     }
 

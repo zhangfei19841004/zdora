@@ -13,8 +13,6 @@ public class ExecutorInfo {
 
     public List<String> executeCases;
 
-    public int logLineNum;
-
     public String getExecutorId() {
         return executorId;
     }
@@ -37,14 +35,6 @@ public class ExecutorInfo {
 
     public void setExecuteCases(List<String> executeCases) {
         this.executeCases = executeCases;
-    }
-
-    public int getLogLineNum() {
-        return logLineNum;
-    }
-
-    public void setLogLineNum(int logLineNum) {
-        this.logLineNum = logLineNum;
     }
 
 }
