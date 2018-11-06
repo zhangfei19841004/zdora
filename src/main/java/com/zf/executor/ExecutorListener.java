@@ -1,7 +1,8 @@
 package com.zf.executor;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,9 +12,27 @@ import org.springframework.stereotype.Component;
 public class ExecutorListener {
 
 	@Autowired
-	private ApplicationContext applicationContext;
+	private ExecutorCenter executorCenter;
 
-	public void
+	@Async
+	@EventListener
+	public void executorListener(ExecutorEvent event) {
+		System.out.println("listener : " + event.getSource());
+		synchronized (this) {
+			boolean flag = false;
+			for (ExecutorInfo executorInfo : ExecutorCenter.ALL_EXECUTOR) {
+				if (executorInfo.getStatus().getStatus() == ExecutorStatus.STATUS2.getStatus()) {
+					flag = true;
+					break;
+				}
+			}
+			if (!flag) {
+				System.out.println("开始执行");
+				executorCenter.executorCenter(1);
+			}
+		}
+		System.out.println("释放锁");
+	}
 
 
 }

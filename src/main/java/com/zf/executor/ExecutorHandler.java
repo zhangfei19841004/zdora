@@ -18,6 +18,7 @@ public class ExecutorHandler implements Callable<Object> {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String d = sdf.format(new Date());
             WebSocketServer.sendInfo(d, "0:0:0:0:0:0:0:1");
+            WebSocketServer.sendInfo(d, "127.0.0.1");
             CommonService.sleep(2);
         }
         return null;

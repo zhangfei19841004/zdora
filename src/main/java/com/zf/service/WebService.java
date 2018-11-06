@@ -1,9 +1,11 @@
 package com.zf.service;
 
 import com.zf.executor.ExecutorCenter;
+import com.zf.executor.ExecutorEvent;
 import com.zf.executor.ExecutorInfo;
 import com.zf.executor.ExecutorStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -16,14 +18,15 @@ import java.util.Date;
 public class WebService {
 
     @Autowired
-    private ExecutorCenter executorCenter;
+    private ApplicationContext applicationContext;
 
     public void executor() {
         ExecutorInfo info = new ExecutorInfo();
         info.setExecutorId(this.getExecutorId());
         info.setStatus(ExecutorStatus.STATUS1);
-        //ExecutorCenter.ALL_EXECUTOR.add()
-        executorCenter.executorCenter(1);
+        ExecutorCenter.ALL_EXECUTOR.add(info);
+        applicationContext.publishEvent(new ExecutorEvent("hello world"));
+        //executorCenter.executorCenter(1);
     }
 
     public String getExecutorId() {
