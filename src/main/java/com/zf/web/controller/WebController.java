@@ -4,6 +4,7 @@ import com.zf.service.CommonService;
 import com.zf.service.WebService;
 import com.zf.service.WebSocketServer;
 import com.zf.utils.ResponseUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -43,6 +44,7 @@ public class WebController {
 			Map<String, Object> m = new HashMap<>();
 			m.put("testCaseFileName",tcn);
 			m.put("testCase",content);
+			m.put("testCasePath",workspaceDir+File.separator+tcn);
 			list.add(m);
 		}
 		map.put("testcases",list);
@@ -64,9 +66,12 @@ public class WebController {
 
 	@ResponseBody
 	@RequestMapping("/push")
-	public ResponseUtil.ResponseInfo push() {
+	public ResponseUtil.ResponseInfo push(String cid, String path) {
 		try {
-			webService.executor();
+			if(StringUtils.isBlank(cid) || StringUtils.isBlank(path)){
+				return ResponseUtil.getFailedResponse("参数不全");
+			}
+			webService.executor(cid, path);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseUtil.getFailedResponse(e.getMessage());

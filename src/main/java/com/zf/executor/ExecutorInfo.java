@@ -7,34 +7,44 @@ import java.util.List;
  */
 public class ExecutorInfo {
 
-    public String executorId;
+	public String executorId;
 
-    public ExecutorStatus status;
+	public ExecutorStatus status;
 
-    public List<String> executeCases;
+	public List<String> executeCases;
 
-    public String getExecutorId() {
-        return executorId;
-    }
+	public String cid;
 
-    public void setExecutorId(String executorId) {
-        this.executorId = executorId;
-    }
+	public String getExecutorId() {
+		return executorId;
+	}
 
-    public ExecutorStatus getStatus() {
-        return status;
-    }
+	public void setExecutorId(String executorId) {
+		this.executorId = executorId;
+	}
 
-    public void setStatus(ExecutorStatus status) {
-        this.status = status;
-    }
+	public ExecutorStatus getStatus() {
+		return status;
+	}
 
-    public List<String> getExecuteCases() {
-        return executeCases;
-    }
+	public void setStatus(ExecutorStatus status) {
+		this.status = status;
+	}
 
-    public void setExecuteCases(List<String> executeCases) {
-        this.executeCases = executeCases;
-    }
+	public List<String> getExecuteCases() {
+		return executeCases;
+	}
+
+	public void setExecuteCases(List<String> executeCases) {
+		this.executeCases = executeCases;
+	}
+
+	public String getCid() {
+		return cid;
+	}
+
+	public void setCid(String cid) {
+		this.cid = cid;
+	}
 
 }

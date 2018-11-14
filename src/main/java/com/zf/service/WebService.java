@@ -9,6 +9,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -20,12 +22,14 @@ public class WebService {
     @Autowired
     private ApplicationContext applicationContext;
 
-    public void executor() {
+    public void executor(String cid, String path) {
         ExecutorInfo info = new ExecutorInfo();
         info.setExecutorId(this.getExecutorId());
         info.setStatus(ExecutorStatus.STATUS1);
+        info.setCid(cid);
+        info.setExecuteCases(new ArrayList<>(Arrays.asList(path.split(","))));
         ExecutorCenter.ALL_EXECUTOR.add(info);
-        applicationContext.publishEvent(new ExecutorEvent("hello world"));
+        applicationContext.publishEvent(new ExecutorEvent("zdora"));
         //executorCenter.executorCenter(1);
     }
 

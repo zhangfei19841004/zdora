@@ -26,9 +26,11 @@ public class ExecutorListener {
 					break;
 				}
 			}
-			if (!flag) {
+			if (!flag && ExecutorCenter.ALL_EXECUTOR.size() > 0) {
 				System.out.println("开始执行");
-				executorCenter.executorCenter(1);
+				ExecutorInfo info = ExecutorCenter.ALL_EXECUTOR.get(0);
+				info.setStatus(ExecutorStatus.STATUS2);
+				executorCenter.executorCenter(1, info);
 			}
 		}
 		System.out.println("释放锁");
