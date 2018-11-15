@@ -109,15 +109,16 @@
                 tpath += ',' + $(this).attr('tpath');
             }
         });
-        console.log(tpath);
-        $.post(ctx + "/push", {cid: cid, path: tpath}, function (data) {
-            if (data.retCode != '200') {
-                layer.close(index);
-                layer.tips(data.data, '#executorBtn');
-            }
-            //socket.send("开始执行啦！")
-            //alert(data.retCode);
-        });
+        if(tpath!=''){
+            $.post(ctx + "/push", {cid: cid, path: tpath}, function (data) {
+                if (data.retCode != '200') {
+                    layer.close(index);
+                    layer.tips(data.data, '#executorBtn');
+                }
+                //socket.send("开始执行啦！")
+                //alert(data.retCode);
+            });
+        }
     }
 
     var socket;
@@ -135,11 +136,16 @@
         };
         //获得消息事件
         socket.onmessage = function (msg) {
-            $("#content").text(msg.data);
-            if ($("#executorProcess")) {
-                $("#executorProcess").append("<p style='color:white; margin-left: 10px'>" + msg.data + "</p>");
+            var message = JSON.parse(msg.data);
+            if(message.type==1){
+                $("#content").text(message.message);
+            }else if(message.type==2){
+                if ($("#executorProcess")) {
+                    $("#executorProcess").append("<p style='color:white; margin-left: 10px'>" + message.message + "</p>");
+                }
+            }else if(message.type==3){
+                layer.closeAll();
             }
-            //发现消息进入 开始处理前端触发逻辑
         };
         //关闭事件
         socket.onclose = function () {

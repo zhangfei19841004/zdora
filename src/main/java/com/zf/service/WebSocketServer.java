@@ -1,5 +1,7 @@
 package com.zf.service;
 
+import com.zf.message.MessageInfo;
+import com.zf.message.MessageType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -39,7 +41,7 @@ public class WebSocketServer {
 		log.info("有新窗口开始监听:" + sid + ",当前在线人数为" + getOnlineCount());
 		this.sid = sid;
 		try {
-			sendMessage("欢迎回来 - "+sid);
+			sendMessage(new MessageInfo(MessageType.TITLE,"欢迎回来 - "+sid).toString());
 		} catch (IOException e) {
 			log.error("websocket IO异常");
 		}
