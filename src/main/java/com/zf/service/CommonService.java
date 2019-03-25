@@ -45,9 +45,9 @@ public class CommonService {
 		return ip;
 	}
 
-	public static void sleep(int sec){
+	public static void sleep(int sec) {
 		try {
-			Thread.sleep(sec*1000);
+			Thread.sleep(sec * 1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

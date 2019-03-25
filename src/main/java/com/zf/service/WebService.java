@@ -19,43 +19,43 @@ import java.util.Date;
 @Service
 public class WebService {
 
-    @Autowired
-    private ApplicationContext applicationContext;
+	@Autowired
+	private ApplicationContext applicationContext;
 
-    public void executor(String cid, String path) {
-        ExecutorInfo info = new ExecutorInfo();
-        info.setExecutorId(this.getExecutorId());
-        info.setStatus(ExecutorStatus.STATUS1);
-        info.setCid(cid);
-        info.setExecuteCases(new ArrayList<>(Arrays.asList(path.split(","))));
-        ExecutorCenter.ALL_EXECUTOR.add(info);
-        applicationContext.publishEvent(new ExecutorEvent("zdora"));
-        //executorCenter.executorCenter(1);
-    }
+	public void executor(String cid, String path) {
+		ExecutorInfo info = new ExecutorInfo();
+		info.setExecutorId(this.getExecutorId());
+		info.setStatus(ExecutorStatus.STATUS1);
+		info.setCid(cid);
+		info.setExecuteCases(new ArrayList<>(Arrays.asList(path.split(","))));
+		ExecutorCenter.ALL_EXECUTOR.add(info);
+		applicationContext.publishEvent(new ExecutorEvent("zdora"));
+		//executorCenter.executorCenter(1);
+	}
 
-    public String getExecutorId() {
-        synchronized (this) {
-            return this.getId();
-        }
-    }
+	public String getExecutorId() {
+		synchronized (this) {
+			return this.getId();
+		}
+	}
 
-    public String getId() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-        String id = sdf.format(new Date());
-        boolean flag = false;
-        for (ExecutorInfo executorInfo : ExecutorCenter.ALL_EXECUTOR) {
-            if (executorInfo.getExecutorId().equals(id)) {
-                flag = true;
-                break;
-            }
-        }
-        if (flag) {
-            CommonService.sleep(1);
-            return this.getId();
-        } else {
-            return id;
-        }
-    }
+	public String getId() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+		String id = sdf.format(new Date());
+		boolean flag = false;
+		for (ExecutorInfo executorInfo : ExecutorCenter.ALL_EXECUTOR) {
+			if (executorInfo.getExecutorId().equals(id)) {
+				flag = true;
+				break;
+			}
+		}
+		if (flag) {
+			CommonService.sleep(1);
+			return this.getId();
+		} else {
+			return id;
+		}
+	}
 
 
 }

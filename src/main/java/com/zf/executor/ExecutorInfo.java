@@ -7,6 +7,8 @@ import java.util.List;
  */
 public class ExecutorInfo {
 
+	public String executeCommand;
+
 	public String executorId;
 
 	public ExecutorStatus status;
@@ -47,4 +49,11 @@ public class ExecutorInfo {
 		this.cid = cid;
 	}
 
+	public String getExecuteCommand() {
+		return executeCommand;
+	}
+
+	public void setExecuteCommand(String executeCommand) {
+		this.executeCommand = executeCommand;
+	}
 }

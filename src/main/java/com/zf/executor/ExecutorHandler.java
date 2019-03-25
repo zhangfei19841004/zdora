@@ -29,12 +29,12 @@ public class ExecutorHandler implements Callable<Object> {
 
 	@Override
 	public Object call() throws Exception {
-		WebSocketServer.sendInfo(new MessageInfo(MessageType.CONTENT,"开始执行").toString(), info.getCid());
+		WebSocketServer.sendInfo(new MessageInfo(MessageType.CONTENT, "开始执行").toString(), info.getCid());
 		for (String s : info.getExecuteCases()) {
-			this.executorCommand("java -cp C:\\Users\\zhangfei\\Desktop\\cool\\target\\cool.jar test.Test "+s);
+			this.executorCommand(info.getExecuteCommand() + " " + s);
 		}
-		WebSocketServer.sendInfo(new MessageInfo(MessageType.CONTENT,"全部执行完毕!").toString(), info.getCid());
-		WebSocketServer.sendInfo(new MessageInfo(MessageType.CLOSE,"关闭!").toString(), info.getCid());
+		WebSocketServer.sendInfo(new MessageInfo(MessageType.CONTENT, "全部执行完毕!").toString(), info.getCid());
+		WebSocketServer.sendInfo(new MessageInfo(MessageType.CLOSE, "关闭!").toString(), info.getCid());
 		ExecutorCenter.removeExecutorInfo(info.getExecutorId());
 		applicationContext.publishEvent(new ExecutorEvent("zdora"));
 		return null;
@@ -48,7 +48,7 @@ public class ExecutorHandler implements Callable<Object> {
 			br = new BufferedReader(new InputStreamReader(process.getInputStream(), "utf-8"));
 			String line;
 			while ((line = br.readLine()) != null) {
-				WebSocketServer.sendInfo(new MessageInfo(MessageType.CONTENT,line).toString(), info.getCid());
+				WebSocketServer.sendInfo(new MessageInfo(MessageType.CONTENT, line).toString(), info.getCid());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

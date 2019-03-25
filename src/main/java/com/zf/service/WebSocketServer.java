@@ -28,7 +28,7 @@ public class WebSocketServer {
 	//与某个客户端的连接会话，需要通过它来给客户端发送数据
 	private Session session;
 	//接收sid
-	private String sid="";
+	private String sid = "";
 
 	/**
 	 * 连接建立成功调用的方法
@@ -41,7 +41,7 @@ public class WebSocketServer {
 		log.info("有新窗口开始监听:" + sid + ",当前在线人数为" + getOnlineCount());
 		this.sid = sid;
 		try {
-			sendMessage(new MessageInfo(MessageType.TITLE,"欢迎回来 - "+sid).toString());
+			sendMessage(new MessageInfo(MessageType.TITLE, "欢迎回来 - " + sid).toString());
 		} catch (IOException e) {
 			log.error("websocket IO异常");
 		}

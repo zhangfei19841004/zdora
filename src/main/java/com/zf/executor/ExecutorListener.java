@@ -1,9 +1,12 @@
 package com.zf.executor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * Created by zhangfei on 2018/11/5/005.
@@ -13,6 +16,9 @@ public class ExecutorListener {
 
 	@Autowired
 	private ExecutorCenter executorCenter;
+
+	@Autowired
+	private ApplicationArguments applicationArguments;
 
 	@Async
 	@EventListener
@@ -30,6 +36,10 @@ public class ExecutorListener {
 				System.out.println("开始执行");
 				ExecutorInfo info = ExecutorCenter.ALL_EXECUTOR.get(0);
 				info.setStatus(ExecutorStatus.STATUS2);
+				List<String> list = applicationArguments.getNonOptionArgs();
+				if (list != null && list.size() > 0) {
+					info.setExecuteCommand(list.get(0));
+				}
 				executorCenter.executorCenter(1, info);
 			}
 		}

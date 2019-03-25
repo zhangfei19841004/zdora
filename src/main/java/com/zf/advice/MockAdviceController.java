@@ -16,19 +16,19 @@ import org.springframework.web.context.request.NativeWebRequest;
 @RestControllerAdvice(annotations = RestController.class)
 public class MockAdviceController {
 
-    private final static Logger logger = LoggerFactory.getLogger(MockAdviceController.class);
+	private final static Logger logger = LoggerFactory.getLogger(MockAdviceController.class);
 
-    @ExceptionHandler(Exception.class)
-    @ResponseBody
-    public ResponseInfo processException(NativeWebRequest request, Exception e) {
-        if (e instanceof BusinessException) {
-            logger.error(e.getMessage(), e);
-            return ResponseUtil.getFailedResponse(((BusinessException) e).getRetCode(), ((BusinessException) e).getRetMsg());
-        } else {
-            logger.error(e.getMessage(), e);
-            return ResponseUtil.getFailedResponse(ResponseConstants.EXCEPTION.getRetCode(), ResponseConstants.EXCEPTION.getRetMsg());
-        }
+	@ExceptionHandler(Exception.class)
+	@ResponseBody
+	public ResponseInfo processException(NativeWebRequest request, Exception e) {
+		if (e instanceof BusinessException) {
+			logger.error(e.getMessage(), e);
+			return ResponseUtil.getFailedResponse(((BusinessException) e).getRetCode(), ((BusinessException) e).getRetMsg());
+		} else {
+			logger.error(e.getMessage(), e);
+			return ResponseUtil.getFailedResponse(ResponseConstants.EXCEPTION.getRetCode(), ResponseConstants.EXCEPTION.getRetMsg());
+		}
 
-    }
+	}
 
 }

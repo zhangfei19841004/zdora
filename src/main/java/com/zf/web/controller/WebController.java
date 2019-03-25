@@ -42,12 +42,12 @@ public class WebController {
 			String tcn = tcase.getName();
 			String content = this.readFile(tcase);
 			Map<String, Object> m = new HashMap<>();
-			m.put("testCaseFileName",tcn);
-			m.put("testCase",content);
-			m.put("testCasePath",workspaceDir+File.separator+tcn);
+			m.put("testCaseFileName", tcn);
+			m.put("testCase", content);
+			m.put("testCasePath", workspaceDir + File.separator + tcn);
 			list.add(m);
 		}
-		map.put("testcases",list);
+		map.put("testcases", list);
 		return "welcome";
 	}
 
@@ -68,7 +68,7 @@ public class WebController {
 	@RequestMapping("/push")
 	public ResponseUtil.ResponseInfo push(String cid, String path) {
 		try {
-			if(StringUtils.isBlank(cid) || StringUtils.isBlank(path)){
+			if (StringUtils.isBlank(cid) || StringUtils.isBlank(path)) {
 				return ResponseUtil.getFailedResponse("参数不全");
 			}
 			webService.executor(cid, path);
