@@ -5,11 +5,21 @@ package com.zf.message;
  */
 public enum MessageType {
 
-	TITLE(1),
+	TITLE(1),//标题
 
-	CONTENT(2),
+	MESSAGE(2),//内容
 
-	CLOSE(3);
+	CLOSE(3),//关闭
+
+	BROWSER(4),//浏览器信息
+
+	CLIENT(5),//客户端信息
+
+	SESSIONID(6),
+
+	COMMAND(7),
+
+	;
 
 	private int type;
 

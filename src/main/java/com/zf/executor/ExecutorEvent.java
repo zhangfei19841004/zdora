@@ -7,10 +7,7 @@ import org.springframework.context.ApplicationEvent;
  */
 public class ExecutorEvent extends ApplicationEvent {
 
-	private String source;
-
-	public ExecutorEvent(String source) {
-		super(source);
-		this.source = source;
+	public ExecutorEvent(ExecutorInfo info) {
+		super(info);
 	}
 }

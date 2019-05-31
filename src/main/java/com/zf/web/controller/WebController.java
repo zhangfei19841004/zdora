@@ -1,5 +1,7 @@
 package com.zf.web.controller;
 
+import com.zf.executor.ExecutorInfo;
+import com.zf.message.MessageType;
 import com.zf.service.CommonService;
 import com.zf.service.WebService;
 import com.zf.service.WebSocketServer;
@@ -16,9 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -35,7 +34,7 @@ public class WebController {
 	public String index(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		//String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 		map.put("cid", CommonService.getIpAddr(request));
-		List<Map<String, Object>> list = new ArrayList<>();
+		/*List<Map<String, Object>> list = new ArrayList<>();
 		File file = new File(workspaceDir);
 		File[] cases = file.listFiles();
 		for (File tcase : cases) {
@@ -47,16 +46,16 @@ public class WebController {
 			m.put("testCasePath", workspaceDir + File.separator + tcn);
 			list.add(m);
 		}
-		map.put("testcases", list);
-		return "welcome";
+		map.put("testcases", list);*/
+		return "welcome-new";
 	}
 
-	//推送数据接口
+	//推送数据接口,可用于全网推送
 	@ResponseBody
 	@RequestMapping("/socket/push/{cid}")
 	public ResponseUtil.ResponseInfo pushToWeb(@PathVariable String cid, String message) {
 		try {
-			WebSocketServer.sendInfo(message, cid);
+			WebSocketServer.sendInfo(null, null, MessageType.MESSAGE, message);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return ResponseUtil.getFailedResponse(cid + "#" + e.getMessage());
@@ -66,12 +65,12 @@ public class WebController {
 
 	@ResponseBody
 	@RequestMapping("/push")
-	public ResponseUtil.ResponseInfo push(String cid, String path) {
+	public ResponseUtil.ResponseInfo push(ExecutorInfo info) {
 		try {
-			if (StringUtils.isBlank(cid) || StringUtils.isBlank(path)) {
+			if (StringUtils.isBlank(info.getCid()) || StringUtils.isBlank(info.getExecuteCommand())) {
 				return ResponseUtil.getFailedResponse("参数不全");
 			}
-			webService.executor(cid, path);
+			webService.executor(info);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseUtil.getFailedResponse(e.getMessage());

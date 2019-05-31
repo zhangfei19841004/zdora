@@ -14,9 +14,9 @@ import org.springframework.web.context.request.NativeWebRequest;
 
 
 @RestControllerAdvice(annotations = RestController.class)
-public class MockAdviceController {
+public class ZdoraAdviceController {
 
-	private final static Logger logger = LoggerFactory.getLogger(MockAdviceController.class);
+	private final static Logger logger = LoggerFactory.getLogger(ZdoraAdviceController.class);
 
 	@ExceptionHandler(Exception.class)
 	@ResponseBody

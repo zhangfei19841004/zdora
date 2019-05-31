@@ -1,7 +1,5 @@
 package com.zf.executor;
 
-import java.util.List;
-
 /**
  * Created by zhangfei on 2018/11/4.
  */
@@ -9,21 +7,13 @@ public class ExecutorInfo {
 
 	public String executeCommand;
 
-	public String executorId;
+	public String executeArgs;
 
 	public ExecutorStatus status;
 
-	public List<String> executeCases;
+	public String cid;//客户端IP
 
-	public String cid;
-
-	public String getExecutorId() {
-		return executorId;
-	}
-
-	public void setExecutorId(String executorId) {
-		this.executorId = executorId;
-	}
+	public String sessionId;
 
 	public ExecutorStatus getStatus() {
 		return status;
@@ -31,14 +21,6 @@ public class ExecutorInfo {
 
 	public void setStatus(ExecutorStatus status) {
 		this.status = status;
-	}
-
-	public List<String> getExecuteCases() {
-		return executeCases;
-	}
-
-	public void setExecuteCases(List<String> executeCases) {
-		this.executeCases = executeCases;
 	}
 
 	public String getCid() {
@@ -55,5 +37,21 @@ public class ExecutorInfo {
 
 	public void setExecuteCommand(String executeCommand) {
 		this.executeCommand = executeCommand;
+	}
+
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
+	}
+
+	public String getExecuteArgs() {
+		return executeArgs;
+	}
+
+	public void setExecuteArgs(String executeArgs) {
+		this.executeArgs = executeArgs;
 	}
 }

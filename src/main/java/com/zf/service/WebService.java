@@ -22,18 +22,12 @@ public class WebService {
 	@Autowired
 	private ApplicationContext applicationContext;
 
-	public void executor(String cid, String path) {
-		ExecutorInfo info = new ExecutorInfo();
-		info.setExecutorId(this.getExecutorId());
-		info.setStatus(ExecutorStatus.STATUS1);
-		info.setCid(cid);
-		info.setExecuteCases(new ArrayList<>(Arrays.asList(path.split(","))));
-		ExecutorCenter.ALL_EXECUTOR.add(info);
-		applicationContext.publishEvent(new ExecutorEvent("zdora"));
+	public void executor(ExecutorInfo info) {
+		applicationContext.publishEvent(new ExecutorEvent(info));
 		//executorCenter.executorCenter(1);
 	}
 
-	public String getExecutorId() {
+/*	public String getExecutorId() {
 		synchronized (this) {
 			return this.getId();
 		}
@@ -55,7 +49,7 @@ public class WebService {
 		} else {
 			return id;
 		}
-	}
+	}*/
 
 
 }
