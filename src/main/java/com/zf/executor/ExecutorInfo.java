@@ -15,6 +15,8 @@ public class ExecutorInfo {
 
 	public String sessionId;
 
+	public int executeId;
+
 	public ExecutorStatus getStatus() {
 		return status;
 	}
@@ -53,5 +55,13 @@ public class ExecutorInfo {
 
 	public void setExecuteArgs(String executeArgs) {
 		this.executeArgs = executeArgs;
+	}
+
+	public int getExecuteId() {
+		return executeId;
+	}
+
+	public void setExecuteId(int executeId) {
+		this.executeId = executeId;
 	}
 }

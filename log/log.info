@@ -1,0 +1,202 @@
+2019-06-01 14:10:39.090  INFO 1286 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 1286 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-01 14:10:39.092  INFO 1286 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-01 14:10:39.510  INFO 1286 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@3c51bb32: startup date [Sat Jun 01 14:10:39 CST 2019]; root of context hierarchy
+2019-06-01 14:10:43.896  INFO 1286 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-01 14:10:43.958  INFO 1286 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-01 14:10:43.959  INFO 1286 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-01 14:10:43.973  INFO 1286 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/zhangfei/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-06-01 14:10:44.085  INFO 1286 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-01 14:10:44.085  INFO 1286 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4575 ms
+2019-06-01 14:10:44.255  INFO 1286 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-01 14:10:44.262  INFO 1286 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-01 14:10:44.262  INFO 1286 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-01 14:10:44.263  INFO 1286 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-01 14:10:44.266  INFO 1286 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-01 14:10:44.714  INFO 1286 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-01 14:10:45.383  INFO 1286 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@3c51bb32: startup date [Sat Jun 01 14:10:39 CST 2019]; root of context hierarchy
+2019-06-01 14:10:45.750  INFO 1286 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-01 14:10:45.753  INFO 1286 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-01 14:10:45.754  INFO 1286 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-01 14:10:45.766  INFO 1286 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-01 14:10:45.769  INFO 1286 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-01 14:10:45.944  INFO 1286 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-01 14:10:45.945  INFO 1286 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-01 14:10:45.999  INFO 1286 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-01 14:10:46.666  INFO 1286 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-01 14:10:46.713  INFO 1286 --- [restartedMain] o.s.w.s.s.s.ServerEndpointExporter       : Registering @ServerEndpoint class: class com.zf.service.WebSocketServer
+2019-06-01 14:10:46.732  INFO 1286 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-01 14:10:46.810  INFO 1286 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-01 14:10:46.818  INFO 1286 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 9.21 seconds (JVM running for 11.663)
+2019-06-01 14:12:17.822  INFO 1286 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-06-01 14:12:17.822  INFO 1286 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-06-01 14:12:17.975  INFO 1286 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 153 ms
+2019-06-01 14:12:18.159  INFO 1286 --- [http-nio-8080-exec-1] com.zf.service.WebSocketServer           : 有新窗口开始监听:127.0.0.1,当前在线人数为1
+2019-06-01 14:12:43.872 ERROR 1286 --- [http-nio-8080-exec-2] com.zf.service.WebSocketServer           : 发生错误
+2019-06-01 14:12:43.873  INFO 1286 --- [http-nio-8080-exec-2] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 14:12:47.752  INFO 1286 --- [http-nio-8080-exec-3] com.zf.service.WebSocketServer           : 有新窗口开始监听:127.0.0.1,当前在线人数为1
+2019-06-01 14:12:58.973 ERROR 1286 --- [http-nio-8080-exec-4] com.zf.service.WebSocketServer           : 发生错误
+2019-06-01 14:12:58.974  INFO 1286 --- [http-nio-8080-exec-4] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 14:20:26.651  INFO 1286 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 有新窗口开始监听:192.168.0.103,当前在线人数为1
+2019-06-01 14:22:33.924  INFO 1286 --- [http-nio-8080-exec-8] .s.a.AnnotationAsyncExecutionInterceptor : No task executor bean found for async processing: no bean of type TaskExecutor and no bean named 'taskExecutor' either
+2019-06-01 14:22:33.960  INFO 1286 --- [SimpleAsyncTaskExecutor-1] com.zf.executor.ExecutorListener         : listener : {"cid":"192.168.0.103","executeArgs":"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1","executeCommand":"java","executeId":1,"sessionId":"2"}
+2019-06-01 14:22:33.960  INFO 1286 --- [SimpleAsyncTaskExecutor-1] com.zf.executor.ExecutorListener         : 开始执行
+2019-06-01 14:22:33.993  INFO 1286 --- [SimpleAsyncTaskExecutor-1] com.zf.service.WebSocketServer           : 推送消息到192.168.0.103，推送内容:{"args":"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1","executeId":1,"command":"java"}
+2019-06-01 14:22:36.386  INFO 1286 --- [http-nio-8080-exec-9] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":1,"message":"test1----0"}
+2019-06-01 14:22:38.369  INFO 1286 --- [http-nio-8080-exec-10] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":1,"message":"test1----1"}
+2019-06-01 14:22:40.370  INFO 1286 --- [http-nio-8080-exec-1] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":1,"message":"test1----2"}
+2019-06-01 14:22:42.375  INFO 1286 --- [http-nio-8080-exec-2] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":1,"message":"test1----3"}
+2019-06-01 14:22:44.376  INFO 1286 --- [http-nio-8080-exec-3] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":1,"message":"test1----4"}
+2019-06-01 14:22:46.381  INFO 1286 --- [http-nio-8080-exec-4] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":1,"message":"test1----5"}
+2019-06-01 14:22:48.382  INFO 1286 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":1,"message":"test1----6"}
+2019-06-01 14:22:50.383  INFO 1286 --- [http-nio-8080-exec-6] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":1,"message":"test1----7"}
+2019-06-01 14:22:52.385  INFO 1286 --- [http-nio-8080-exec-7] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":1,"message":"test1----8"}
+2019-06-01 14:22:54.388  INFO 1286 --- [http-nio-8080-exec-8] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":1,"message":"test1----9"}
+2019-06-01 14:22:54.397  INFO 1286 --- [http-nio-8080-exec-9] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:执行完成: java -cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1
+2019-06-01 14:23:05.791  INFO 1286 --- [SimpleAsyncTaskExecutor-2] com.zf.executor.ExecutorListener         : listener : {"cid":"192.168.0.103","executeArgs":"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1","executeCommand":"java","executeId":2,"sessionId":"2"}
+2019-06-01 14:23:05.792  INFO 1286 --- [SimpleAsyncTaskExecutor-2] com.zf.executor.ExecutorListener         : 开始执行
+2019-06-01 14:23:05.792  INFO 1286 --- [SimpleAsyncTaskExecutor-2] com.zf.service.WebSocketServer           : 推送消息到192.168.0.103，推送内容:{"args":"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1","executeId":2,"command":"java"}
+2019-06-01 14:23:08.012  INFO 1286 --- [http-nio-8080-exec-1] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":2,"message":"test1----0"}
+2019-06-01 14:23:10.013  INFO 1286 --- [http-nio-8080-exec-2] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":2,"message":"test1----1"}
+2019-06-01 14:23:11.789  INFO 1286 --- [SimpleAsyncTaskExecutor-3] com.zf.executor.ExecutorListener         : listener : {"cid":"192.168.0.103","executeArgs":"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test2","executeCommand":"java","executeId":3,"sessionId":"2"}
+2019-06-01 14:23:11.789  INFO 1286 --- [SimpleAsyncTaskExecutor-3] com.zf.executor.ExecutorListener         : 开始执行
+2019-06-01 14:23:11.789  INFO 1286 --- [SimpleAsyncTaskExecutor-3] com.zf.service.WebSocketServer           : 推送消息到192.168.0.103，推送内容:{"args":"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test2","executeId":3,"command":"java"}
+2019-06-01 14:23:12.019  INFO 1286 --- [http-nio-8080-exec-4] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":2,"message":"test1----2"}
+2019-06-01 14:23:13.993  INFO 1286 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":3,"message":"test2----0"}
+2019-06-01 14:23:14.022  INFO 1286 --- [http-nio-8080-exec-6] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":2,"message":"test1----3"}
+2019-06-01 14:23:15.995  INFO 1286 --- [http-nio-8080-exec-7] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":3,"message":"test2----1"}
+2019-06-01 14:23:16.024  INFO 1286 --- [http-nio-8080-exec-8] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":2,"message":"test1----4"}
+2019-06-01 14:23:17.996  INFO 1286 --- [http-nio-8080-exec-9] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":3,"message":"test2----2"}
+2019-06-01 14:23:18.025  INFO 1286 --- [http-nio-8080-exec-10] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":2,"message":"test1----5"}
+2019-06-01 14:23:19.997  INFO 1286 --- [http-nio-8080-exec-1] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":3,"message":"test2----3"}
+2019-06-01 14:23:20.026  INFO 1286 --- [http-nio-8080-exec-2] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":2,"message":"test1----6"}
+2019-06-01 14:23:21.997  INFO 1286 --- [http-nio-8080-exec-3] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":3,"message":"test2----4"}
+2019-06-01 14:23:22.029  INFO 1286 --- [http-nio-8080-exec-4] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":2,"message":"test1----7"}
+2019-06-01 14:23:23.998  INFO 1286 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":3,"message":"test2----5"}
+2019-06-01 14:23:24.034  INFO 1286 --- [http-nio-8080-exec-6] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":2,"message":"test1----8"}
+2019-06-01 14:23:26.000  INFO 1286 --- [http-nio-8080-exec-7] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":3,"message":"test2----6"}
+2019-06-01 14:23:26.038  INFO 1286 --- [http-nio-8080-exec-8] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":2,"message":"test1----9"}
+2019-06-01 14:23:26.044  INFO 1286 --- [http-nio-8080-exec-9] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:执行完成: java -cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1
+2019-06-01 14:23:28.004  INFO 1286 --- [http-nio-8080-exec-1] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":3,"message":"test2----7"}
+2019-06-01 14:23:30.008  INFO 1286 --- [http-nio-8080-exec-2] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":3,"message":"test2----8"}
+2019-06-01 14:23:32.013  INFO 1286 --- [http-nio-8080-exec-3] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":3,"message":"test2----9"}
+2019-06-01 14:23:32.020  INFO 1286 --- [http-nio-8080-exec-4] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:执行完成: java -cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test2
+2019-06-01 14:27:28.982 ERROR 1286 --- [http-nio-8080-exec-10] com.zf.service.WebSocketServer           : 发生错误
+2019-06-01 14:27:28.983  INFO 1286 --- [http-nio-8080-exec-10] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 14:28:58.630  INFO 1286 --- [http-nio-8080-exec-1] com.zf.service.WebSocketServer           : 有新窗口开始监听:192.168.0.103,当前在线人数为1
+2019-06-01 14:29:16.483  INFO 1286 --- [SimpleAsyncTaskExecutor-4] com.zf.executor.ExecutorListener         : listener : {"cid":"192.168.0.103","executeArgs":"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1","executeCommand":"java","executeId":4,"sessionId":"3"}
+2019-06-01 14:29:16.483  INFO 1286 --- [SimpleAsyncTaskExecutor-4] com.zf.executor.ExecutorListener         : 开始执行
+2019-06-01 14:29:16.483  INFO 1286 --- [SimpleAsyncTaskExecutor-4] com.zf.service.WebSocketServer           : 推送消息到192.168.0.103，推送内容:{"args":"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1","executeId":4,"command":"java"}
+2019-06-01 14:29:17.983  INFO 1286 --- [SimpleAsyncTaskExecutor-5] com.zf.executor.ExecutorListener         : listener : {"cid":"192.168.0.103","executeArgs":"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1","executeCommand":"java","executeId":5,"sessionId":"3"}
+2019-06-01 14:29:17.983  INFO 1286 --- [SimpleAsyncTaskExecutor-5] com.zf.executor.ExecutorListener         : 开始执行
+2019-06-01 14:29:17.985  INFO 1286 --- [SimpleAsyncTaskExecutor-5] com.zf.service.WebSocketServer           : 推送消息到192.168.0.103，推送内容:{"args":"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1","executeId":5,"command":"java"}
+2019-06-01 14:29:18.828  INFO 1286 --- [http-nio-8080-exec-4] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":4,"message":"4----0"}
+2019-06-01 14:29:20.185  INFO 1286 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":5,"message":"5----0"}
+2019-06-01 14:29:20.813  INFO 1286 --- [http-nio-8080-exec-6] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":4,"message":"4----1"}
+2019-06-01 14:29:22.185  INFO 1286 --- [http-nio-8080-exec-7] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":5,"message":"5----1"}
+2019-06-01 14:29:22.814  INFO 1286 --- [http-nio-8080-exec-8] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":4,"message":"4----2"}
+2019-06-01 14:29:24.189  INFO 1286 --- [http-nio-8080-exec-9] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":5,"message":"5----2"}
+2019-06-01 14:29:24.815  INFO 1286 --- [http-nio-8080-exec-10] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":4,"message":"4----3"}
+2019-06-01 14:29:26.192  INFO 1286 --- [http-nio-8080-exec-1] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":5,"message":"5----3"}
+2019-06-01 14:29:26.816  INFO 1286 --- [http-nio-8080-exec-2] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":4,"message":"4----4"}
+2019-06-01 14:29:28.195  INFO 1286 --- [http-nio-8080-exec-3] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":5,"message":"5----4"}
+2019-06-01 14:29:28.818  INFO 1286 --- [http-nio-8080-exec-4] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":4,"message":"4----5"}
+2019-06-01 14:29:30.199  INFO 1286 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":5,"message":"5----5"}
+2019-06-01 14:29:30.821  INFO 1286 --- [http-nio-8080-exec-6] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":4,"message":"4----6"}
+2019-06-01 14:29:32.203  INFO 1286 --- [http-nio-8080-exec-7] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":5,"message":"5----6"}
+2019-06-01 14:29:32.826  INFO 1286 --- [http-nio-8080-exec-8] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":4,"message":"4----7"}
+2019-06-01 14:29:34.206  INFO 1286 --- [http-nio-8080-exec-9] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":5,"message":"5----7"}
+2019-06-01 14:29:34.829  INFO 1286 --- [http-nio-8080-exec-10] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":4,"message":"4----8"}
+2019-06-01 14:29:36.209  INFO 1286 --- [http-nio-8080-exec-1] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":5,"message":"5----8"}
+2019-06-01 14:29:36.833  INFO 1286 --- [http-nio-8080-exec-2] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":4,"message":"4----9"}
+2019-06-01 14:29:36.841  INFO 1286 --- [http-nio-8080-exec-3] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:执行完成: java -cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1
+2019-06-01 14:29:38.214  INFO 1286 --- [http-nio-8080-exec-4] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:{"executeid":5,"message":"5----9"}
+2019-06-01 14:29:38.220  INFO 1286 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 收到来自窗口192.168.0.103的信息:执行完成: java -cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1
+2019-06-01 14:33:36.569  INFO 1286 --- [Thread-9] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@3c51bb32: startup date [Sat Jun 01 14:10:39 CST 2019]; root of context hierarchy
+2019-06-01 14:33:36.574  INFO 1286 --- [Thread-9] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-01 14:33:36.648  INFO 1286 --- [localhost-startStop-2] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 22:37:39.118  INFO 1609 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.102 with PID 1609 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-01 22:37:39.122  INFO 1609 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-01 22:37:39.386  INFO 1609 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@47772afe: startup date [Sat Jun 01 22:37:39 CST 2019]; root of context hierarchy
+2019-06-01 22:37:42.721  INFO 1609 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-01 22:37:42.767  INFO 1609 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-01 22:37:42.767  INFO 1609 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-01 22:37:42.786  INFO 1609 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/zhangfei/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-06-01 22:37:42.898  INFO 1609 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-01 22:37:42.898  INFO 1609 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3512 ms
+2019-06-01 22:37:43.059  INFO 1609 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-01 22:37:43.065  INFO 1609 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-01 22:37:43.066  INFO 1609 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-01 22:37:43.066  INFO 1609 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-01 22:37:43.069  INFO 1609 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-01 22:37:43.433  INFO 1609 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-01 22:37:43.978  INFO 1609 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@47772afe: startup date [Sat Jun 01 22:37:39 CST 2019]; root of context hierarchy
+2019-06-01 22:37:44.103  INFO 1609 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-01 22:37:44.105  INFO 1609 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-01 22:37:44.105  INFO 1609 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-01 22:37:44.111  INFO 1609 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-01 22:37:44.112  INFO 1609 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-01 22:37:44.166  INFO 1609 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-01 22:37:44.166  INFO 1609 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-01 22:37:44.191  INFO 1609 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-01 22:37:44.685  INFO 1609 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-01 22:37:44.730  INFO 1609 --- [restartedMain] o.s.w.s.s.s.ServerEndpointExporter       : Registering @ServerEndpoint class: class com.zf.service.WebSocketServer
+2019-06-01 22:37:44.752  INFO 1609 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-01 22:37:44.836  INFO 1609 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-01 22:37:44.845  INFO 1609 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 6.646 seconds (JVM running for 8.082)
+2019-06-01 22:38:01.521  INFO 1609 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-06-01 22:38:01.521  INFO 1609 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-06-01 22:38:01.557  INFO 1609 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 36 ms
+2019-06-01 22:38:09.428  INFO 1609 --- [http-nio-8080-exec-8] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 22:51:36.580  INFO 1609 --- [http-nio-8080-exec-8] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 22:51:36.628  INFO 1609 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 22:53:08.959  INFO 1609 --- [http-nio-8080-exec-3] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 22:53:09.002  INFO 1609 --- [http-nio-8080-exec-10] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 22:53:42.605  INFO 1609 --- [http-nio-8080-exec-1] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 22:53:42.672  INFO 1609 --- [http-nio-8080-exec-1] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 22:54:12.819  INFO 1609 --- [http-nio-8080-exec-8] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 22:54:12.872  INFO 1609 --- [http-nio-8080-exec-1] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 22:54:29.624  INFO 1609 --- [http-nio-8080-exec-6] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 22:54:29.670  INFO 1609 --- [http-nio-8080-exec-8] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 22:54:40.098  INFO 1609 --- [http-nio-8080-exec-7] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 22:54:40.159  INFO 1609 --- [http-nio-8080-exec-6] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 22:55:07.011  INFO 1609 --- [http-nio-8080-exec-1] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 22:55:07.072  INFO 1609 --- [http-nio-8080-exec-7] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 22:55:08.111  INFO 1609 --- [http-nio-8080-exec-2] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 22:55:08.161  INFO 1609 --- [http-nio-8080-exec-1] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 22:55:08.967  INFO 1609 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 22:55:09.007  INFO 1609 --- [http-nio-8080-exec-2] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 22:55:09.534  INFO 1609 --- [http-nio-8080-exec-8] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 22:55:09.578  INFO 1609 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 22:55:09.943  INFO 1609 --- [http-nio-8080-exec-9] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 22:55:09.969  INFO 1609 --- [http-nio-8080-exec-2] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 22:55:10.333  INFO 1609 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 22:55:10.362  INFO 1609 --- [http-nio-8080-exec-4] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 23:06:20.075  INFO 1609 --- [http-nio-8080-exec-3] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 23:06:20.129  INFO 1609 --- [http-nio-8080-exec-10] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 23:13:42.331  INFO 1609 --- [http-nio-8080-exec-7] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 23:13:42.378  INFO 1609 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 23:14:51.305  INFO 1609 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 23:14:51.379  INFO 1609 --- [http-nio-8080-exec-4] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 23:14:53.064  INFO 1609 --- [http-nio-8080-exec-8] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 23:14:53.142  INFO 1609 --- [http-nio-8080-exec-4] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 23:15:16.884  INFO 1609 --- [http-nio-8080-exec-10] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 23:15:16.923  INFO 1609 --- [http-nio-8080-exec-4] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 23:15:17.763  INFO 1609 --- [http-nio-8080-exec-10] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 23:15:17.805  INFO 1609 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 23:15:18.472  INFO 1609 --- [http-nio-8080-exec-1] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 23:15:18.513  INFO 1609 --- [http-nio-8080-exec-10] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 23:17:24.892  INFO 1609 --- [http-nio-8080-exec-3] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 23:17:24.943  INFO 1609 --- [http-nio-8080-exec-4] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 23:17:26.115  INFO 1609 --- [http-nio-8080-exec-8] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 23:17:26.155  INFO 1609 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 23:17:26.839  INFO 1609 --- [http-nio-8080-exec-8] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 23:17:26.894  INFO 1609 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 23:18:53.630  INFO 1609 --- [http-nio-8080-exec-9] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 23:18:53.687  INFO 1609 --- [http-nio-8080-exec-2] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 23:18:54.912  INFO 1609 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 23:18:54.963  INFO 1609 --- [http-nio-8080-exec-7] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 23:19:11.720  INFO 1609 --- [http-nio-8080-exec-4] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0
+2019-06-01 23:19:11.772  INFO 1609 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 有新窗口开始监听:0:0:0:0:0:0:0:1,当前在线人数为1
+2019-06-01 23:20:04.796  INFO 1609 --- [Thread-9] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@47772afe: startup date [Sat Jun 01 22:37:39 CST 2019]; root of context hierarchy
+2019-06-01 23:20:04.802  INFO 1609 --- [Thread-9] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-01 23:20:04.820  INFO 1609 --- [localhost-startStop-2] com.zf.service.WebSocketServer           : 有一连接关闭！当前在线人数为0

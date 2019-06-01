@@ -23,6 +23,7 @@ public class ExecutorCenter {
 			JSONObject json = new JSONObject();
 			json.put("command",info.getExecuteCommand());
 			json.put("args",info.getExecuteArgs());
+			json.put("executeId",info.getExecuteId());
 			WebSocketServer.sendInfo(info.getCid(), info.getSessionId(), MessageType.COMMAND, JSON.toJSONString(json));
 		} catch (IOException e) {
 			e.printStackTrace();

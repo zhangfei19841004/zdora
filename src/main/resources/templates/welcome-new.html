@@ -12,37 +12,35 @@
         background-color: #393D49;
     }
 </style>
-<body>
-<ul class="layui-nav layui-bg-green" style="text-align: center">
-    <li class="layui-nav-item"><span style="font-size: xx-large;font-family: Consolas; font-weight: 800">脚本执行中心</span>
-    </li>
-</ul>
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 5px;">
-    <legend><span id="content" style="font-family: Consolas"></span></legend>
-</fieldset>
-<div style="padding: 20px; background-color: #F2F2F2;">
-    <div class="layui-col-md12">
-        <div class="layui-card">
-            <div class="layui-card-header">
-                <button class="layui-btn layui-btn-sm" id="executorBtn" th:onclick="'executor()'">执行</button>
-            </div>
-            <div class="layui-card-body">
-                <div class="layui-collapse" lay-filter="test" lay-accordion="">
-                    <div class="layui-colla-item" th:each="tc,tcStat:${testcases}">
-                        <h2 class="layui-colla-title" style="font-family: Consolas;">
-                            <div class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-                                <div class="layui-form-item">
-                                    <input lay-skin="primary" lay-filter="checkCases" name="testCaseCheckbox"
-                                           th:attr="title=${tc.testCaseFileName},tpath=${tc.testCasePath}"
-                                           type="checkbox">
-                                </div>
+<body style="background-color: #F2F2F2;font-family: Consolas;">
+<div style="margin: 0px 20px 0px 20px;text-align: center">
+    <ul class="layui-nav layui-bg-green">
+        <li class="layui-nav-item"><span
+                style="font-size: xx-large; font-weight: 800">脚本执行中心</span>
+        </li>
+    </ul>
+</div>
+<div style="margin: 20px;">
+    <div class="layui-card">
+        <div class="layui-card-header">
+            <button class="layui-btn">节点机器<span class="layui-badge layui-bg-gray">1</span></button>
+        </div>
+        <div class="layui-card-body">
+            <div class="layui-collapse" lay-filter="test" lay-accordion="">
+                <div class="layui-colla-item" th:each="tc,tcStat:${testcases}">
+                    <h2 class="layui-colla-title">
+                        <div class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+                            <div class="layui-form-item">
+                                <input lay-skin="primary" lay-filter="checkCases" name="testCaseCheckbox"
+                                       th:attr="title=${tc.testCaseFileName},tpath=${tc.testCasePath}"
+                                       type="checkbox">
                             </div>
-                            <!--<span style="font-family: Consolas" th:text="${tc.testCaseFileName}"></span>-->
-                        </h2>
-                        <div th:class="${tcStat.index==0}?'layui-colla-content layui-show':'layui-colla-content'">
+                        </div>
+                        <!--<span style="font-family: Consolas" th:text="${tc.testCaseFileName}"></span>-->
+                    </h2>
+                    <div th:class="${tcStat.index==0}?'layui-colla-content layui-show':'layui-colla-content'">
                             <pre class="layui-code" th:attr="lay-title=${tc.testCaseFileName}" lay-skin="notepad"
                                  th:text="${tc.testCase}" style="font-family: Consolas"></pre>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -109,7 +107,7 @@
                 tpath += ',' + $(this).attr('tpath');
             }
         });
-        if(tpath!=''){
+        if (tpath != '') {
             $.post(ctx + "/push", {cid: cid, path: tpath}, function (data) {
                 if (data.retCode != '200') {
                     layer.close(index);
@@ -137,13 +135,13 @@
         //获得消息事件
         socket.onmessage = function (msg) {
             var message = JSON.parse(msg.data);
-            if(message.type==1){
+            if (message.type == 1) {
                 $("#content").text(message.message);
-            }else if(message.type==2){
+            } else if (message.type == 2) {
                 if ($("#executorProcess")) {
                     $("#executorProcess").append("<p style='color:white; margin-left: 10px'>" + message.message + "</p>");
                 }
-            }else if(message.type==3){
+            } else if (message.type == 3) {
                 layer.closeAll();
             }
         };
