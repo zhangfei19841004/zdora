@@ -1,0 +1,39 @@
+INFO 2019-06-01 14:12:47.632 main [com.zf.zdora.client.Run] - begin to connect
+INFO 2019-06-01 14:12:47.724 main [com.zf.zdora.client.Run] - connecting...
+INFO 2019-06-01 14:12:47.773 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - ------ client onOpen ------
+INFO 2019-06-01 14:12:47.779 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - -------- 接收到服务端数据： {"message":"1","type":6}--------
+INFO 2019-06-01 14:12:47.994 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - -------- 接收到服务端数据： {"message":"欢迎你: 127.0.0.1","type":2}--------
+INFO 2019-06-01 14:12:48.261 main [com.zf.zdora.client.Run] - connected!
+INFO 2019-06-01 14:12:48.261 main [com.zf.zdora.client.Run] - session id is: 1
+INFO 2019-06-01 14:13:07.321 main [com.zf.zdora.client.Run] - begin to connect
+INFO 2019-06-01 14:13:17.417 main [com.zf.zdora.client.Run] - connecting...
+INFO 2019-06-01 14:20:26.367 main [com.zf.zdora.client.Run] - begin to connect
+INFO 2019-06-01 14:20:26.622 main [com.zf.zdora.client.Run] - connecting...
+INFO 2019-06-01 14:20:26.675 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - ------ client onOpen ------
+INFO 2019-06-01 14:20:26.681 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - -------- 接收到服务端数据： {"message":"2","type":6}--------
+INFO 2019-06-01 14:20:26.971 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - -------- 接收到服务端数据： {"message":"欢迎你: 192.168.0.103","type":2}--------
+INFO 2019-06-01 14:20:27.125 main [com.zf.zdora.client.Run] - connected!
+INFO 2019-06-01 14:20:27.125 main [com.zf.zdora.client.Run] - session id is: 2
+INFO 2019-06-01 14:22:33.995 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - -------- 接收到服务端数据： {"message":"{\"args\":\"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1\",\"executeId\":1,\"command\":\"java\"}","type":7}--------
+INFO 2019-06-01 14:22:34.004 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - 执行命令: {"args":"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1","executeId":1,"command":"java"}
+INFO 2019-06-01 14:22:54.396 pool-1-thread-1 [com.zf.zdora.executor.ExecutorHandler] - 执行完命令: java -cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1
+INFO 2019-06-01 14:23:05.793 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - -------- 接收到服务端数据： {"message":"{\"args\":\"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1\",\"executeId\":2,\"command\":\"java\"}","type":7}--------
+INFO 2019-06-01 14:23:05.793 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - 执行命令: {"args":"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1","executeId":2,"command":"java"}
+INFO 2019-06-01 14:23:11.790 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - -------- 接收到服务端数据： {"message":"{\"args\":\"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test2\",\"executeId\":3,\"command\":\"java\"}","type":7}--------
+INFO 2019-06-01 14:23:11.791 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - 执行命令: {"args":"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test2","executeId":3,"command":"java"}
+INFO 2019-06-01 14:23:26.043 pool-1-thread-2 [com.zf.zdora.executor.ExecutorHandler] - 执行完命令: java -cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1
+INFO 2019-06-01 14:23:32.019 pool-1-thread-3 [com.zf.zdora.executor.ExecutorHandler] - 执行完命令: java -cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test2
+INFO 2019-06-01 14:28:58.360 main [com.zf.zdora.client.Run] - begin to connect
+INFO 2019-06-01 14:28:58.562 main [com.zf.zdora.client.Run] - connecting...
+INFO 2019-06-01 14:28:58.662 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - ------ client onOpen ------
+INFO 2019-06-01 14:28:58.673 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - -------- 接收到服务端数据： {"message":"3","type":6}--------
+INFO 2019-06-01 14:28:58.960 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - -------- 接收到服务端数据： {"message":"欢迎你: 192.168.0.103","type":2}--------
+INFO 2019-06-01 14:28:59.065 main [com.zf.zdora.client.Run] - connected!
+INFO 2019-06-01 14:28:59.065 main [com.zf.zdora.client.Run] - session id is: 3
+INFO 2019-06-01 14:29:16.486 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - -------- 接收到服务端数据： {"message":"{\"args\":\"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1\",\"executeId\":4,\"command\":\"java\"}","type":7}--------
+INFO 2019-06-01 14:29:16.495 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - 执行命令: {"args":"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1","executeId":4,"command":"java"}
+INFO 2019-06-01 14:29:17.986 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - -------- 接收到服务端数据： {"message":"{\"args\":\"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1\",\"executeId\":5,\"command\":\"java\"}","type":7}--------
+INFO 2019-06-01 14:29:17.987 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - 执行命令: {"args":"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1","executeId":5,"command":"java"}
+INFO 2019-06-01 14:29:36.840 pool-1-thread-1 [com.zf.zdora.executor.ExecutorHandler] - 执行完命令: java -cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1
+INFO 2019-06-01 14:29:38.220 pool-1-thread-2 [com.zf.zdora.executor.ExecutorHandler] - 执行完命令: java -cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1
+INFO 2019-06-01 14:33:36.664 WebSocketConnectReadThread-12 [com.zf.zdora.client.ZdoraClient] - ------ client onClose ------

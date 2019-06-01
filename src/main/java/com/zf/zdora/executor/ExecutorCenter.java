@@ -19,6 +19,7 @@ public class ExecutorCenter {
 		ExecutorHandler eh = new ExecutorHandler();
 		eh.setCommand(json.getString("command"));
 		eh.setArgs(json.getString("args"));
+		eh.setExecuteId(json.getIntValue("executeId"));
 		eh.setZdoraClient(zdoraClient);
 		service.execute(eh);
 	}

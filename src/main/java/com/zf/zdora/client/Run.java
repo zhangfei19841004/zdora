@@ -11,6 +11,8 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by zhangfei on 2019/5/30/030.
@@ -66,8 +68,7 @@ public class Run {
 
 	public void process() throws Exception {
 		logger.info("begin to connect");
-		List<String> ips = this.getLocalIPList();
-		String ip = ips.get(ips.size() - 1);
+		String ip = this.getLocalIPList().stream().filter(t -> !"127.0.0.1".equals(t)).findFirst().get();
 		ZdoraClient zc = new ZdoraClient("ws://" + serverHost + ":" + serverPort + "/websocket/" + ip);
 		zc.connect();
 		while (!zc.getReadyState().equals(WebSocket.READYSTATE.OPEN)) {

@@ -22,6 +22,8 @@ public class ExecutorHandler extends Thread {
 
 	private String args;
 
+	private int executeId;
+
 	public void setCommand(String command) {
 		this.command = command;
 	}
@@ -30,10 +32,14 @@ public class ExecutorHandler extends Thread {
 		this.args = args;
 	}
 
+	public void setExecuteId(int executeId) {
+		this.executeId = executeId;
+	}
+
 	@Override
 	public void run() {
-		CommandUtil.executeCommand(zdoraClient, command, args);
-		logger.info("执行完命令: " + command);
-		zdoraClient.send("执行完成: "+command);
+		CommandUtil.executeCommand(zdoraClient, command, args, executeId);
+		logger.info("执行完命令: " + command+" "+args);
+		zdoraClient.send("执行完成: "+command+" "+args);
 	}
 }
