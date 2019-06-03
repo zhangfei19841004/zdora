@@ -1,8 +1,8 @@
 package com.zf.zdora.common;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.zf.zdora.client.ZdoraClient;
+import com.zf.zdora.executor.ExecutorClientInfo;
+import com.zf.zdora.executor.ExecutorStatus;
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
 import org.apache.commons.exec.LogOutputStream;
@@ -48,10 +48,12 @@ public class CommandUtil {
         @Override
         protected void processLine(String line, int level) {
             System.out.println(line);
-            JSONObject json = new JSONObject();
-            json.put("executeid",executeId);
-            json.put("message",line);
-            zdoraClient.send(JSON.toJSONString(json));
+            ExecutorClientInfo info = new ExecutorClientInfo();
+            info.setType(2);
+            info.setExecuteId(executeId);
+            info.setExecuteStatus(ExecutorStatus.STATUS2.getStatus());
+            info.setMessage(line);
+            zdoraClient.send(info.toString());
         }
 
     }

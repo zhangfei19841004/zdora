@@ -38,8 +38,19 @@ public class ExecutorHandler extends Thread {
 
 	@Override
 	public void run() {
+		ExecutorClientInfo begin = new ExecutorClientInfo();
+		begin.setType(2);
+		begin.setExecuteId(executeId);
+		begin.setExecuteStatus(ExecutorStatus.STATUS2.getStatus());
+		begin.setMessage("开始执行: " + command + " " + args);
+		zdoraClient.send(begin.toString());
 		CommandUtil.executeCommand(zdoraClient, command, args, executeId);
-		logger.info("执行完命令: " + command+" "+args);
-		zdoraClient.send("执行完成: "+command+" "+args);
+		logger.info("执行完命令: " + command + " " + args);
+		ExecutorClientInfo end = new ExecutorClientInfo();
+		end.setType(2);
+		end.setExecuteId(executeId);
+		end.setExecuteStatus(ExecutorStatus.STATUS3.getStatus());
+		end.setMessage("执行完成: " + command + " " + args);
+		zdoraClient.send(end.toString());
 	}
 }

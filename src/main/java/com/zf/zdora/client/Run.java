@@ -69,7 +69,7 @@ public class Run {
 	public void process() throws Exception {
 		logger.info("begin to connect");
 		String ip = this.getLocalIPList().stream().filter(t -> !"127.0.0.1".equals(t)).findFirst().get();
-		ZdoraClient zc = new ZdoraClient("ws://" + serverHost + ":" + serverPort + "/websocket/" + ip);
+		ZdoraClient zc = new ZdoraClient("ws://" + serverHost + ":" + serverPort + "/websocket/" + ip+"/5");
 		zc.connect();
 		while (!zc.getReadyState().equals(WebSocket.READYSTATE.OPEN)) {
 			logger.info("connecting...");
