@@ -26,6 +26,7 @@ public class ExecutorListener {
 		info.setStatus(ExecutorStatus.STATUS2);
 		ExecutorCenter.ALL_EXECUTOR.put(info.getExecuteId(), info);
 		ExecutorCenter.EXECUTE_LOGS.put(info.getExecuteId(), new ArrayList<>());
+		ExecutorCenter.LOOKING_CLIENTS.put(info.getExecuteId(), new ArrayList<>());
 		executorCenter.executor(info);
 	}
 

@@ -94,13 +94,7 @@ public class WebSocketServer {
 					webSocketServer.sendMessage(ExecutorClientInfo.getInstance(MessageType.MESSAGE.getType(),clientInfo.getExecuteId(),clientInfo.getMessage(),clientInfo.getExecuteStatus()).toString());
 				}
 			} else if (clientInfo.getType() == MessageType.LOOK.getType()) {
-				if (ExecutorCenter.LOOKING_CLIENTS.containsKey(clientInfo.getExecuteId())) {
-					ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId()).add(WEBSOCKET_INFOS.get(session.getId()));
-				} else {
-					List<WebSocketServer> list = new ArrayList<>();
-					list.add(WEBSOCKET_INFOS.get(session.getId()));
-					ExecutorCenter.LOOKING_CLIENTS.put(clientInfo.getExecuteId(), list);
-				}
+				ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId()).add(WEBSOCKET_INFOS.get(session.getId()));
 				ExecutorCenter.EXECUTE_LOGS.get(clientInfo.getExecuteId()).forEach(t -> {
 					try {
 						serverInfo.sendMessage(MessageType.MESSAGE, t);
