@@ -63,8 +63,7 @@
                 <div class="layui-colla-item" name="executorLogs" th:each="executor,executorsStat:${executors}">
                     <h2 class="layui-colla-title"
                         th:text="${executor.cid}+ ':' +${executor.executeCommand}+' '+${executor.executeArgs}+ ' '+${executor.status.statusName}"></h2>
-                    <input name="cid" type="hidden" th:value="${executor.cid}">
-                    <input name="cid" type="hidden" th:value="${executor.cid}">
+                    <input name="executeId" type="hidden" th:value="${executor.cid}">
                     <div class="layui-colla-content" name="logs">
 
                     </div>
@@ -83,7 +82,11 @@
         var element = layui.element;
         var layer = layui.layer;
         element.on('collapse(test)', function (data) {
-            socket.send(JSON.stringify({type:8,executeId:}));
+            if(data.show){
+                socket.send(JSON.stringify({type:8,executeId:}));
+            }else{
+                socket.send(JSON.stringify({type:9,executeId:}));
+            }
         });
     });
 

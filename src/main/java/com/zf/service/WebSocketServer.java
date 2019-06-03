@@ -15,6 +15,7 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -106,8 +107,15 @@ public class WebSocketServer {
 					} catch (IOException e) {
 					}
 				});
+			} else if (clientInfo.getType() == MessageType.UNLOOK.getType()) {
+				Iterator<WebSocketServer> it = ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId()).iterator();
+				while(it.hasNext()){
+					WebSocketServer info = it.next();
+					if(info.getWebSocketInfo().getSession().getId().equals(session.getId())){
+						it.remove();
+					}
+				}
 			}
-
 		} catch (Exception e) {
 
 		}
