@@ -47,6 +47,20 @@ public class ExecutorClientInfo {
 		this.type = type;
 	}
 
+	public ExecutorClientInfo() {
+	}
+
+	public ExecutorClientInfo(int type, int executeId, String message, int executeStatus) {
+		this.type = type;
+		this.executeId = executeId;
+		this.message = message;
+		this.executeStatus = executeStatus;
+	}
+
+	public static ExecutorClientInfo getInstance(int type, int executeId, String message, int executeStatus){
+		return new ExecutorClientInfo(type, executeId, message, executeStatus);
+	}
+
 	@Override
 	public String toString() {
 		return JSON.toJSONString(this);

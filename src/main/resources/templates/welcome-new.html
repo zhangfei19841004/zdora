@@ -63,8 +63,8 @@
                 <div class="layui-colla-item" name="executorLogs" th:each="executor,executorsStat:${executors}">
                     <h2 class="layui-colla-title"
                         th:text="${executor.cid}+ ':' +${executor.executeCommand}+' '+${executor.executeArgs}+ ' '+${executor.status.statusName}"></h2>
-                    <input name="executeId" type="hidden" th:value="${executor.cid}">
-                    <div class="layui-colla-content" name="logs">
+                    <input name="executeId" type="hidden" th:value="${executor.executeId}">
+                    <div class="layui-colla-content" th:attr="id='logs_'+${executor.executeId}" name="logs">
 
                     </div>
                 </div>
@@ -82,10 +82,12 @@
         var element = layui.element;
         var layer = layui.layer;
         element.on('collapse(test)', function (data) {
+            var executeId = $(this).next("input[name='executeId']").eq(0).val();
             if(data.show){
-                socket.send(JSON.stringify({type:8,executeId:}));
+                socket.send(JSON.stringify({type:8,executeId:executeId}));
             }else{
-                socket.send(JSON.stringify({type:9,executeId:}));
+                $("#logs_"+executeId).empty();
+                socket.send(JSON.stringify({type:9,executeId:executeId}));
             }
         });
     });
@@ -117,20 +119,13 @@
         socket = new WebSocket((ctx + "/websocket/" + cid + "/4").replace("http", "ws"));
         //打开事件
         socket.onopen = function () {
-            //console.log(cid + " Socket 已打开");
-            //socket.send("这是来自客户端的消息" + location.href + new Date());
         };
         //获得消息事件
         socket.onmessage = function (msg) {
             var message = JSON.parse(msg.data);
-            if (message.type == 1) {
-                $("#content").text(message.message);
-            } else if (message.type == 2) {
-                if ($("#executorProcess")) {
-                    $("#executorProcess").append("<p style='color:white; margin-left: 10px'>" + message.message + "</p>");
-                }
-            } else if (message.type == 3) {
-                layer.closeAll();
+            if (message.type == 2) {
+                var ei = message.executeId;
+                $("#logs_"+ei).append("<p>"+message.message+"</p>");
             }
         };
         //关闭事件

@@ -2768,3 +2768,778 @@ Caused by: java.lang.ClassNotFoundException: com.zf.executor.ExecutorCenter
 2019-06-03 19:24:40.794  INFO 10444 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
 2019-06-03 19:24:40.795  INFO 10444 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 1.167 seconds (JVM running for 2641.213)
 2019-06-03 19:24:40.797  INFO 10444 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-06-03 22:03:07.783  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:03:07.786  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:03:08.036  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@57758ca2: startup date [Mon Jun 03 22:03:08 CST 2019]; root of context hierarchy
+2019-06-03 22:03:11.958  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:03:12.014  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:03:12.015  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:03:12.028  INFO 555 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/zhangfei/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-06-03 22:03:12.257  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:03:12.258  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4223 ms
+2019-06-03 22:03:12.660  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:03:12.667  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:03:12.668  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:03:12.669  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:03:12.676  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:03:13.457  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:03:14.498  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@57758ca2: startup date [Mon Jun 03 22:03:08 CST 2019]; root of context hierarchy
+2019-06-03 22:03:14.655  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-03 22:03:14.660  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-03 22:03:14.660  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-03 22:03:14.664  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-03 22:03:14.667  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-03 22:03:14.809  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:03:14.812  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:03:14.849  INFO 555 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-03 22:03:15.320  INFO 555 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-03 22:03:15.363  INFO 555 --- [restartedMain] o.s.w.s.s.s.ServerEndpointExporter       : Registering @ServerEndpoint class: class com.zf.service.WebSocketServer
+2019-06-03 22:03:15.390  INFO 555 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-03 22:03:15.480  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-03 22:03:15.488  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 9.646 seconds (JVM running for 11.593)
+2019-06-03 22:05:54.244  INFO 555 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-06-03 22:05:54.244  INFO 555 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-06-03 22:05:54.266  INFO 555 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 22 ms
+2019-06-03 22:06:12.633  INFO 555 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 欢迎:192.168.0.103,sessionId为:0,当前在线人数为:1
+2019-06-03 22:10:05.320  INFO 555 --- [http-nio-8080-exec-6] com.zf.service.WebSocketServer           : 欢迎:0:0:0:0:0:0:0:1,sessionId为:1,当前在线人数为:2
+2019-06-03 22:10:23.445  INFO 555 --- [http-nio-8080-exec-4] com.zf.service.WebSocketServer           : 连接关闭0:0:0:0:0:0:0:1, 当前在线人数为:1
+2019-06-03 22:10:23.494  INFO 555 --- [http-nio-8080-exec-9] com.zf.service.WebSocketServer           : 欢迎:0:0:0:0:0:0:0:1,sessionId为:2,当前在线人数为:2
+2019-06-03 22:10:26.541  INFO 555 --- [http-nio-8080-exec-2] com.zf.service.WebSocketServer           : 连接关闭0:0:0:0:0:0:0:1, 当前在线人数为:1
+2019-06-03 22:10:26.599  INFO 555 --- [http-nio-8080-exec-7] com.zf.service.WebSocketServer           : 欢迎:0:0:0:0:0:0:0:1,sessionId为:3,当前在线人数为:2
+2019-06-03 22:12:45.002  INFO 555 --- [http-nio-8080-exec-4] com.zf.service.WebSocketServer           : 连接关闭0:0:0:0:0:0:0:1, 当前在线人数为:1
+2019-06-03 22:12:45.068  INFO 555 --- [http-nio-8080-exec-7] com.zf.service.WebSocketServer           : 欢迎:0:0:0:0:0:0:0:1,sessionId为:4,当前在线人数为:2
+2019-06-03 22:13:22.500  INFO 555 --- [http-nio-8080-exec-3] com.zf.service.WebSocketServer           : 连接关闭0:0:0:0:0:0:0:1, 当前在线人数为:1
+2019-06-03 22:13:22.562  INFO 555 --- [http-nio-8080-exec-8] com.zf.service.WebSocketServer           : 欢迎:0:0:0:0:0:0:0:1,sessionId为:5,当前在线人数为:2
+2019-06-03 22:13:53.885  INFO 555 --- [http-nio-8080-exec-9] com.zf.service.WebSocketServer           : 连接关闭0:0:0:0:0:0:0:1, 当前在线人数为:1
+2019-06-03 22:13:53.950  INFO 555 --- [http-nio-8080-exec-6] com.zf.service.WebSocketServer           : 欢迎:0:0:0:0:0:0:0:1,sessionId为:6,当前在线人数为:2
+2019-06-03 22:14:00.196  INFO 555 --- [http-nio-8080-exec-7] .s.a.AnnotationAsyncExecutionInterceptor : No task executor bean found for async processing: no bean of type TaskExecutor and no bean named 'taskExecutor' either
+2019-06-03 22:14:00.218  INFO 555 --- [SimpleAsyncTaskExecutor-1] com.zf.service.WebSocketServer           : 推送消息到192.168.0.103，推送内容:{"args":"-version","executeId":1,"command":"java"}
+2019-06-03 22:14:11.550  INFO 555 --- [http-nio-8080-exec-6] com.zf.service.WebSocketServer           : 连接关闭0:0:0:0:0:0:0:1, 当前在线人数为:1
+2019-06-03 22:14:11.605  INFO 555 --- [http-nio-8080-exec-9] com.zf.service.WebSocketServer           : 欢迎:0:0:0:0:0:0:0:1,sessionId为:7,当前在线人数为:2
+2019-06-03 22:14:32.510  INFO 555 --- [http-nio-8080-exec-3] com.zf.service.WebSocketServer           : 连接关闭0:0:0:0:0:0:0:1, 当前在线人数为:1
+2019-06-03 22:14:32.603  INFO 555 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 欢迎:0:0:0:0:0:0:0:1,sessionId为:8,当前在线人数为:2
+2019-06-03 22:16:14.489  INFO 555 --- [http-nio-8080-exec-6] com.zf.service.WebSocketServer           : 连接关闭0:0:0:0:0:0:0:1, 当前在线人数为:1
+2019-06-03 22:16:14.613  INFO 555 --- [http-nio-8080-exec-9] com.zf.service.WebSocketServer           : 欢迎:0:0:0:0:0:0:0:1,sessionId为:9,当前在线人数为:2
+2019-06-03 22:25:45.464  INFO 555 --- [Thread-6] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@57758ca2: startup date [Mon Jun 03 22:03:08 CST 2019]; root of context hierarchy
+2019-06-03 22:25:45.467  INFO 555 --- [Thread-6] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-03 22:25:45.492  INFO 555 --- [localhost-startStop-2] com.zf.service.WebSocketServer           : 连接关闭192.168.0.103, 当前在线人数为:1
+2019-06-03 22:25:45.493  INFO 555 --- [localhost-startStop-2] com.zf.service.WebSocketServer           : 连接关闭0:0:0:0:0:0:0:1, 当前在线人数为:0
+2019-06-03 22:25:45.978  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:25:45.979  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:25:45.998  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@47d45f3a: startup date [Mon Jun 03 22:25:45 CST 2019]; root of context hierarchy
+2019-06-03 22:25:48.727  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:25:48.729  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:25:48.730  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:25:48.741  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:25:48.743  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2745 ms
+2019-06-03 22:25:48.761  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:25:48.762  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:25:48.762  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:25:48.762  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:25:48.762  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:25:49.032  WARN 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'webController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.zf.web.controller.WebController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@35460752]
+2019-06-03 22:25:49.036  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2019-06-03 22:25:49.054  INFO 555 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2019-06-03 22:25:49.097 ERROR 555 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'webController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.zf.web.controller.WebController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@35460752]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:261) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1195) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1120) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:535) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:495) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:317) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:759) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:869) ~[spring-context-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550) ~[spring-context-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140) ~[spring-boot-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:762) [spring-boot-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:398) [spring-boot-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:330) [spring-boot-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1258) [spring-boot-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246) [spring-boot-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at com.zf.ZdoraApplication.main(ZdoraApplication.java:17) [classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_191]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_191]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_191]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_191]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) [spring-boot-devtools-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.zf.web.controller.WebController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@35460752]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:659) ~[spring-core-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:556) ~[spring-core-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:541) ~[spring-core-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:244) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	... 23 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: com/zf/service/WebSocketServer
+	at java.lang.Class.getDeclaredMethods0(Native Method) ~[na:1.8.0_191]
+	at java.lang.Class.privateGetDeclaredMethods(Class.java:2701) ~[na:1.8.0_191]
+	at java.lang.Class.getDeclaredMethods(Class.java:1975) ~[na:1.8.0_191]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:641) ~[spring-core-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	... 26 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.zf.service.WebSocketServer
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:382) ~[na:1.8.0_191]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424) ~[na:1.8.0_191]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:349) ~[na:1.8.0_191]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[na:1.8.0_191]
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:148) ~[spring-boot-devtools-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[na:1.8.0_191]
+	... 30 common frames omitted
+
+2019-06-03 22:25:52.653  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:25:52.653  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:25:52.670  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@60ffff9b: startup date [Mon Jun 03 22:25:52 CST 2019]; root of context hierarchy
+2019-06-03 22:25:54.838  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:25:54.840  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:25:54.840  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:25:54.851  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:25:54.852  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2182 ms
+2019-06-03 22:25:54.873  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:25:54.874  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:25:54.874  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:25:54.874  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:25:54.875  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:25:55.349  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:25:55.733  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@60ffff9b: startup date [Mon Jun 03 22:25:52 CST 2019]; root of context hierarchy
+2019-06-03 22:25:55.759  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-03 22:25:55.759  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-03 22:25:55.759  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-03 22:25:55.763  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-03 22:25:55.764  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-03 22:25:55.790  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:25:55.791  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:25:55.820  INFO 555 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-03 22:25:56.268  INFO 555 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-03 22:25:56.359  INFO 555 --- [restartedMain] o.s.w.s.s.s.ServerEndpointExporter       : Registering @ServerEndpoint class: class com.zf.service.WebSocketServer
+2019-06-03 22:25:56.360  INFO 555 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-03 22:25:56.405  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-03 22:25:56.408  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 3.799 seconds (JVM running for 1372.46)
+2019-06-03 22:25:56.412  INFO 555 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-06-03 22:25:58.698  INFO 555 --- [Thread-11] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@60ffff9b: startup date [Mon Jun 03 22:25:52 CST 2019]; root of context hierarchy
+2019-06-03 22:25:58.703  INFO 555 --- [Thread-11] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-03 22:25:59.086  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:25:59.087  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:25:59.098  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@57910739: startup date [Mon Jun 03 22:25:59 CST 2019]; root of context hierarchy
+2019-06-03 22:26:00.219  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:26:00.222  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:26:00.222  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:26:00.233  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:26:00.234  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1137 ms
+2019-06-03 22:26:00.252  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:26:00.253  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:26:00.253  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:26:00.253  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:26:00.253  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:26:00.606  WARN 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'webController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.zf.web.controller.WebController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@63772c13]
+2019-06-03 22:26:00.607  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2019-06-03 22:26:00.632  INFO 555 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2019-06-03 22:26:00.634 ERROR 555 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'webController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.zf.web.controller.WebController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@63772c13]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:261) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1195) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1120) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:535) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:495) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:317) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:759) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:869) ~[spring-context-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550) ~[spring-context-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140) ~[spring-boot-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:762) [spring-boot-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:398) [spring-boot-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:330) [spring-boot-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1258) [spring-boot-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246) [spring-boot-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at com.zf.ZdoraApplication.main(ZdoraApplication.java:17) [classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_191]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_191]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_191]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_191]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) [spring-boot-devtools-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.zf.web.controller.WebController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@63772c13]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:659) ~[spring-core-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:556) ~[spring-core-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:541) ~[spring-core-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:244) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	... 23 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: com/zf/service/WebSocketServer
+	at java.lang.Class.getDeclaredMethods0(Native Method) ~[na:1.8.0_191]
+	at java.lang.Class.privateGetDeclaredMethods(Class.java:2701) ~[na:1.8.0_191]
+	at java.lang.Class.getDeclaredMethods(Class.java:1975) ~[na:1.8.0_191]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:641) ~[spring-core-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	... 26 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.zf.service.WebSocketServer
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:382) ~[na:1.8.0_191]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424) ~[na:1.8.0_191]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:349) ~[na:1.8.0_191]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[na:1.8.0_191]
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:148) ~[spring-boot-devtools-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[na:1.8.0_191]
+	... 30 common frames omitted
+
+2019-06-03 22:26:11.274  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:26:11.275  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:26:11.279  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@51a859ea: startup date [Mon Jun 03 22:26:11 CST 2019]; root of context hierarchy
+2019-06-03 22:26:12.300  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:26:12.306  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:26:12.307  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:26:12.319  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:26:12.321  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1042 ms
+2019-06-03 22:26:12.337  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:26:12.338  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:26:12.338  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:26:12.338  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:26:12.338  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:26:12.450  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:26:12.499  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@51a859ea: startup date [Mon Jun 03 22:26:11 CST 2019]; root of context hierarchy
+2019-06-03 22:26:12.507  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-03 22:26:12.507  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-03 22:26:12.508  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-03 22:26:12.511  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-03 22:26:12.512  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-03 22:26:12.522  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:26:12.522  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:26:12.530  INFO 555 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-03 22:26:12.590  INFO 555 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-03 22:26:12.604  INFO 555 --- [restartedMain] o.s.w.s.s.s.ServerEndpointExporter       : Registering @ServerEndpoint class: class com.zf.service.WebSocketServer
+2019-06-03 22:26:12.605  INFO 555 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-03 22:26:12.618  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-03 22:26:12.618  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 1.397 seconds (JVM running for 1388.67)
+2019-06-03 22:26:12.620  INFO 555 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-06-03 22:30:18.676  INFO 555 --- [Thread-20] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@51a859ea: startup date [Mon Jun 03 22:26:11 CST 2019]; root of context hierarchy
+2019-06-03 22:30:18.678  INFO 555 --- [Thread-20] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-03 22:30:19.006  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:30:19.007  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:30:19.018  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@730517c1: startup date [Mon Jun 03 22:30:19 CST 2019]; root of context hierarchy
+2019-06-03 22:30:19.632  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:30:19.633  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:30:19.633  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:30:19.642  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:30:19.643  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 625 ms
+2019-06-03 22:30:19.655  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:30:19.656  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:30:19.656  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:30:19.656  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:30:19.656  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:30:19.760  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:30:19.846  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@730517c1: startup date [Mon Jun 03 22:30:19 CST 2019]; root of context hierarchy
+2019-06-03 22:30:19.863  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-03 22:30:19.863  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-03 22:30:19.863  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-03 22:30:19.866  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-03 22:30:19.866  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-03 22:30:19.902  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:30:19.902  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:30:19.915  INFO 555 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-03 22:30:19.981  INFO 555 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-03 22:30:20.003  INFO 555 --- [restartedMain] o.s.w.s.s.s.ServerEndpointExporter       : Registering @ServerEndpoint class: class com.zf.service.WebSocketServer
+2019-06-03 22:30:20.004  INFO 555 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-03 22:30:20.014  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-03 22:30:20.014  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 1.047 seconds (JVM running for 1636.052)
+2019-06-03 22:30:20.016  INFO 555 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-06-03 22:30:43.660  INFO 555 --- [Thread-29] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@730517c1: startup date [Mon Jun 03 22:30:19 CST 2019]; root of context hierarchy
+2019-06-03 22:30:43.662  INFO 555 --- [Thread-29] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-03 22:30:44.026  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:30:44.027  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:30:44.034  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@13f4e05e: startup date [Mon Jun 03 22:30:44 CST 2019]; root of context hierarchy
+2019-06-03 22:30:44.855  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:30:44.856  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:30:44.856  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:30:44.865  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:30:44.866  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 832 ms
+2019-06-03 22:30:44.880  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:30:44.881  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:30:44.881  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:30:44.881  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:30:44.881  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:30:45.031  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:30:45.094  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@13f4e05e: startup date [Mon Jun 03 22:30:44 CST 2019]; root of context hierarchy
+2019-06-03 22:30:45.105  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-03 22:30:45.105  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-03 22:30:45.105  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-03 22:30:45.117  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-03 22:30:45.118  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-03 22:30:45.133  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:30:45.134  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:30:45.140  INFO 555 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-03 22:30:45.221  INFO 555 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-03 22:30:45.338  INFO 555 --- [restartedMain] o.s.w.s.s.s.ServerEndpointExporter       : Registering @ServerEndpoint class: class com.zf.service.WebSocketServer
+2019-06-03 22:30:45.339  INFO 555 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-03 22:30:45.350  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-03 22:30:45.350  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 1.371 seconds (JVM running for 1661.387)
+2019-06-03 22:30:45.355  INFO 555 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-06-03 22:30:52.716  INFO 555 --- [Thread-35] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@13f4e05e: startup date [Mon Jun 03 22:30:44 CST 2019]; root of context hierarchy
+2019-06-03 22:30:52.717  INFO 555 --- [Thread-35] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-03 22:30:53.000  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:30:53.001  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:30:53.004  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@b5a2191: startup date [Mon Jun 03 22:30:53 CST 2019]; root of context hierarchy
+2019-06-03 22:30:53.466  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:30:53.467  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:30:53.468  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:30:53.476  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:30:53.477  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 473 ms
+2019-06-03 22:30:53.490  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:30:53.491  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:30:53.491  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:30:53.491  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:30:53.492  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:30:53.590  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:30:53.658  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@b5a2191: startup date [Mon Jun 03 22:30:53 CST 2019]; root of context hierarchy
+2019-06-03 22:30:53.681  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-03 22:30:53.681  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-03 22:30:53.681  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-03 22:30:53.683  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-03 22:30:53.684  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-03 22:30:53.694  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:30:53.694  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:30:53.701  INFO 555 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-03 22:30:53.850  INFO 555 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-03 22:30:53.865  INFO 555 --- [restartedMain] o.s.w.s.s.s.ServerEndpointExporter       : Registering @ServerEndpoint class: class com.zf.service.WebSocketServer
+2019-06-03 22:30:53.866  INFO 555 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-03 22:30:53.883  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-03 22:30:53.884  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 0.921 seconds (JVM running for 1669.92)
+2019-06-03 22:30:53.886  INFO 555 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-06-03 22:31:05.397  INFO 555 --- [Thread-41] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@b5a2191: startup date [Mon Jun 03 22:30:53 CST 2019]; root of context hierarchy
+2019-06-03 22:31:05.398  INFO 555 --- [Thread-41] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-03 22:31:05.883  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:31:05.884  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:31:05.890  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@44a53310: startup date [Mon Jun 03 22:31:05 CST 2019]; root of context hierarchy
+2019-06-03 22:31:06.859  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:31:06.860  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:31:06.860  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:31:06.869  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:31:06.870  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 981 ms
+2019-06-03 22:31:06.888  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:31:06.889  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:31:06.890  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:31:06.890  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:31:06.890  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:31:06.985  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:31:07.070  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@44a53310: startup date [Mon Jun 03 22:31:05 CST 2019]; root of context hierarchy
+2019-06-03 22:31:07.078  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-03 22:31:07.079  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-03 22:31:07.079  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-03 22:31:07.082  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-03 22:31:07.083  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-03 22:31:07.106  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:31:07.106  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:31:07.112  INFO 555 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-03 22:31:07.191  INFO 555 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-03 22:31:07.216  INFO 555 --- [restartedMain] o.s.w.s.s.s.ServerEndpointExporter       : Registering @ServerEndpoint class: class com.zf.service.WebSocketServer
+2019-06-03 22:31:07.217  INFO 555 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-03 22:31:07.229  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-03 22:31:07.230  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 1.393 seconds (JVM running for 1683.265)
+2019-06-03 22:31:07.232  INFO 555 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-06-03 22:31:28.832  INFO 555 --- [Thread-47] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@44a53310: startup date [Mon Jun 03 22:31:05 CST 2019]; root of context hierarchy
+2019-06-03 22:31:28.833  INFO 555 --- [Thread-47] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-03 22:31:29.101  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:31:29.102  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:31:29.106  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@25e49bac: startup date [Mon Jun 03 22:31:29 CST 2019]; root of context hierarchy
+2019-06-03 22:31:29.948  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:31:29.950  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:31:29.950  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:31:29.960  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:31:29.961  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 855 ms
+2019-06-03 22:31:29.980  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:31:29.982  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:31:29.982  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:31:29.983  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:31:29.983  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:31:30.243  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:31:30.336  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@25e49bac: startup date [Mon Jun 03 22:31:29 CST 2019]; root of context hierarchy
+2019-06-03 22:31:30.364  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-03 22:31:30.364  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-03 22:31:30.364  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-03 22:31:30.387  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-03 22:31:30.388  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-03 22:31:30.427  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:31:30.427  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:31:30.490  INFO 555 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-03 22:31:30.700  INFO 555 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-03 22:31:30.738  INFO 555 --- [restartedMain] o.s.w.s.s.s.ServerEndpointExporter       : Registering @ServerEndpoint class: class com.zf.service.WebSocketServer
+2019-06-03 22:31:30.740  INFO 555 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-03 22:31:30.751  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-03 22:31:30.752  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 1.684 seconds (JVM running for 1706.786)
+2019-06-03 22:31:30.754  INFO 555 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-06-03 22:31:37.126  INFO 555 --- [Thread-53] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@25e49bac: startup date [Mon Jun 03 22:31:29 CST 2019]; root of context hierarchy
+2019-06-03 22:31:37.127  INFO 555 --- [Thread-53] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-03 22:31:37.434  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:31:37.436  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:31:37.439  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@14c06084: startup date [Mon Jun 03 22:31:37 CST 2019]; root of context hierarchy
+2019-06-03 22:31:37.809  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:31:37.810  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:31:37.811  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:31:37.824  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:31:37.825  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 386 ms
+2019-06-03 22:31:37.837  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:31:37.838  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:31:37.838  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:31:37.839  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:31:37.839  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:31:37.959  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:31:38.013  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@14c06084: startup date [Mon Jun 03 22:31:37 CST 2019]; root of context hierarchy
+2019-06-03 22:31:38.022  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-03 22:31:38.022  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-03 22:31:38.023  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-03 22:31:38.025  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-03 22:31:38.025  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-03 22:31:38.039  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:31:38.040  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:31:38.047  INFO 555 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-03 22:31:38.101  INFO 555 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-03 22:31:38.124  INFO 555 --- [restartedMain] o.s.w.s.s.s.ServerEndpointExporter       : Registering @ServerEndpoint class: class com.zf.service.WebSocketServer
+2019-06-03 22:31:38.126  INFO 555 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-03 22:31:38.179  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-03 22:31:38.180  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 0.772 seconds (JVM running for 1714.214)
+2019-06-03 22:31:38.182  INFO 555 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-06-03 22:31:41.539  INFO 555 --- [Thread-59] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@14c06084: startup date [Mon Jun 03 22:31:37 CST 2019]; root of context hierarchy
+2019-06-03 22:31:41.541  INFO 555 --- [Thread-59] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-03 22:31:41.784  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:31:41.784  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:31:41.788  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@617095e2: startup date [Mon Jun 03 22:31:41 CST 2019]; root of context hierarchy
+2019-06-03 22:31:42.306  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:31:42.307  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:31:42.307  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:31:42.319  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:31:42.320  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 532 ms
+2019-06-03 22:31:42.332  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:31:42.333  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:31:42.333  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:31:42.333  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:31:42.333  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:31:42.444  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:31:42.516  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@617095e2: startup date [Mon Jun 03 22:31:41 CST 2019]; root of context hierarchy
+2019-06-03 22:31:42.579  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-03 22:31:42.579  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-03 22:31:42.579  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-03 22:31:42.583  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-03 22:31:42.583  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-03 22:31:42.595  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:31:42.595  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:31:42.641  INFO 555 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-03 22:31:42.865  INFO 555 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-03 22:31:42.975  INFO 555 --- [restartedMain] o.s.w.s.s.s.ServerEndpointExporter       : Registering @ServerEndpoint class: class com.zf.service.WebSocketServer
+2019-06-03 22:31:42.977  INFO 555 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-03 22:31:43.036  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-03 22:31:43.037  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 1.296 seconds (JVM running for 1719.07)
+2019-06-03 22:31:43.046  INFO 555 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-06-03 22:32:23.695  INFO 555 --- [Thread-65] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@617095e2: startup date [Mon Jun 03 22:31:41 CST 2019]; root of context hierarchy
+2019-06-03 22:32:23.698  INFO 555 --- [Thread-65] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-03 22:32:24.210  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:32:24.211  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:32:24.214  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@f6ac6b6: startup date [Mon Jun 03 22:32:24 CST 2019]; root of context hierarchy
+2019-06-03 22:32:24.967  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:32:24.970  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:32:24.970  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:32:24.985  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:32:24.986  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 772 ms
+2019-06-03 22:32:24.999  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:32:24.999  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:32:25.000  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:32:25.000  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:32:25.000  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:32:25.063  WARN 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'webController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.zf.web.controller.WebController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@25ef2e98]
+2019-06-03 22:32:25.064  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2019-06-03 22:32:25.076  INFO 555 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2019-06-03 22:32:25.079 ERROR 555 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'webController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.zf.web.controller.WebController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@25ef2e98]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:261) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1195) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1120) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:535) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:495) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:317) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:759) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:869) ~[spring-context-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550) ~[spring-context-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140) ~[spring-boot-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:762) [spring-boot-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:398) [spring-boot-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:330) [spring-boot-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1258) [spring-boot-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246) [spring-boot-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at com.zf.ZdoraApplication.main(ZdoraApplication.java:17) [classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_191]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_191]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_191]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_191]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) [spring-boot-devtools-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.zf.web.controller.WebController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@25ef2e98]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:659) ~[spring-core-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:556) ~[spring-core-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:541) ~[spring-core-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:244) ~[spring-beans-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	... 23 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: com/zf/service/WebSocketServer
+	at java.lang.Class.getDeclaredMethods0(Native Method) ~[na:1.8.0_191]
+	at java.lang.Class.privateGetDeclaredMethods(Class.java:2701) ~[na:1.8.0_191]
+	at java.lang.Class.getDeclaredMethods(Class.java:1975) ~[na:1.8.0_191]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:641) ~[spring-core-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	... 26 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.zf.service.WebSocketServer
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:382) ~[na:1.8.0_191]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424) ~[na:1.8.0_191]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:349) ~[na:1.8.0_191]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[na:1.8.0_191]
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:148) ~[spring-boot-devtools-2.0.4.RELEASE.jar:2.0.4.RELEASE]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[na:1.8.0_191]
+	... 30 common frames omitted
+
+2019-06-03 22:33:17.101  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:33:17.101  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:33:17.105  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2fa2419: startup date [Mon Jun 03 22:33:17 CST 2019]; root of context hierarchy
+2019-06-03 22:33:17.652  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:33:17.653  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:33:17.654  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:33:17.663  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:33:17.664  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 559 ms
+2019-06-03 22:33:17.678  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:33:17.678  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:33:17.679  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:33:17.679  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:33:17.679  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:33:17.883  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:33:17.955  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2fa2419: startup date [Mon Jun 03 22:33:17 CST 2019]; root of context hierarchy
+2019-06-03 22:33:17.971  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-03 22:33:17.971  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-03 22:33:17.972  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-03 22:33:17.977  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-03 22:33:17.977  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-03 22:33:17.989  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:33:17.989  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:33:17.998  INFO 555 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-03 22:33:18.068  INFO 555 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-03 22:33:18.087  INFO 555 --- [restartedMain] o.s.w.s.s.s.ServerEndpointExporter       : Registering @ServerEndpoint class: class com.zf.service.WebSocketServer
+2019-06-03 22:33:18.088  INFO 555 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-03 22:33:18.129  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-03 22:33:18.130  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 1.063 seconds (JVM running for 1814.158)
+2019-06-03 22:33:18.135  INFO 555 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-06-03 22:33:43.737  INFO 555 --- [Thread-71] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2fa2419: startup date [Mon Jun 03 22:33:17 CST 2019]; root of context hierarchy
+2019-06-03 22:33:43.740  INFO 555 --- [Thread-71] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-03 22:33:44.008  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:33:44.009  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:33:44.013  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@4438ab80: startup date [Mon Jun 03 22:33:44 CST 2019]; root of context hierarchy
+2019-06-03 22:33:44.442  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:33:44.443  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:33:44.443  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:33:44.452  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:33:44.453  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 440 ms
+2019-06-03 22:33:44.464  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:33:44.465  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:33:44.465  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:33:44.465  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:33:44.465  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:33:44.598  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:33:44.655  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@4438ab80: startup date [Mon Jun 03 22:33:44 CST 2019]; root of context hierarchy
+2019-06-03 22:33:44.662  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-03 22:33:44.662  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-03 22:33:44.663  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-03 22:33:44.665  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-03 22:33:44.669  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-03 22:33:44.699  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:33:44.699  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:33:44.707  INFO 555 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-03 22:33:44.791  INFO 555 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-03 22:33:44.829  INFO 555 --- [restartedMain] o.s.w.s.s.s.ServerEndpointExporter       : Registering @ServerEndpoint class: class com.zf.service.WebSocketServer
+2019-06-03 22:33:44.830  INFO 555 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-03 22:33:44.844  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-03 22:33:44.845  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 0.868 seconds (JVM running for 1840.872)
+2019-06-03 22:33:44.847  INFO 555 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-06-03 22:33:56.727  INFO 555 --- [Thread-80] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@4438ab80: startup date [Mon Jun 03 22:33:44 CST 2019]; root of context hierarchy
+2019-06-03 22:33:56.729  INFO 555 --- [Thread-80] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-03 22:33:57.048  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:33:57.048  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:33:57.055  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@279b4e42: startup date [Mon Jun 03 22:33:57 CST 2019]; root of context hierarchy
+2019-06-03 22:33:57.598  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:33:57.611  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:33:57.611  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:33:57.621  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:33:57.626  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 571 ms
+2019-06-03 22:33:57.641  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:33:57.642  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:33:57.642  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:33:57.642  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:33:57.642  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:33:57.723  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:33:57.767  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@279b4e42: startup date [Mon Jun 03 22:33:57 CST 2019]; root of context hierarchy
+2019-06-03 22:33:57.775  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-03 22:33:57.775  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-03 22:33:57.776  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-03 22:33:57.778  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-03 22:33:57.778  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-03 22:33:57.788  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:33:57.789  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:33:57.797  INFO 555 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-03 22:33:57.890  INFO 555 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-03 22:33:57.912  INFO 555 --- [restartedMain] o.s.w.s.s.s.ServerEndpointExporter       : Registering @ServerEndpoint class: class com.zf.service.WebSocketServer
+2019-06-03 22:33:57.913  INFO 555 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-03 22:33:57.925  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-03 22:33:57.926  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 0.923 seconds (JVM running for 1853.952)
+2019-06-03 22:33:57.928  INFO 555 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-06-03 22:34:32.686  INFO 555 --- [Thread-86] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@279b4e42: startup date [Mon Jun 03 22:33:57 CST 2019]; root of context hierarchy
+2019-06-03 22:34:32.687  INFO 555 --- [Thread-86] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-03 22:34:33.016  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:34:33.016  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:34:33.019  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@37854a7e: startup date [Mon Jun 03 22:34:33 CST 2019]; root of context hierarchy
+2019-06-03 22:34:33.555  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:34:33.557  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:34:33.557  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:34:33.565  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:34:33.566  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 547 ms
+2019-06-03 22:34:33.578  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:34:33.579  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:34:33.579  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:34:33.579  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:34:33.579  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:34:33.674  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:34:33.734  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@37854a7e: startup date [Mon Jun 03 22:34:33 CST 2019]; root of context hierarchy
+2019-06-03 22:34:33.745  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-03 22:34:33.745  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-03 22:34:33.745  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-03 22:34:33.746  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-03 22:34:33.747  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-03 22:34:33.763  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:34:33.763  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:34:33.778  INFO 555 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-03 22:34:33.831  INFO 555 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-03 22:34:33.848  INFO 555 --- [restartedMain] o.s.w.s.s.s.ServerEndpointExporter       : Registering @ServerEndpoint class: class com.zf.service.WebSocketServer
+2019-06-03 22:34:33.849  INFO 555 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-03 22:34:33.861  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-03 22:34:33.863  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 0.873 seconds (JVM running for 1889.886)
+2019-06-03 22:34:33.865  INFO 555 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-06-03 22:35:10.696  INFO 555 --- [Thread-92] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@37854a7e: startup date [Mon Jun 03 22:34:33 CST 2019]; root of context hierarchy
+2019-06-03 22:35:10.697  INFO 555 --- [Thread-92] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-03 22:35:10.947  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:35:10.948  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:35:10.952  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1a1b53e2: startup date [Mon Jun 03 22:35:10 CST 2019]; root of context hierarchy
+2019-06-03 22:35:11.848  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:35:11.849  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:35:11.852  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:35:11.864  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:35:11.865  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 913 ms
+2019-06-03 22:35:11.876  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:35:11.876  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:35:11.877  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:35:11.877  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:35:11.877  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:35:11.971  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:35:12.024  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1a1b53e2: startup date [Mon Jun 03 22:35:10 CST 2019]; root of context hierarchy
+2019-06-03 22:35:12.035  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-03 22:35:12.035  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-03 22:35:12.035  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-03 22:35:12.037  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-03 22:35:12.037  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-03 22:35:12.052  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:35:12.052  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:35:12.068  INFO 555 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-03 22:35:12.130  INFO 555 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-03 22:35:12.140  INFO 555 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-03 22:35:12.152  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-03 22:35:12.153  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 1.235 seconds (JVM running for 1928.175)
+2019-06-03 22:35:12.154  INFO 555 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-06-03 22:35:17.593  INFO 555 --- [Thread-98] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1a1b53e2: startup date [Mon Jun 03 22:35:10 CST 2019]; root of context hierarchy
+2019-06-03 22:35:17.596  INFO 555 --- [Thread-98] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-03 22:35:17.850  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 555 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:35:17.851  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:35:17.855  INFO 555 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@46cf3f7: startup date [Mon Jun 03 22:35:17 CST 2019]; root of context hierarchy
+2019-06-03 22:35:18.198  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:35:18.199  INFO 555 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:35:18.199  INFO 555 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:35:18.207  INFO 555 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:35:18.208  INFO 555 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 353 ms
+2019-06-03 22:35:18.221  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:35:18.221  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:35:18.221  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:35:18.221  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:35:18.221  INFO 555 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:35:18.300  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:35:18.392  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@46cf3f7: startup date [Mon Jun 03 22:35:17 CST 2019]; root of context hierarchy
+2019-06-03 22:35:18.421  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-03 22:35:18.422  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-03 22:35:18.422  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-03 22:35:18.425  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-03 22:35:18.425  INFO 555 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-03 22:35:18.456  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:35:18.456  INFO 555 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:35:18.468  INFO 555 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-03 22:35:18.608  INFO 555 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-03 22:35:18.652  INFO 555 --- [restartedMain] o.s.w.s.s.s.ServerEndpointExporter       : Registering @ServerEndpoint class: class com.zf.service.WebSocketServer
+2019-06-03 22:35:18.653  INFO 555 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-03 22:35:18.673  INFO 555 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-03 22:35:18.674  INFO 555 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 0.866 seconds (JVM running for 1934.696)
+2019-06-03 22:35:18.676  INFO 555 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-06-03 22:37:42.564  INFO 555 --- [Thread-109] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@46cf3f7: startup date [Mon Jun 03 22:35:17 CST 2019]; root of context hierarchy
+2019-06-03 22:37:42.566  INFO 555 --- [Thread-109] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-03 22:38:00.022  INFO 805 --- [restartedMain] com.zf.ZdoraApplication                  : Starting ZdoraApplication on 192.168.0.103 with PID 805 (/Users/zhangfei/Desktop/zdora/target/classes started by zhangfei in /Users/zhangfei/Desktop/zdora)
+2019-06-03 22:38:00.025  INFO 805 --- [restartedMain] com.zf.ZdoraApplication                  : No active profile set, falling back to default profiles: default
+2019-06-03 22:38:00.317  INFO 805 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@b754f3f: startup date [Mon Jun 03 22:38:00 CST 2019]; root of context hierarchy
+2019-06-03 22:38:04.793  INFO 805 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-03 22:38:04.873  INFO 805 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-03 22:38:04.873  INFO 805 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2019-06-03 22:38:04.892  INFO 805 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/zhangfei/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-06-03 22:38:05.067  INFO 805 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-03 22:38:05.068  INFO 805 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4751 ms
+2019-06-03 22:38:05.193  INFO 805 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-06-03 22:38:05.199  INFO 805 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-06-03 22:38:05.200  INFO 805 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-06-03 22:38:05.200  INFO 805 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-06-03 22:38:05.204  INFO 805 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-06-03 22:38:05.571  INFO 805 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:38:06.203  INFO 805 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@b754f3f: startup date [Mon Jun 03 22:38:00 CST 2019]; root of context hierarchy
+2019-06-03 22:38:06.386  INFO 805 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.zf.web.controller.WebController.index(java.util.Map<java.lang.String, java.lang.Object>,javax.servlet.http.HttpServletRequest) throws java.lang.Exception
+2019-06-03 22:38:06.387  INFO 805 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/push]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.push(com.zf.executor.ExecutorInfo)
+2019-06-03 22:38:06.388  INFO 805 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/socket/push/{cid}]}" onto public com.zf.utils.ResponseUtil$ResponseInfo com.zf.web.controller.WebController.pushToWeb(java.lang.String,java.lang.String)
+2019-06-03 22:38:06.392  INFO 805 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-06-03 22:38:06.393  INFO 805 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-06-03 22:38:06.479  INFO 805 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:38:06.480  INFO 805 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-06-03 22:38:06.510  INFO 805 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in zdoraAdviceController
+2019-06-03 22:38:07.128  INFO 805 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-03 22:38:07.179  INFO 805 --- [restartedMain] o.s.w.s.s.s.ServerEndpointExporter       : Registering @ServerEndpoint class: class com.zf.service.WebSocketServer
+2019-06-03 22:38:07.203  INFO 805 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-06-03 22:38:07.365  INFO 805 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-03 22:38:07.388  INFO 805 --- [restartedMain] com.zf.ZdoraApplication                  : Started ZdoraApplication in 8.642 seconds (JVM running for 10.358)
+2019-06-03 22:38:15.845  INFO 805 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-06-03 22:38:15.846  INFO 805 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-06-03 22:38:15.937  INFO 805 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 91 ms
+2019-06-03 22:38:16.083  INFO 805 --- [http-nio-8080-exec-1] com.zf.service.WebSocketServer           : 欢迎:192.168.0.103,sessionId为:0,当前在线人数为:1
+2019-06-03 22:38:31.184  INFO 805 --- [http-nio-8080-exec-6] com.zf.service.WebSocketServer           : 欢迎:0:0:0:0:0:0:0:1,sessionId为:1,当前在线人数为:2
+2019-06-03 22:38:37.281  INFO 805 --- [http-nio-8080-exec-10] .s.a.AnnotationAsyncExecutionInterceptor : No task executor bean found for async processing: no bean of type TaskExecutor and no bean named 'taskExecutor' either
+2019-06-03 22:38:37.299  INFO 805 --- [SimpleAsyncTaskExecutor-1] com.zf.service.WebSocketServer           : 推送消息到192.168.0.103，推送内容:{"args":"-version","executeId":1,"command":"java"}
+2019-06-03 22:38:40.994  INFO 805 --- [http-nio-8080-exec-6] com.zf.service.WebSocketServer           : 连接关闭0:0:0:0:0:0:0:1, 当前在线人数为:1
+2019-06-03 22:38:41.067  INFO 805 --- [http-nio-8080-exec-10] com.zf.service.WebSocketServer           : 欢迎:0:0:0:0:0:0:0:1,sessionId为:2,当前在线人数为:2
+2019-06-03 22:39:37.557  INFO 805 --- [http-nio-8080-exec-10] com.zf.service.WebSocketServer           : 连接关闭0:0:0:0:0:0:0:1, 当前在线人数为:1
+2019-06-03 22:39:37.608  INFO 805 --- [http-nio-8080-exec-2] com.zf.service.WebSocketServer           : 欢迎:0:0:0:0:0:0:0:1,sessionId为:3,当前在线人数为:2
+2019-06-03 22:42:23.610  INFO 805 --- [http-nio-8080-exec-9] com.zf.service.WebSocketServer           : 连接关闭0:0:0:0:0:0:0:1, 当前在线人数为:1
+2019-06-03 22:42:23.662  INFO 805 --- [http-nio-8080-exec-6] com.zf.service.WebSocketServer           : 欢迎:0:0:0:0:0:0:0:1,sessionId为:4,当前在线人数为:2
+2019-06-03 22:43:21.372  INFO 805 --- [SimpleAsyncTaskExecutor-2] com.zf.service.WebSocketServer           : 推送消息到192.168.0.103，推送内容:{"args":"-cp com.zf.zdora.client.Test test1","executeId":2,"command":"java"}
+2019-06-03 22:43:25.963  INFO 805 --- [http-nio-8080-exec-5] com.zf.service.WebSocketServer           : 连接关闭0:0:0:0:0:0:0:1, 当前在线人数为:1
+2019-06-03 22:43:26.017  INFO 805 --- [http-nio-8080-exec-3] com.zf.service.WebSocketServer           : 欢迎:0:0:0:0:0:0:0:1,sessionId为:5,当前在线人数为:2
+2019-06-03 22:44:46.755  INFO 805 --- [SimpleAsyncTaskExecutor-3] com.zf.service.WebSocketServer           : 推送消息到192.168.0.103，推送内容:{"args":"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1","executeId":3,"command":"java"}
+2019-06-03 22:44:48.083  INFO 805 --- [SimpleAsyncTaskExecutor-4] com.zf.service.WebSocketServer           : 推送消息到192.168.0.103，推送内容:{"args":"-cp /Users/zhangfei/Desktop/zdora-client-jar-with-dependencies.jar com.zf.zdora.client.Test test1","executeId":4,"command":"java"}
+2019-06-03 22:44:49.740  INFO 805 --- [http-nio-8080-exec-1] com.zf.service.WebSocketServer           : 连接关闭0:0:0:0:0:0:0:1, 当前在线人数为:1
+2019-06-03 22:44:49.801  INFO 805 --- [http-nio-8080-exec-6] com.zf.service.WebSocketServer           : 欢迎:0:0:0:0:0:0:0:1,sessionId为:6,当前在线人数为:2
+2019-06-03 22:48:24.903  INFO 805 --- [http-nio-8080-exec-4] com.zf.service.WebSocketServer           : 连接关闭0:0:0:0:0:0:0:1, 当前在线人数为:1
+2019-06-03 22:48:24.973  INFO 805 --- [http-nio-8080-exec-7] com.zf.service.WebSocketServer           : 欢迎:0:0:0:0:0:0:0:1,sessionId为:7,当前在线人数为:2
+2019-06-03 22:49:03.697  INFO 805 --- [http-nio-8080-exec-3] com.zf.service.WebSocketServer           : 连接关闭0:0:0:0:0:0:0:1, 当前在线人数为:1
+2019-06-03 22:49:03.750  INFO 805 --- [http-nio-8080-exec-8] com.zf.service.WebSocketServer           : 欢迎:0:0:0:0:0:0:0:1,sessionId为:8,当前在线人数为:2
+2019-06-03 22:50:49.418  INFO 805 --- [http-nio-8080-exec-10] com.zf.service.WebSocketServer           : 连接关闭0:0:0:0:0:0:0:1, 当前在线人数为:1
+2019-06-03 22:50:51.755  INFO 805 --- [Thread-9] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@b754f3f: startup date [Mon Jun 03 22:38:00 CST 2019]; root of context hierarchy
+2019-06-03 22:50:51.765  INFO 805 --- [Thread-9] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-06-03 22:50:51.777  INFO 805 --- [localhost-startStop-2] com.zf.service.WebSocketServer           : 连接关闭192.168.0.103, 当前在线人数为:0

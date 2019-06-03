@@ -91,7 +91,7 @@ public class WebSocketServer {
 				}
 				ExecutorCenter.EXECUTE_LOGS.get(clientInfo.getExecuteId()).add(clientInfo.getMessage());
 				for (WebSocketServer webSocketServer : ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId())) {
-					webSocketServer.sendMessage(MessageType.MESSAGE, clientInfo.getMessage());
+					webSocketServer.sendMessage(ExecutorClientInfo.getInstance(MessageType.MESSAGE.getType(),clientInfo.getExecuteId(),clientInfo.getMessage(),clientInfo.getExecuteStatus()).toString());
 				}
 			} else if (clientInfo.getType() == MessageType.LOOK.getType()) {
 				if (ExecutorCenter.LOOKING_CLIENTS.containsKey(clientInfo.getExecuteId())) {
@@ -104,6 +104,7 @@ public class WebSocketServer {
 				ExecutorCenter.EXECUTE_LOGS.get(clientInfo.getExecuteId()).forEach(t -> {
 					try {
 						serverInfo.sendMessage(MessageType.MESSAGE, t);
+						serverInfo.sendMessage(ExecutorClientInfo.getInstance(MessageType.MESSAGE.getType(),clientInfo.getExecuteId(),t,clientInfo.getExecuteStatus()).toString());
 					} catch (IOException e) {
 					}
 				});
@@ -138,6 +139,10 @@ public class WebSocketServer {
 
 	public void sendMessage(MessageType messageType, String message) throws IOException {
 		this.webSocketInfo.getSession().getBasicRemote().sendText(MessageInfo.getInstance(messageType, message).toString());
+	}
+
+	public void sendMessage(String message) throws IOException {
+		this.webSocketInfo.getSession().getBasicRemote().sendText(message);
 	}
 
 	/**
