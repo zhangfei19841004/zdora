@@ -1,5 +1,9 @@
 package com.zf.service;
 
+import com.alibaba.fastjson.JSON;
+import com.zf.executor.ExecutorCenter;
+import com.zf.executor.ExecutorClientInfo;
+import com.zf.executor.ExecutorStatus;
 import com.zf.message.MessageInfo;
 import com.zf.message.MessageType;
 import org.slf4j.Logger;
@@ -10,42 +14,55 @@ import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by zhangfei on 2018/10/19/019.
  */
-@ServerEndpoint("/websocket/{cid}")
+@ServerEndpoint("/websocket/{cid}/{mt}")
 @Component
 public class WebSocketServer {
 
 	private static Logger log = LoggerFactory.getLogger(WebSocketServer.class);
 
-	//静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
-	private static int onlineCount = 0;
+	//静态变量，用来记录当前在线连接数。
+	private static AtomicInteger atomic = new AtomicInteger(0);
+
 	//concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。
-	private static CopyOnWriteArraySet<WebSocketServer> webSocketSet = new CopyOnWriteArraySet<WebSocketServer>();
-	//与某个客户端的连接会话，需要通过它来给客户端发送数据
-	private Session session;
-	//接收客户端ip
-	private String cid = "";
+	public static ConcurrentHashMap<String, WebSocketServer> WEBSOCKET_INFOS = new ConcurrentHashMap();
+
+	private WebSocketInfo webSocketInfo = new WebSocketInfo();
+
+	public WebSocketInfo getWebSocketInfo() {
+		return webSocketInfo;
+	}
 
 	/**
 	 * 连接建立成功调用的方法
 	 */
 	@OnOpen
-	public void onOpen(Session session, @PathParam("cid") String cid) {
-		this.session = session;
-		webSocketSet.add(this); //加入set中
-		addOnlineCount(); //在线数加1
-		log.info("有新窗口开始监听:" + cid + ",当前在线人数为" + getOnlineCount());
-		this.cid = cid;
-		try {
-			this.sendMessage(MessageInfo.getInstance(MessageType.SESSIONID, session.getId()));
-			this.sendMessage(MessageType.MESSAGE, "欢迎你: " + cid);
-		} catch (IOException e) {
-			e.printStackTrace();
+	public void onOpen(Session session, @PathParam("cid") String cid, @PathParam("mt") int messageType) {
+		webSocketInfo.setSession(session);
+		webSocketInfo.setCid(cid);
+		webSocketInfo.setMessageType(messageType);
+		if (messageType == MessageType.BROWSER.getType()) {
+
+		} else if (messageType == MessageType.CLIENT.getType()) {
+			try {
+				this.sendMessage(MessageInfo.getInstance(MessageType.SESSIONID, session.getId()));
+				this.sendMessage(MessageType.MESSAGE, "欢迎你: " + cid);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			return;
 		}
+		WEBSOCKET_INFOS.put(session.getId(), this); //加入set中
+		addOnlineCount(); //在线数加1
+		log.info("欢迎:" + cid + ",sessionId为:" + session.getId() + ",当前在线人数为:" + getOnlineCount());
 	}
 
 	/**
@@ -53,9 +70,9 @@ public class WebSocketServer {
 	 */
 	@OnClose
 	public void onClose() {
-		webSocketSet.remove(this); //从set中删除
+		WEBSOCKET_INFOS.remove(this.webSocketInfo.getSession().getId()); //从set中删除
 		subOnlineCount(); //在线数减1
-		log.info("有一连接关闭！当前在线人数为" + getOnlineCount());
+		log.info("连接关闭" + this.webSocketInfo.getCid() + ", 当前在线人数为:" + getOnlineCount());
 	}
 
 	/**
@@ -63,7 +80,37 @@ public class WebSocketServer {
 	 */
 	@OnMessage
 	public void onMessage(String message, Session session) {
-		log.info("收到来自窗口" + cid + "的信息:" + message); //群发消息
+		//log.info("收到来自窗口" + this.webSocketInfo.getCid() + "的信息:" + message);
+		WebSocketServer serverInfo = WebSocketServer.WEBSOCKET_INFOS.get(session.getId());
+		try {
+			ExecutorClientInfo clientInfo = JSON.parseObject(message, ExecutorClientInfo.class);
+			if (clientInfo.getType() == MessageType.MESSAGE.getType()) {
+				if (clientInfo.getExecuteStatus() == ExecutorStatus.STATUS3.getStatus()) {
+					ExecutorCenter.ALL_EXECUTOR.get(clientInfo.getExecuteId()).setStatus(ExecutorStatus.STATUS3);
+				}
+				ExecutorCenter.EXECUTE_LOGS.get(clientInfo.getExecuteId()).add(clientInfo.getMessage());
+				for (WebSocketServer webSocketServer : ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId())) {
+					webSocketServer.sendMessage(MessageType.MESSAGE, clientInfo.getMessage());
+				}
+			} else if (clientInfo.getType() == MessageType.LOOK.getType()) {
+				if (ExecutorCenter.LOOKING_CLIENTS.containsKey(clientInfo.getExecuteId())) {
+					ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId()).add(WEBSOCKET_INFOS.get(session.getId()));
+				} else {
+					List<WebSocketServer> list = new ArrayList<>();
+					list.add(WEBSOCKET_INFOS.get(session.getId()));
+					ExecutorCenter.LOOKING_CLIENTS.put(clientInfo.getExecuteId(), list);
+				}
+				ExecutorCenter.EXECUTE_LOGS.get(clientInfo.getExecuteId()).forEach(t -> {
+					try {
+						serverInfo.sendMessage(MessageType.MESSAGE, t);
+					} catch (IOException e) {
+					}
+				});
+			}
+
+		} catch (Exception e) {
+
+		}
 	}
 
 	/**
@@ -71,19 +118,18 @@ public class WebSocketServer {
 	 */
 	@OnError
 	public void onError(Session session, Throwable error) {
-		log.error("发生错误");
-		//error.printStackTrace();
+		log.error("发生错误:" + this.webSocketInfo.getCid());
 	}
 
 	/**
 	 * 实现服务器主动推送
 	 */
 	public void sendMessage(MessageInfo info) throws IOException {
-		this.session.getBasicRemote().sendText(info.toString());
+		this.webSocketInfo.getSession().getBasicRemote().sendText(info.toString());
 	}
 
 	public void sendMessage(MessageType messageType, String message) throws IOException {
-		this.session.getBasicRemote().sendText(MessageInfo.getInstance(messageType, message).toString());
+		this.webSocketInfo.getSession().getBasicRemote().sendText(MessageInfo.getInstance(messageType, message).toString());
 	}
 
 	/**
@@ -91,30 +137,35 @@ public class WebSocketServer {
 	 */
 	public static void sendInfo(String cid, String sessionId, MessageType messageType, String message) throws IOException {
 		log.info("推送消息到" + cid + "，推送内容:" + message);
-		for (WebSocketServer item : webSocketSet) {
-			try {
-				//这里可以设定只推送给这个sid的，为null则全部推送
-				if (cid == null && sessionId == null) {
+		if (cid == null && sessionId == null) {
+			for (WebSocketServer item : WEBSOCKET_INFOS.values()) {
+				try {
 					item.sendMessage(messageType, message);
-				} else if (item.cid.equals(cid) && item.session.getId().equals(sessionId)) {
-					item.sendMessage(messageType, message);
+				} catch (IOException e) {
+
 				}
-			} catch (IOException e) {
-				continue;
 			}
+			return;
+		}
+		WebSocketServer item = WEBSOCKET_INFOS.get(sessionId);
+		if (item == null) {
+			return;
+		}
+		if (item.webSocketInfo.getCid().equals(cid) && item.webSocketInfo.getSession().getId().equals(sessionId)) {
+			item.sendMessage(messageType, message);
 		}
 	}
 
-	public static synchronized int getOnlineCount() {
-		return onlineCount;
+	public static int getOnlineCount() {
+		return atomic.get();
 	}
 
-	public static synchronized void addOnlineCount() {
-		WebSocketServer.onlineCount++;
+	public static void addOnlineCount() {
+		atomic.incrementAndGet();
 	}
 
-	public static synchronized void subOnlineCount() {
-		WebSocketServer.onlineCount--;
+	public static void subOnlineCount() {
+		atomic.decrementAndGet();
 	}
 
 

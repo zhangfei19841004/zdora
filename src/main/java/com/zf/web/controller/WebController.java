@@ -1,9 +1,11 @@
 package com.zf.web.controller;
 
+import com.zf.executor.ExecutorCenter;
 import com.zf.executor.ExecutorInfo;
 import com.zf.message.MessageType;
 import com.zf.service.CommonService;
 import com.zf.service.WebService;
+import com.zf.service.WebSocketInfo;
 import com.zf.service.WebSocketServer;
 import com.zf.utils.ResponseUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -15,10 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -32,21 +35,14 @@ public class WebController {
 
 	@RequestMapping(value = "/index")
 	public String index(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		//String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 		map.put("cid", CommonService.getIpAddr(request));
-		/*List<Map<String, Object>> list = new ArrayList<>();
-		File file = new File(workspaceDir);
-		File[] cases = file.listFiles();
-		for (File tcase : cases) {
-			String tcn = tcase.getName();
-			String content = this.readFile(tcase);
-			Map<String, Object> m = new HashMap<>();
-			m.put("testCaseFileName", tcn);
-			m.put("testCase", content);
-			m.put("testCasePath", workspaceDir + File.separator + tcn);
-			list.add(m);
-		}
-		map.put("testcases", list);*/
+		List<WebSocketInfo> list = WebSocketServer.WEBSOCKET_INFOS.values().stream()
+				.filter(ws -> ws.getWebSocketInfo().getMessageType() == MessageType.CLIENT.getType())
+				.filter(ws -> ws != null).map(ws -> ws.getWebSocketInfo()).collect(Collectors.toList());
+		map.put("clients", list);
+		map.put("clientsCount", list.size());
+		List<ExecutorInfo> executors = ExecutorCenter.ALL_EXECUTOR.values().stream().sorted(Comparator.comparingInt(o -> o.executeId)).collect(Collectors.toList());
+		map.put("executors",executors);
 		return "welcome-new";
 	}
 
@@ -76,17 +72,6 @@ public class WebController {
 			return ResponseUtil.getFailedResponse(e.getMessage());
 		}
 		return ResponseUtil.getSuccessResponse();
-	}
-
-	private String readFile(File file) throws Exception {
-		StringBuffer sb = new StringBuffer();
-		FileInputStream fis = new FileInputStream(file);
-		byte[] b = new byte[1024];
-		int index;
-		while ((index = fis.read(b)) != -1) {
-			sb.append(new String(b, 0, index));
-		}
-		return sb.toString();
 	}
 
 }

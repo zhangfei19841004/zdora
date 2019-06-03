@@ -19,6 +19,7 @@ public enum MessageType {
 
 	COMMAND(7),
 
+	LOOK(8), //浏览器查看执行的LOG信息
 	;
 
 	private int type;

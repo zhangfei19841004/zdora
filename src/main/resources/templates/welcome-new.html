@@ -23,100 +23,85 @@
 <div style="margin: 20px;">
     <div class="layui-card">
         <div class="layui-card-header">
-            <button class="layui-btn">节点机器<span class="layui-badge layui-bg-gray">1</span></button>
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>
+                    <button class="layui-btn layui-btn-primary" style="border: none">节点机器<span class="layui-badge"
+                                                                                               th:text="${clientsCount}"></span>
+                    </button>
+                </legend>
+            </fieldset>
+        </div>
+        <div class="layui-card-body layui-form-pane">
+            <div class="layui-form-item" name="executor" style="width: 100%" th:each="client,clientStat:${clients}">
+                <label class="layui-form-label" style="width: 200px" th:text="${client.cid}"></label>
+                <div class="layui-inline">
+                    <input name="executeCommand" placeholder="请输入命令,如java" class="layui-input" type="text" style="width: 300px">
+                </div>
+                <div class="layui-inline">
+                    <input name="executeArgs" placeholder="请输入参数,如-version" class="layui-input" type="text"
+                           style="width: 300px">
+                </div>
+                <input name="cid" type="hidden" th:value="${client.cid}">
+                <input name="sessionId" type="hidden" th:value="${client.session.id}">
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-primary" th:onclick="'executor(this)'">执行</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-card">
+        <div class="layui-card-header">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>
+                    <button class="layui-btn layui-btn-primary" style="border: none">执行详情</button>
+                </legend>
+            </fieldset>
         </div>
         <div class="layui-card-body">
-            <div class="layui-collapse" lay-filter="test" lay-accordion="">
-                <div class="layui-colla-item" th:each="tc,tcStat:${testcases}">
-                    <h2 class="layui-colla-title">
-                        <div class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-                            <div class="layui-form-item">
-                                <input lay-skin="primary" lay-filter="checkCases" name="testCaseCheckbox"
-                                       th:attr="title=${tc.testCaseFileName},tpath=${tc.testCasePath}"
-                                       type="checkbox">
-                            </div>
-                        </div>
-                        <!--<span style="font-family: Consolas" th:text="${tc.testCaseFileName}"></span>-->
-                    </h2>
-                    <div th:class="${tcStat.index==0}?'layui-colla-content layui-show':'layui-colla-content'">
-                            <pre class="layui-code" th:attr="lay-title=${tc.testCaseFileName}" lay-skin="notepad"
-                                 th:text="${tc.testCase}" style="font-family: Consolas"></pre>
+            <div class="layui-collapse" lay-filter="test">
+                <div class="layui-colla-item" name="executorLogs" th:each="executor,executorsStat:${executors}">
+                    <h2 class="layui-colla-title"
+                        th:text="${executor.cid}+ ':' +${executor.executeCommand}+' '+${executor.executeArgs}+ ' '+${executor.status.statusName}"></h2>
+                    <input name="cid" type="hidden" th:value="${executor.cid}">
+                    <input name="cid" type="hidden" th:value="${executor.cid}">
+                    <div class="layui-colla-content" name="logs">
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
+
 </body>
 <script th:inline="javascript" type="text/javascript">
-    layui.use('form', function () {
-        var form = layui.form;
-        form.on('checkbox(event,\'checkCases\')', function (data) {
-            console.log(arguments.callee);
-            var e = window.event || arguments.callee.caller.arguments[0];
-            clickCheckbox(e);
-        });
-        //各种基于事件的操作，下面会有进一步介绍
-    });
 
-    layui.use('code', function () {
-        layui.code({about: false});
-    });
     layui.use(['element', 'layer'], function () {
         //监听折叠
         var element = layui.element;
         var layer = layui.layer;
         element.on('collapse(test)', function (data) {
-            //layer.msg('展开状态：' + data.show);
+            socket.send(JSON.stringify({type:8,executeId:}));
         });
     });
 
-    //点击button的方法
-    function clickCheckbox(e) {
-        stopBubbling(e);
-    }
-
-    function stopBubbling(e) {
-        if (e.stopPropagation) {
-            e.stopPropagation();      //阻止事件 冒泡传播
-        } else {
-            e.cancelBubble = true;   //ie兼容
-        }
-    }
     var cid = [[${cid}]];
 
-    function executor() {
-        var index = layer.open({
-            type: 1
-            , title: false //不显示标题栏
-            , closeBtn: false
-            , area: ['80%', '80%']
-            , skin: 'layer_bg'
-            , shade: 0.1
-            , id: 'executorProcess' //设定一个id，防止重复弹出
-            , resize: false
-            , btnAlign: 'c'
-            , moveType: 1 //拖拽模式，0或者1
-            , content: '<div style="padding: 5px; line-height: 22px; font-weight: 300; font-color: white"></div>'
-        });
-        var tpath = '';
-        $("input:checkbox[name='testCaseCheckbox']:checked").each(function () { // 遍历name=standard的多选框
-            if (tpath == '') {
-                tpath += $(this).attr('tpath');
-            } else {
-                tpath += ',' + $(this).attr('tpath');
+    function executor(obj) {
+        var f = $(obj).parent().eq(0).parent().eq(0);
+        var params = {};
+        $(f).find("input[name]").each(function (i) {
+            params[$(this).attr("name")]=$(this).val();
+        })
+        $.post(ctx + "/push", params, function (data) {
+            if (data.retCode == '200') {
+
             }
+            //socket.send("开始执行啦！")
+            //alert(data.retCode);
         });
-        if (tpath != '') {
-            $.post(ctx + "/push", {cid: cid, path: tpath}, function (data) {
-                if (data.retCode != '200') {
-                    layer.close(index);
-                    layer.tips(data.data, '#executorBtn');
-                }
-                //socket.send("开始执行啦！")
-                //alert(data.retCode);
-            });
-        }
     }
 
     var socket;
@@ -126,7 +111,7 @@
         console.log("您的浏览器支持WebSocket");
         //实现化WebSocket对象，指定要连接的服务器地址与端口 建立连接
         // 等同于socket = new WebSocket("ws://localhost:8083/checkcentersys/websocket/20");
-        socket = new WebSocket((ctx + "/websocket/" + cid).replace("http", "ws"));
+        socket = new WebSocket((ctx + "/websocket/" + cid + "/4").replace("http", "ws"));
         //打开事件
         socket.onopen = function () {
             //console.log(cid + " Socket 已打开");
