@@ -22,6 +22,8 @@ public enum MessageType {
 	LOOK(8), //浏览器查看执行的LOG信息
 
 	UNLOOK(9), //浏览器查看执行的LOG信息
+
+	EXECUTOREND(10), //浏览器查看执行的LOG信息
 	;
 
 	private int type;

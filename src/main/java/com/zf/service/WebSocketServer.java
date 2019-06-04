@@ -3,6 +3,7 @@ package com.zf.service;
 import com.alibaba.fastjson.JSON;
 import com.zf.executor.ExecutorCenter;
 import com.zf.executor.ExecutorClientInfo;
+import com.zf.executor.ExecutorInfo;
 import com.zf.executor.ExecutorStatus;
 import com.zf.message.MessageInfo;
 import com.zf.message.MessageType;
@@ -85,7 +86,7 @@ public class WebSocketServer {
 		WebSocketServer serverInfo = WebSocketServer.WEBSOCKET_INFOS.get(session.getId());
 		try {
 			ExecutorClientInfo clientInfo = JSON.parseObject(message, ExecutorClientInfo.class);
-			if (clientInfo.getType() == MessageType.MESSAGE.getType()) {
+			if (clientInfo.getType() == MessageType.MESSAGE.getType()) {//从JAVA CLIENT传过来的clientInfo
 				if (clientInfo.getExecuteStatus() == ExecutorStatus.STATUS3.getStatus()) {
 					ExecutorCenter.ALL_EXECUTOR.get(clientInfo.getExecuteId()).setStatus(ExecutorStatus.STATUS3);
 				}
@@ -93,16 +94,17 @@ public class WebSocketServer {
 				for (WebSocketServer webSocketServer : ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId())) {
 					webSocketServer.sendMessage(ExecutorClientInfo.getInstance(MessageType.MESSAGE.getType(),clientInfo.getExecuteId(),clientInfo.getMessage(),clientInfo.getExecuteStatus()).toString());
 				}
-			} else if (clientInfo.getType() == MessageType.LOOK.getType()) {
+			} else if (clientInfo.getType() == MessageType.LOOK.getType()) {//从浏览器过来的
 				ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId()).add(WEBSOCKET_INFOS.get(session.getId()));
+				ExecutorInfo executorInfo = ExecutorCenter.ALL_EXECUTOR.get(clientInfo.getExecuteId());
 				ExecutorCenter.EXECUTE_LOGS.get(clientInfo.getExecuteId()).forEach(t -> {
 					try {
-						serverInfo.sendMessage(MessageType.MESSAGE, t);
-						serverInfo.sendMessage(ExecutorClientInfo.getInstance(MessageType.MESSAGE.getType(),clientInfo.getExecuteId(),t,clientInfo.getExecuteStatus()).toString());
+						//serverInfo.sendMessage(MessageType.MESSAGE, t);
+						serverInfo.sendMessage(ExecutorClientInfo.getInstance(MessageType.MESSAGE.getType(),clientInfo.getExecuteId(),t,executorInfo.getStatus().getStatus()).toString());
 					} catch (IOException e) {
 					}
 				});
-			} else if (clientInfo.getType() == MessageType.UNLOOK.getType()) {
+			} else if (clientInfo.getType() == MessageType.UNLOOK.getType()) {//从浏览器过来的
 				Iterator<WebSocketServer> it = ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId()).iterator();
 				while(it.hasNext()){
 					WebSocketServer info = it.next();

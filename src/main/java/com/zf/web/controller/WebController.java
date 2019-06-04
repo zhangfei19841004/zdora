@@ -1,7 +1,10 @@
 package com.zf.web.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.zf.executor.ExecutorCenter;
 import com.zf.executor.ExecutorInfo;
+import com.zf.executor.ExecutorStatus;
 import com.zf.message.MessageType;
 import com.zf.service.CommonService;
 import com.zf.service.WebService;
@@ -41,7 +44,7 @@ public class WebController {
 				.filter(ws -> ws != null).map(ws -> ws.getWebSocketInfo()).collect(Collectors.toList());
 		map.put("clients", list);
 		map.put("clientsCount", list.size());
-		List<ExecutorInfo> executors = ExecutorCenter.ALL_EXECUTOR.values().stream().sorted(Comparator.comparingInt(o -> o.executeId)).collect(Collectors.toList());
+		List<ExecutorInfo> executors = ExecutorCenter.ALL_EXECUTOR.values().stream().sorted((o1,o2)->o2.executeId-o1.executeId).collect(Collectors.toList());
 		map.put("executors",executors);
 		return "welcome-new";
 	}
@@ -67,11 +70,14 @@ public class WebController {
 				return ResponseUtil.getFailedResponse("参数不全");
 			}
 			webService.executor(info);
+			SerializeConfig config = new SerializeConfig();
+			config.configEnumAsJavaBean(ExecutorStatus.class);
+			String s = JSON.toJSONString(info, config);
+			return ResponseUtil.getSuccessResponse(JSON.parseObject(s));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseUtil.getFailedResponse(e.getMessage());
 		}
-		return ResponseUtil.getSuccessResponse();
 	}
 
 }
