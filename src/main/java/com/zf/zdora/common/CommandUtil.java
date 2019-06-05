@@ -24,7 +24,7 @@ public class CommandUtil {
                 String[] argss = args.split("(?<!\\\\)\\s+");//参数以空格进行分割，如果有参数中确实带有空格的，则加上转义符号\
                 commandline.addArguments(argss);
             }
-            commandline.addArgument(executeId+"");
+            /*commandline.addArgument(executeId+"");*/
             DefaultExecutor exec = new DefaultExecutor();
             exec.setExitValues(null);
             exec.setStreamHandler(streamHandler);
