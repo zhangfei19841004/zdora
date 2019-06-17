@@ -21,9 +21,9 @@ public class Run {
 
 	private static Logger logger = LoggerFactory.getLogger(Run.class);
 
-	private String serverHost = "localhost";
+	public static String serverHost = "localhost";
 
-	private String serverPort = "8080";
+	public static String serverPort = "8080";
 
 	public void setServerHost(String serverHost) {
 		this.serverHost = serverHost;

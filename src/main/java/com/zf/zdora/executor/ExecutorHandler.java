@@ -1,9 +1,14 @@
 package com.zf.zdora.executor;
 
+import com.zf.zdora.client.Run;
 import com.zf.zdora.client.ZdoraClient;
 import com.zf.zdora.common.CommandUtil;
+import com.zf.zdora.common.HttpClientUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by zhangfei on 2019/05/31.
@@ -52,5 +57,9 @@ public class ExecutorHandler extends Thread {
 		end.setExecuteStatus(ExecutorStatus.STATUS3.getStatus());
 		end.setMessage("执行完成: " + command + " " + args);
 		zdoraClient.send(end.toString());
+		List<String> targetPath = new ArrayList<>();
+		targetPath.add("123");
+		targetPath.add("456");
+		HttpClientUtils.upload("C:\\Users\\zhangfei\\Desktop\\zdora\\123\\zdora-1.0.jar", targetPath, "http://" + Run.serverHost + ":" + Run.serverPort + "/upload");
 	}
 }
