@@ -32,25 +32,57 @@
             </fieldset>
         </div>
         <div class="layui-card-body layui-form-pane">
-            <div class="layui-form-item" name="executor" style="width: 100%" th:each="client,clientStat:${clients}">
-                <label class="layui-form-label" style="width: 200px" th:text="${client.cid}"></label>
-                <div class="layui-inline">
-                    <input name="executeCommand" placeholder="请输入命令,如java" class="layui-input" type="text"
-                           style="width: 300px">
+            <form th:each="client,clientStat:${clients}">
+                <div class="layui-form-item" name="executor" style="width: 100%;height: 100%;margin-bottom: 0px">
+                    <label class="layui-form-label" style="width: 20%" th:text="${client.cid}"></label>
+                    <div class="layui-inline" style="width: 30%;margin-bottom: 0px">
+                        <input name="executeCommand" placeholder="请输入命令,如java" class="layui-input" type="text">
+                    </div>
+                    <div class="layui-inline" style="width: 40%;margin-bottom: 0px">
+                        <input name="executeArgs" placeholder="请输入参数,如-version" class="layui-input" type="text">
+                    </div>
+                    <input name="cid" type="hidden" th:value="${client.cid}">
+                    <input name="sessionId" type="hidden" th:value="${client.session.id}">
+                    <div class="layui-inline" style="margin-bottom: 0px;float: right;margin-right: 0px">
+                        <button class="layui-btn layui-btn-primary" th:onclick="'executor(this)'">执行</button>
+                    </div>
                 </div>
-                <div class="layui-inline">
-                    <input name="executeArgs" placeholder="请输入参数,如-version" class="layui-input" type="text"
-                           style="width: 600px">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">传递执行ID</label>
+                    <div class="layui-input-block">
+                        <input type="checkbox" name="close" lay-skin="switch" lay-text="是|否">
+                    </div>
                 </div>
-                <input name="cid" type="hidden" th:value="${client.cid}">
-                <input name="sessionId" type="hidden" th:value="${client.session.id}">
-                <div class="layui-inline">
-                    <button class="layui-btn layui-btn-primary" th:onclick="'executor(this)'">执行</button>
+                <div class="layui-form-item">
+                    <div class="layui-collapse" lay-filter="test">
+                        <div class="layui-colla-item">
+                            <h2 class="layui-colla-title">高级选项</h2>
+                            <div class="layui-colla-content">
+                                <div class="layui-card">
+                                    <div class="layui-card-body">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">传递执行ID</label>
+                                            <div class="layui-input-block">
+                                                <input type="checkbox" name="close" lay-skin="switch" lay-text="是|否">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-card">
+                                    <div class="layui-card-body">
+                                    </div>
+                                </div>
+                                <div class="layui-card">
+                                    <div class="layui-card-body">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
-
     <div class="layui-card">
         <div class="layui-card-header">
             <fieldset class="layui-elem-field layui-field-title">
@@ -72,11 +104,20 @@
             </div>
         </div>
     </div>
-
 </div>
 
 </body>
 <script th:inline="javascript" type="text/javascript">
+
+    layui.use('form', function(){
+        var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+
+        //……
+
+        //但是，如果你的HTML是动态生成的，自动渲染就会失效
+        //因此你需要在相应的地方，执行下述方法来手动渲染，跟这类似的还有 element.init();
+        form.render();
+    });
 
     layui.use(['element', 'layer'], function () {
         var element = layui.element;
@@ -106,13 +147,13 @@
                     , closeBtn: 0
                 });
                 $("#executorDetails").prepend("<div class=\"layui-colla-item\" name=\"executorLogs\">" +
-                    "                    <h2 class=\"layui-colla-title\">"+data.data.cid+":"+data.data.executeCommand+" "+data.data.executeArgs+" 执行ID:"+data.data.executeId+" "+
-                    "                    <span id='status_"+data.data.executeId+"'>"+data.data.status.statusName+"</span>" +
+                    "                    <h2 class=\"layui-colla-title\">" + data.data.cid + ":" + data.data.executeCommand + " " + data.data.executeArgs + " 执行ID:" + data.data.executeId + " " +
+                    "                    <span id='status_" + data.data.executeId + "'>" + data.data.status.statusName + "</span>" +
                     "                    </h2>" +
-                    "                    <input name=\"executeId\" type=\"hidden\" value=\""+data.data.executeId+"\">" +
-                    "                    <div class=\"layui-colla-content\" id=\"logs_"+data.data.executeId+"\" name=\"logs\"></div>" +
+                    "                    <input name=\"executeId\" type=\"hidden\" value=\"" + data.data.executeId + "\">" +
+                    "                    <div class=\"layui-colla-content\" id=\"logs_" + data.data.executeId + "\" name=\"logs\"></div>" +
                     "                </div>");
-                layui.element.render('collapse','executor');
+                layui.element.render('collapse', 'executor');
             } else {
                 layer.alert('执行出错,请重新执行', {
                     skin: 'layui-layer-molv' //样式类名
@@ -141,8 +182,8 @@
             if (message.type == 2) {
                 var ei = message.executeId;
                 $("#logs_" + ei).append("<p>" + message.message + "</p>");
-                if(message.executeStatus==2){//执行完成
-                    $("#status_"+ei).text("执行完成");
+                if (message.executeStatus == 2) {//执行完成
+                    $("#status_" + ei).text("执行完成");
                 }
             }
         };
