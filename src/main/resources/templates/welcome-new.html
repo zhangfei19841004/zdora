@@ -31,56 +31,60 @@
                 </legend>
             </fieldset>
         </div>
-        <div class="layui-card-body layui-form-pane">
-            <form th:each="client,clientStat:${clients}">
-                <div class="layui-form-item" name="executor" style="width: 100%;height: 100%;margin-bottom: 0px">
+        <div class="layui-card-body">
+            <div class="layui-form layui-form-pane" th:each="client,clientStat:${clients}">
+                <div class="layui-form-item" name="executor" style="width: 100%;height: 100%;margin-bottom: 20px">
                     <label class="layui-form-label" style="width: 20%" th:text="${client.cid}"></label>
                     <div class="layui-inline" style="width: 30%;margin-bottom: 0px">
                         <input name="executeCommand" placeholder="请输入命令,如java" class="layui-input" type="text">
                     </div>
-                    <div class="layui-inline" style="width: 40%;margin-bottom: 0px">
+                    <div class="layui-inline" style="width: 35%;margin-bottom: 0px">
                         <input name="executeArgs" placeholder="请输入参数,如-version" class="layui-input" type="text">
                     </div>
                     <input name="cid" type="hidden" th:value="${client.cid}">
                     <input name="sessionId" type="hidden" th:value="${client.session.id}">
+                    <div class="layui-inline" style="margin-bottom: 0px;">
+                        <button class="layui-btn layui-btn-primary" th:onclick="'showMore(this)'">更多选项..</button>
+                    </div>
                     <div class="layui-inline" style="margin-bottom: 0px;float: right;margin-right: 0px">
                         <button class="layui-btn layui-btn-primary" th:onclick="'executor(this)'">执行</button>
                     </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">传递执行ID</label>
-                    <div class="layui-input-block">
-                        <input type="checkbox" name="close" lay-skin="switch" lay-text="是|否">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <div class="layui-collapse" lay-filter="test">
-                        <div class="layui-colla-item">
-                            <h2 class="layui-colla-title">高级选项</h2>
-                            <div class="layui-colla-content">
-                                <div class="layui-card">
-                                    <div class="layui-card-body">
-                                        <div class="layui-form-item">
-                                            <label class="layui-form-label">传递执行ID</label>
-                                            <div class="layui-input-block">
-                                                <input type="checkbox" name="close" lay-skin="switch" lay-text="是|否">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-card">
-                                    <div class="layui-card-body">
-                                    </div>
-                                </div>
-                                <div class="layui-card">
-                                    <div class="layui-card-body">
-                                    </div>
+                <div class="layui-form-item" show="0" style="display: none;background-color: #F2F2F2">
+                    <div class="layui-card" style="background-color: #F2F2F2;margin-bottom: 0px">
+                        <div class="layui-card-body">
+                            <div class="layui-form-item" pane="">
+                                <label class="layui-form-label">传递执行ID</label>
+                                <div class="layui-input-block">
+                                    <input type="checkbox" name="close" lay-skin="switch" lay-text="是|否">
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="layui-card" style="background-color: #F2F2F2;margin-bottom: 0px">
+                        <div class="layui-card-header">
+                            <fieldset class="layui-elem-field layui-field-title">
+                                <legend>
+                                    <button class="layui-btn layui-btn-primary" style="border: none">执行命令前</button>
+                                </legend>
+                            </fieldset>
+                        </div>
+                        <div class="layui-card-body">
+                        </div>
+                    </div>
+                    <div class="layui-card" style="background-color: #F2F2F2">
+                        <div class="layui-card-header">
+                            <fieldset class="layui-elem-field layui-field-title">
+                                <legend>
+                                    <button class="layui-btn layui-btn-primary" style="border: none">执行命令后</button>
+                                </legend>
+                            </fieldset>
+                        </div>
+                        <div class="layui-card-body">
+                        </div>
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
     <div class="layui-card">
@@ -109,7 +113,7 @@
 </body>
 <script th:inline="javascript" type="text/javascript">
 
-    layui.use('form', function(){
+    layui.use('form', function () {
         var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
 
         //……
@@ -134,6 +138,21 @@
     });
 
     var cid = [[${cid}]];
+
+    function showMore(obj) {
+        var p = $(obj).parent().eq(0).parent().eq(0);
+        var f = $(p).next(".layui-form-item").eq(0);
+        if ($(f).attr("show") == '0') {
+            $(f).show();
+            $(f).attr("show", '1');
+            $(p).css("margin-bottom","0px");
+        } else {
+            $(f).hide();
+            $(f).attr("show", '0');
+            $(p).css("margin-bottom","20px");
+        }
+    }
+
     function executor(obj) {
         var f = $(obj).parent().eq(0).parent().eq(0);
         var params = {};
