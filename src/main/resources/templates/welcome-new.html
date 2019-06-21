@@ -35,7 +35,7 @@
             <div class="layui-form layui-form-pane" th:each="client,clientStat:${clients}">
                 <div class="layui-form-item" name="executor" style="width: 100%;height: 100%;margin-bottom: 20px">
                     <label class="layui-form-label" style="width: 20%" th:text="${client.cid}"></label>
-                    <div class="layui-inline" style="width: 30%;margin-bottom: 0px">
+                    <div class="layui-inline" style="width: 25%;margin-bottom: 0px">
                         <input name="executeCommand" placeholder="请输入命令,如java" class="layui-input" type="text">
                     </div>
                     <div class="layui-inline" style="width: 35%;margin-bottom: 0px">
@@ -51,36 +51,92 @@
                     </div>
                 </div>
                 <div class="layui-form-item" show="0" style="display: none;background-color: #F2F2F2">
-                    <div class="layui-card" style="background-color: #F2F2F2;margin-bottom: 0px">
-                        <div class="layui-card-body">
+                    <div class="layui-card" style="background-color: #F2F2F2;margin-bottom: 0px;box-shadow: none">
+                        <div class="layui-card-body" style="padding-bottom: 0px">
                             <div class="layui-form-item" pane="">
                                 <label class="layui-form-label">传递执行ID</label>
                                 <div class="layui-input-block">
-                                    <input type="checkbox" name="close" lay-skin="switch" lay-text="是|否">
+                                    <input type="checkbox" name="isExecutorId" value="0" lay-filter="switchExecutorId" lay-skin="switch" lay-text="是|否">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="layui-card" style="background-color: #F2F2F2;margin-bottom: 0px">
-                        <div class="layui-card-header">
-                            <fieldset class="layui-elem-field layui-field-title">
-                                <legend>
-                                    <button class="layui-btn layui-btn-primary" style="border: none">执行命令前</button>
-                                </legend>
+                    <div class="layui-card" style="background-color: #F2F2F2;margin-bottom: 0px;box-shadow: none">
+                        <div class="layui-card-body" style="padding-top: 0px;padding-bottom: 0px">
+                            <fieldset class="layui-elem-field site-demo-button" style="margin-top: 0px;padding: 1px">
+                                <legend>执行命令前</legend>
+                                <div style="width: 100%">
+                                    <div class="layui-form-item">
+                                        <div class="layui-inline" style="width: 48%;margin-right: 0px">
+                                            <label class="layui-form-label" style="width: 35%">从server端拷贝</label>
+                                            <div class="layui-input-inline" style="width: 63%">
+                                                <input type="text" name="beforeFromServerPath" class="layui-input">
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline" style="width: 48%">
+                                            <label class="layui-form-label" style="width: 35%"
+                                                   th:text="至+${client.cid}"></label>
+                                            <div class="layui-input-inline" style="width: 63%">
+                                                <input type="text" name="beforeToClientPath" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-inline" style="width: 48%;margin-right: 0px">
+                                            <label class="layui-form-label" style="width: 35%"
+                                                   th:text="从+${client.cid}+拷贝"></label>
+                                            <div class="layui-input-inline" style="width: 63%">
+                                                <input type="text" name="beforeFromClientPath" class="layui-input">
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline" style="width: 48%">
+                                            <label class="layui-form-label" style="width: 35%">至server端</label>
+                                            <div class="layui-input-inline" style="width: 63%">
+                                                <input type="text" name="beforeToServerPath" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </fieldset>
-                        </div>
-                        <div class="layui-card-body">
                         </div>
                     </div>
-                    <div class="layui-card" style="background-color: #F2F2F2">
-                        <div class="layui-card-header">
-                            <fieldset class="layui-elem-field layui-field-title">
-                                <legend>
-                                    <button class="layui-btn layui-btn-primary" style="border: none">执行命令后</button>
-                                </legend>
+                    <div class="layui-card" style="background-color: #F2F2F2;margin-bottom: 0px;box-shadow: none">
+                        <div class="layui-card-body" style="padding-top: 0px;">
+                            <fieldset class="layui-elem-field site-demo-button" style="margin-top: 0px;">
+                                <legend>执行命令后</legend>
+                                <div style="width: 100%">
+                                    <div class="layui-form-item">
+                                        <div class="layui-inline" style="width: 48%;margin-right: 0px">
+                                            <label class="layui-form-label" style="width: 35%">从server端拷贝</label>
+                                            <div class="layui-input-inline" style="width: 63%">
+                                                <input type="text" name="afterFromServerPath" class="layui-input">
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline" style="width: 48%">
+                                            <label class="layui-form-label" style="width: 35%"
+                                                   th:text="至+${client.cid}"></label>
+                                            <div class="layui-input-inline" style="width: 63%">
+                                                <input type="text" name="afterToClientPath" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-inline" style="width: 48%;margin-right: 0px">
+                                            <label class="layui-form-label" style="width: 35%"
+                                                   th:text="从+${client.cid}+拷贝"></label>
+                                            <div class="layui-input-inline" style="width: 63%">
+                                                <input type="text" name="afterFromClientPath" class="layui-input">
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline" style="width: 48%">
+                                            <label class="layui-form-label" style="width: 35%">至server端</label>
+                                            <div class="layui-input-inline" style="width: 63%">
+                                                <input type="text" name="afterToServerPath" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </fieldset>
-                        </div>
-                        <div class="layui-card-body">
                         </div>
                     </div>
                 </div>
@@ -121,6 +177,13 @@
         //但是，如果你的HTML是动态生成的，自动渲染就会失效
         //因此你需要在相应的地方，执行下述方法来手动渲染，跟这类似的还有 element.init();
         form.render();
+        form.on('switch(switchExecutorId)', function (data) {
+            if(this.checked){
+                $(this).val("1");
+            }else{
+                $(this).val("0");
+            }
+        });
     });
 
     layui.use(['element', 'layer'], function () {
@@ -145,20 +208,21 @@
         if ($(f).attr("show") == '0') {
             $(f).show();
             $(f).attr("show", '1');
-            $(p).css("margin-bottom","0px");
+            $(p).css("margin-bottom", "0px");
         } else {
             $(f).hide();
             $(f).attr("show", '0');
-            $(p).css("margin-bottom","20px");
+            $(p).css("margin-bottom", "20px");
         }
     }
 
     function executor(obj) {
-        var f = $(obj).parent().eq(0).parent().eq(0);
+        var f = $(obj).parent().eq(0).parent().eq(0).parent().eq(0);
         var params = {};
         $(f).find("input[name]").each(function (i) {
             params[$(this).attr("name")] = $(this).val();
-        })
+        });
+        console.log(params);
         $.post(ctx + "/push", params, function (data) {
             if (data.retCode == '200') {
                 layer.alert('执行ID:' + data.data.executeId, {

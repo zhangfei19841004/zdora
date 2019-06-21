@@ -5,17 +5,29 @@ package com.zf.executor;
  */
 public class ExecutorInfo {
 
-	public String executeCommand;
+	private String executeCommand;
 
-	public String executeArgs;
+	private String executeArgs;
 
-	public ExecutorStatus status;
+	private ExecutorStatus status;
 
-	public String cid;//客户端IP
+	private String cid;//客户端IP
 
-	public String sessionId;
+	private String sessionId;
 
-	public int executeId;
+	private int executeId;
+
+	private int isExecutorId;
+
+	private String beforeFromServerPath;
+	private String beforeToClientPath;
+	private String beforeFromClientPath;
+	private String beforeToServerPath;
+
+	private String afterFromServerPath;
+	private String afterToClientPath;
+	private String afterFromClientPath;
+	private String afterToServerPath;
 
 	public ExecutorStatus getStatus() {
 		return status;
@@ -63,5 +75,77 @@ public class ExecutorInfo {
 
 	public void setExecuteId(int executeId) {
 		this.executeId = executeId;
+	}
+
+	public int getIsExecutorId() {
+		return isExecutorId;
+	}
+
+	public void setIsExecutorId(int isExecutorId) {
+		this.isExecutorId = isExecutorId;
+	}
+
+	public String getBeforeFromServerPath() {
+		return beforeFromServerPath;
+	}
+
+	public void setBeforeFromServerPath(String beforeFromServerPath) {
+		this.beforeFromServerPath = beforeFromServerPath;
+	}
+
+	public String getBeforeToClientPath() {
+		return beforeToClientPath;
+	}
+
+	public void setBeforeToClientPath(String beforeToClientPath) {
+		this.beforeToClientPath = beforeToClientPath;
+	}
+
+	public String getBeforeFromClientPath() {
+		return beforeFromClientPath;
+	}
+
+	public void setBeforeFromClientPath(String beforeFromClientPath) {
+		this.beforeFromClientPath = beforeFromClientPath;
+	}
+
+	public String getBeforeToServerPath() {
+		return beforeToServerPath;
+	}
+
+	public void setBeforeToServerPath(String beforeToServerPath) {
+		this.beforeToServerPath = beforeToServerPath;
+	}
+
+	public String getAfterFromServerPath() {
+		return afterFromServerPath;
+	}
+
+	public void setAfterFromServerPath(String afterFromServerPath) {
+		this.afterFromServerPath = afterFromServerPath;
+	}
+
+	public String getAfterToClientPath() {
+		return afterToClientPath;
+	}
+
+	public void setAfterToClientPath(String afterToClientPath) {
+		this.afterToClientPath = afterToClientPath;
+	}
+
+	public String getAfterFromClientPath() {
+		return afterFromClientPath;
+	}
+
+	public void setAfterFromClientPath(String afterFromClientPath) {
+		this.afterFromClientPath = afterFromClientPath;
+	}
+
+	public String getAfterToServerPath() {
+		return afterToServerPath;
+	}
+
+	public void setAfterToServerPath(String afterToServerPath) {
+		this.afterToServerPath = afterToServerPath;
 	}
 }
