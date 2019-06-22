@@ -60,6 +60,6 @@ public class ExecutorHandler extends Thread {
 		List<String> targetPath = new ArrayList<>();
 		targetPath.add("123");
 		targetPath.add("456");
-		HttpClientUtils.upload("C:\\Users\\zhangfei\\Desktop\\zdora\\123\\zdora-1.0.jar", targetPath, "http://" + Run.serverHost + ":" + Run.serverPort + "/upload");
+		//HttpClientUtils.upload("C:\\Users\\zhangfei\\Desktop\\zdora\\123\\zdora-1.0.jar", targetPath, "http://" + Run.serverHost + ":" + Run.serverPort + "/upload");
 	}
 }
