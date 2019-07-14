@@ -15,11 +15,9 @@ public class ExecutorCenter {
 	public static ExecutorService service = Executors.newFixedThreadPool(5);
 
 	public void executorCenter(String message, ZdoraClient zdoraClient) {
-		JSONObject json = JSON.parseObject(message);
+		ExecutorFromServerInfo fromServerInfo = JSON.parseObject(message, ExecutorFromServerInfo.class);
 		ExecutorHandler eh = new ExecutorHandler();
-		eh.setCommand(json.getString("command"));
-		eh.setArgs(json.getString("args"));
-		eh.setExecuteId(json.getIntValue("executeId"));
+		eh.setFromServerInfo(fromServerInfo);
 		eh.setZdoraClient(zdoraClient);
 		service.execute(eh);
 	}

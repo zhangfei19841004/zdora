@@ -3,7 +3,9 @@ package com.zf.zdora.executor;
 import com.zf.zdora.client.Run;
 import com.zf.zdora.client.ZdoraClient;
 import com.zf.zdora.common.CommandUtil;
+import com.zf.zdora.common.FileUtils;
 import com.zf.zdora.common.HttpClientUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,51 +17,49 @@ import java.util.List;
  */
 public class ExecutorHandler extends Thread {
 
-	private static Logger logger = LoggerFactory.getLogger(ExecutorHandler.class);
+    private static Logger logger = LoggerFactory.getLogger(ExecutorHandler.class);
 
-	private ZdoraClient zdoraClient;
+    private ZdoraClient zdoraClient;
 
-	public void setZdoraClient(ZdoraClient zdoraClient) {
-		this.zdoraClient = zdoraClient;
-	}
+    public void setZdoraClient(ZdoraClient zdoraClient) {
+        this.zdoraClient = zdoraClient;
+    }
 
-	private String command;
+    private ExecutorFromServerInfo fromServerInfo;
 
-	private String args;
+    public void setFromServerInfo(ExecutorFromServerInfo fromServerInfo) {
+        this.fromServerInfo = fromServerInfo;
+    }
 
-	private int executeId;
+    @Override
+    public void run() {
+        ExecutorClientInfo begin = new ExecutorClientInfo();
+        begin.setType(2);
+        begin.setExecuteId(fromServerInfo.getExecuteId());
+        begin.setExecuteStatus(ExecutorStatus.STATUS2.getStatus());
+        if (StringUtils.isNotBlank(fromServerInfo.getBeforeFromClientPath())) {
+            List<String> paths = new ArrayList<>();
+            FileUtils.getAllFilePaths(paths, fromServerInfo.getBeforeFromClientPath());
+            for (String path : paths) {
+                //HttpClientUtils.upload(path, targetPath, "http://" + Run.serverHost + ":" + Run.serverPort + "/upload");
+            }
+        }
+        begin.setMessage("开始执行: " + fromServerInfo.getCommand() + " " + fromServerInfo.getArgs());
+        zdoraClient.send(begin.toString());
+        CommandUtil.executeCommand(zdoraClient, fromServerInfo.getCommand(), fromServerInfo.getArgs(), fromServerInfo.getExecuteId());
+        logger.info("执行完命令: " + fromServerInfo.getCommand() + " " + fromServerInfo.getArgs());
+        ExecutorClientInfo end = new ExecutorClientInfo();
+        end.setType(2);
+        end.setExecuteId(fromServerInfo.getExecuteId());
+        end.setExecuteStatus(ExecutorStatus.STATUS3.getStatus());
+        end.setMessage("执行完成: " + fromServerInfo.getCommand() + " " + fromServerInfo.getArgs());
+        zdoraClient.send(end.toString());
+    }
 
-	public void setCommand(String command) {
-		this.command = command;
-	}
-
-	public void setArgs(String args) {
-		this.args = args;
-	}
-
-	public void setExecuteId(int executeId) {
-		this.executeId = executeId;
-	}
-
-	@Override
-	public void run() {
-		ExecutorClientInfo begin = new ExecutorClientInfo();
-		begin.setType(2);
-		begin.setExecuteId(executeId);
-		begin.setExecuteStatus(ExecutorStatus.STATUS2.getStatus());
-		begin.setMessage("开始执行: " + command + " " + args);
-		zdoraClient.send(begin.toString());
-		CommandUtil.executeCommand(zdoraClient, command, args, executeId);
-		logger.info("执行完命令: " + command + " " + args);
-		ExecutorClientInfo end = new ExecutorClientInfo();
-		end.setType(2);
-		end.setExecuteId(executeId);
-		end.setExecuteStatus(ExecutorStatus.STATUS3.getStatus());
-		end.setMessage("执行完成: " + command + " " + args);
-		zdoraClient.send(end.toString());
-		List<String> targetPath = new ArrayList<>();
-		targetPath.add("123");
-		targetPath.add("456");
-		//HttpClientUtils.upload("C:\\Users\\zhangfei\\Desktop\\zdora\\123\\zdora-1.0.jar", targetPath, "http://" + Run.serverHost + ":" + Run.serverPort + "/upload");
-	}
+    public static void main(String[] args) throws Exception {
+        String path = "/Users/zhangfei/Desktop/zdora-client";
+        List<String> paths = new ArrayList<>();
+        FileUtils.getAllFilePaths(paths, path);
+        paths.forEach(System.out::println);
+    }
 }
