@@ -91,7 +91,9 @@ public class WebController {
 			List<String> dirs;
 			try {
 				dirs = JSON.parseArray(fn, String.class);
-				subDirs = String.join(File.separator, dirs);
+				if(dirs.size()>0){
+					subDirs = String.join(File.separator, dirs);
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
