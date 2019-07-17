@@ -10,18 +10,24 @@ import com.zf.service.CommonService;
 import com.zf.service.WebService;
 import com.zf.service.WebSocketInfo;
 import com.zf.service.WebSocketServer;
+import com.zf.utils.FileUtils;
 import com.zf.utils.ResponseUtil;
 import com.zf.utils.ResponseUtil.ResponseInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -91,7 +97,7 @@ public class WebController {
 			List<String> dirs;
 			try {
 				dirs = JSON.parseArray(fn, String.class);
-				if(dirs.size()>0){
+				if (dirs.size() > 0) {
 					subDirs = String.join(File.separator, dirs);
 				}
 			} catch (Exception e) {
@@ -119,46 +125,44 @@ public class WebController {
 		return ResponseUtil.getSuccessResponse();
 	}
 
+	@RequestMapping(value = "/all/files")
+	@ResponseBody
+	public List<String> allFiles(String basePath) {
+		String path = workspaceDir + File.separator + basePath;
+		File file = new File(path);
+		List<String> files = new ArrayList<>();
+		if (!file.exists()) {
+			return files;
+		}
+		if (file.isFile()) {
+			files.add(basePath);
+			return files;
+		}
+		FileUtils.getAllFilePaths(files, path);
+		return files.stream().map(t -> {
+			File f = new File(t);
+			return f.getAbsolutePath().substring(file.getAbsolutePath().length() + 1);
+		}).collect(Collectors.toList());
+	}
+
 	@RequestMapping(value = "/download")
-	public void download(String fn, HttpServletResponse response) {
-		String filePath = workspaceDir + File.separator + fn;
+	@ResponseBody
+	public ResponseEntity<String> download(HttpServletRequest request) throws Exception {
+		String fn = request.getHeader("fn");
+		File f = new File(fn);
+		File wd = new File(workspaceDir);
+		String filePath = wd.getPath() + File.separator + f.getPath();
 		File file = new File(filePath);
 		if (file.isDirectory()) {
-			return;
+			return null;
 		}
 		if (!file.exists()) {
-			return;
+			return null;
 		}
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("multipart/form-data");
-		response.setHeader("Content-Disposition", "attachment;fileName=" + file.getName());
-		InputStream inputStream = null;
-		OutputStream os = null;
-		try {
-			inputStream = new FileInputStream(file);
-			os = response.getOutputStream();
-			byte[] b = new byte[2048];
-			int length;
-			while ((length = inputStream.read(b)) > 0) {
-				os.write(b, 0, length);
-			}
-			os.flush();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (os != null) {
-					os.close();
-				}
-				if (inputStream != null) {
-					inputStream.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+		headers.setContentDispositionFormData("attachment", file.getName());
+		return new ResponseEntity<>(org.apache.commons.io.FileUtils.readFileToString(file, "UTF-8"), headers, HttpStatus.CREATED);
 	}
 
 }
