@@ -1,5 +1,6 @@
 package com.zf.zdora.executor;
 
+import com.alibaba.fastjson.JSON;
 import com.zf.zdora.client.Run;
 import com.zf.zdora.client.ZdoraClient;
 import com.zf.zdora.common.CommandUtil;
@@ -41,11 +42,18 @@ public class ExecutorHandler extends Thread {
 		begin.setType(2);
 		begin.setExecuteId(fromServerInfo.getExecuteId());
 		begin.setExecuteStatus(ExecutorStatus.STATUS2.getStatus());
+		if (StringUtils.isNotBlank(fromServerInfo.getBeforeToClientPath())) {
+			this.downloadFormServerToClient(fromServerInfo.getBeforeToClientPath(), fromServerInfo.getBeforeFromServerPath());
+			begin.setMessage("拷贝文件: 从服务端" + fromServerInfo.getBeforeFromServerPath() + " 至客户端" + fromServerInfo.getBeforeToClientPath());
+			zdoraClient.send(begin.toString());
+		}
+
 		if (StringUtils.isNotBlank(fromServerInfo.getBeforeFromClientPath())) {
 			this.uploadFromClientToServer(fromServerInfo.getBeforeFromClientPath(), fromServerInfo.getBeforeToServerPath());
+			begin.setMessage("拷贝文件: 从客户端" + fromServerInfo.getBeforeFromClientPath() + " 至服务端" + fromServerInfo.getBeforeToServerPath());
+			zdoraClient.send(begin.toString());
 		}
-		begin.setMessage("拷贝文件: 从客户端" + fromServerInfo.getBeforeFromClientPath() + " 至服务端" + fromServerInfo.getBeforeToServerPath());
-		zdoraClient.send(begin.toString());
+
 		begin.setMessage("开始执行: " + fromServerInfo.getCommand() + " " + fromServerInfo.getArgs());
 		zdoraClient.send(begin.toString());
 		CommandUtil.executeCommand(zdoraClient, fromServerInfo.getCommand(), fromServerInfo.getArgs(), fromServerInfo.getExecuteId());
@@ -59,10 +67,16 @@ public class ExecutorHandler extends Thread {
 		end.setExecuteStatus(ExecutorStatus.STATUS2.getStatus());
 		end.setMessage("执行完成: " + fromServerInfo.getCommand() + " " + fromServerInfo.getArgs());
 		zdoraClient.send(end.toString());
-		end.setExecuteStatus(ExecutorStatus.STATUS2.getStatus());
-		end.setMessage("拷贝文件: 从客户端" + fromServerInfo.getAfterFromClientPath() + " 至服务端" + fromServerInfo.getAfterToServerPath());
-		zdoraClient.send(end.toString());
-
+		if (StringUtils.isNotBlank(fromServerInfo.getAfterToClientPath())) {
+			this.downloadFormServerToClient(fromServerInfo.getAfterToClientPath(), fromServerInfo.getAfterFromServerPath());
+			begin.setMessage("拷贝文件: 从服务端" + fromServerInfo.getAfterFromServerPath() + " 至客户端" + fromServerInfo.getAfterToClientPath());
+			zdoraClient.send(begin.toString());
+		}
+		if (StringUtils.isNotBlank(fromServerInfo.getAfterFromClientPath())) {
+			this.uploadFromClientToServer(fromServerInfo.getAfterFromClientPath(), fromServerInfo.getAfterToServerPath());
+			end.setMessage("拷贝文件: 从客户端" + fromServerInfo.getAfterFromClientPath() + " 至服务端" + fromServerInfo.getAfterToServerPath());
+			zdoraClient.send(end.toString());
+		}
 		end.setExecuteStatus(ExecutorStatus.STATUS3.getStatus());
 		end.setMessage("执行结束!");
 		zdoraClient.send(end.toString());
@@ -95,6 +109,16 @@ public class ExecutorHandler extends Thread {
 		path = path.substring(1);
 		list.addAll(Arrays.asList(path.split(Matcher.quoteReplacement(File.separator))));
 		return list;
+	}
+
+	private void downloadFormServerToClient(String clientRootPath, String serverRootPath) {
+		String res = HttpClientUtils.get("http://" + Run.serverHost + ":" + Run.serverPort + "/all/files?basePath=" + serverRootPath);
+		List<String> paths = JSON.parseArray(res, String.class);
+		for (String path : paths) {
+			File file = new File(path);
+			File srp = new File(serverRootPath);
+			HttpClientUtils.downLoad("http://" + Run.serverHost + ":" + Run.serverPort + "/download", srp.getPath(), file.getPath(), clientRootPath);
+		}
 	}
 
 	public static void main(String[] args) throws Exception {

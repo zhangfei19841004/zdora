@@ -39,9 +39,9 @@ public class HttpClientUtils {
 			//multipartEntityBuilder.addBinaryBody("file", file,ContentType.create("image/png"),"abc.pdf");
 			//当设置了setSocketTimeout参数后，以下代码上传PDF不能成功，将setSocketTimeout参数去掉后此可以上传成功。上传图片则没有个限制
 			//multipartEntityBuilder.addBinaryBody("file",file,ContentType.create("application/octet-stream"),"abd.pdf");
-			if(file.isFile()){
+			if (file.isFile()) {
 				multipartEntityBuilder.addBinaryBody("file", file);
-			}else{
+			} else {
 				File[] files = file.listFiles();
 				for (File f : files) {
 					multipartEntityBuilder.addBinaryBody("file", f);
@@ -72,7 +72,7 @@ public class HttpClientUtils {
 		return null;
 	}
 
-	public static void downLoad(String url, String fileName, String localDir) {
+	public static void downLoad(String url, String serverRootPath,String fileName, String localDir) {
 		CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 		CloseableHttpResponse httpResponse;
 		RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(TIMOUT).setSocketTimeout(TIMOUT).build();
@@ -82,7 +82,7 @@ public class HttpClientUtils {
 		try {
 			HttpGet httpGet = new HttpGet(url);
 			httpGet.setConfig(requestConfig);
-			httpGet.addHeader("fn", fileName);
+			httpGet.addHeader("fn", serverRootPath+File.separator+fileName);
 
 			httpResponse = httpClient.execute(httpGet);
 			HttpEntity entity = httpResponse.getEntity();
@@ -90,16 +90,13 @@ public class HttpClientUtils {
 
 			long length = entity.getContentLength();
 			if (length <= 0) {
-				System.out.println("下载文件不存在！");
 				return;
 			}
 
-			File localDirFile = new File(localDir);
-			if (!localDirFile.exists()) {
-				localDirFile.mkdirs();
-			}
-
 			File file = new File(localDir + File.separator + fileName);
+			if (!file.getParentFile().exists()) {
+				file.getParentFile().mkdirs();
+			}
 			if (file.exists()) {
 				file.delete();
 			}
@@ -115,7 +112,6 @@ public class HttpClientUtils {
 				out.write(line);
 			}
 			out.flush();
-			System.out.println(fileName + "下载成功.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -174,9 +170,39 @@ public class HttpClientUtils {
 		return null;
 	}
 
+	public static String get(String url) {
+		CloseableHttpClient httpClient = null;
+		HttpGet httpGet = null;
+		try {
+			httpClient = HttpClients.createDefault();
+			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(TIMOUT).setConnectTimeout(TIMOUT).build();
+			httpGet = new HttpGet(url);
+			httpGet.setConfig(requestConfig);
+			CloseableHttpResponse response = httpClient.execute(httpGet);
+			HttpEntity httpEntity = response.getEntity();
+			return EntityUtils.toString(httpEntity, "utf-8");
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (httpGet != null) {
+					httpGet.releaseConnection();
+				}
+				if (httpClient != null) {
+					httpClient.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+
 	public static void main(String[] args) throws IOException {
 		//HttpClientUtils.upload("C:\\Users\\zhangfei\\Desktop" + File.separator + "part-r-00000.gz", "http://localhost:8081/dailyuser/callback", "ecc3fed47446c989");
-		HttpClientUtils.downLoad("http://localhost:8081/datapost/send", "tv_info.txt", "d:/data/sync_data1");
+		//HttpClientUtils.downLoad("http://localhost:8081/datapost/send", "tv_info.txt", "d:/data/sync_data1");
 	}
 
 }
