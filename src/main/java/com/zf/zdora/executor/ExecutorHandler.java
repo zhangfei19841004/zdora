@@ -69,8 +69,8 @@ public class ExecutorHandler extends Thread {
 		zdoraClient.send(end.toString());
 		if (StringUtils.isNotBlank(fromServerInfo.getAfterToClientPath())) {
 			this.downloadFormServerToClient(fromServerInfo.getAfterToClientPath(), fromServerInfo.getAfterFromServerPath());
-			begin.setMessage("拷贝文件: 从服务端" + fromServerInfo.getAfterFromServerPath() + " 至客户端" + fromServerInfo.getAfterToClientPath());
-			zdoraClient.send(begin.toString());
+			end.setMessage("拷贝文件: 从服务端" + fromServerInfo.getAfterFromServerPath() + " 至客户端" + fromServerInfo.getAfterToClientPath());
+			zdoraClient.send(end.toString());
 		}
 		if (StringUtils.isNotBlank(fromServerInfo.getAfterFromClientPath())) {
 			this.uploadFromClientToServer(fromServerInfo.getAfterFromClientPath(), fromServerInfo.getAfterToServerPath());
