@@ -11,6 +11,7 @@ public class ExecutorToClientInfo {
 
     private int executeId;
 
+    private int isExecutorId;
     private String beforeFromServerPath;
     private String beforeToClientPath;
     private String beforeFromClientPath;
@@ -107,5 +108,13 @@ public class ExecutorToClientInfo {
 
     public void setAfterToServerPath(String afterToServerPath) {
         this.afterToServerPath = afterToServerPath;
+    }
+
+    public int getIsExecutorId() {
+        return isExecutorId;
+    }
+
+    public void setIsExecutorId(int isExecutorId) {
+        this.isExecutorId = isExecutorId;
     }
 }
