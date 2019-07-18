@@ -16,46 +16,48 @@ import java.io.IOException;
  */
 public class CommandUtil {
 
-    public static void executeCommand(ZdoraClient zdoraClient, String command, String args, int executeId) {
-        try {
-            PumpStreamHandler streamHandler = new PumpStreamHandler(new CollectingLogOutputStream(zdoraClient, executeId));
-            CommandLine commandline = new CommandLine(command);
-            if (StringUtils.isNotBlank(args)) {
-                String[] argss = args.split("(?<!\\\\)\\s+");//参数以空格进行分割，如果有参数中确实带有空格的，则加上转义符号\
-                commandline.addArguments(argss);
-            }
-            /*commandline.addArgument(executeId+"");*/
-            DefaultExecutor exec = new DefaultExecutor();
-            exec.setExitValues(null);
-            exec.setStreamHandler(streamHandler);
-            exec.execute(commandline);// exit code: 0=success, 1=error
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+	public static void executeCommand(ZdoraClient zdoraClient, String command, String args, int executeId, int isExecutorId) {
+		try {
+			PumpStreamHandler streamHandler = new PumpStreamHandler(new CollectingLogOutputStream(zdoraClient, executeId));
+			CommandLine commandline = new CommandLine(command);
+			if (StringUtils.isNotBlank(args)) {
+				String[] argss = args.split("(?<!\\\\)\\s+");//参数以空格进行分割，如果有参数中确实带有空格的，则加上转义符号\
+				commandline.addArguments(argss);
+			}
+			if (isExecutorId == 1) {
+				commandline.addArgument(executeId + "");
+			}
+			DefaultExecutor exec = new DefaultExecutor();
+			exec.setExitValues(null);
+			exec.setStreamHandler(streamHandler);
+			exec.execute(commandline);// exit code: 0=success, 1=error
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-    public static class CollectingLogOutputStream extends LogOutputStream {
+	public static class CollectingLogOutputStream extends LogOutputStream {
 
-        private ZdoraClient zdoraClient;
+		private ZdoraClient zdoraClient;
 
-        private int executeId;
+		private int executeId;
 
-        public CollectingLogOutputStream(ZdoraClient zdoraClient, int executeId) {
-            this.zdoraClient = zdoraClient;
-            this.executeId = executeId;
-        }
+		public CollectingLogOutputStream(ZdoraClient zdoraClient, int executeId) {
+			this.zdoraClient = zdoraClient;
+			this.executeId = executeId;
+		}
 
-        @Override
-        protected void processLine(String line, int level) {
-            System.out.println(line);
-            ExecutorClientInfo info = new ExecutorClientInfo();
-            info.setType(2);
-            info.setExecuteId(executeId);
-            info.setExecuteStatus(ExecutorStatus.STATUS2.getStatus());
-            info.setMessage(line);
-            zdoraClient.send(info.toString());
-        }
+		@Override
+		protected void processLine(String line, int level) {
+			System.out.println(line);
+			ExecutorClientInfo info = new ExecutorClientInfo();
+			info.setType(2);
+			info.setExecuteId(executeId);
+			info.setExecuteStatus(ExecutorStatus.STATUS2.getStatus());
+			info.setMessage(line);
+			zdoraClient.send(info.toString());
+		}
 
-    }
+	}
 
 }

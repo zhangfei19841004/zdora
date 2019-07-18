@@ -56,7 +56,7 @@ public class ExecutorHandler extends Thread {
 
 		begin.setMessage("开始执行: " + fromServerInfo.getCommand() + " " + fromServerInfo.getArgs());
 		zdoraClient.send(begin.toString());
-		CommandUtil.executeCommand(zdoraClient, fromServerInfo.getCommand(), fromServerInfo.getArgs(), fromServerInfo.getExecuteId());
+		CommandUtil.executeCommand(zdoraClient, fromServerInfo.getCommand(), fromServerInfo.getArgs(), fromServerInfo.getExecuteId(), fromServerInfo.getIsExecutorId());
 		logger.info("执行完命令: " + fromServerInfo.getCommand() + " " + fromServerInfo.getArgs());
 		if (StringUtils.isNotBlank(fromServerInfo.getAfterFromClientPath())) {
 			this.uploadFromClientToServer(fromServerInfo.getAfterFromClientPath(), fromServerInfo.getAfterToServerPath());
