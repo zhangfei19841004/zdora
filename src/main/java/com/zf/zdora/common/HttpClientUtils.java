@@ -19,6 +19,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import java.io.*;
+import java.net.URLEncoder;
 import java.util.List;
 
 public class HttpClientUtils {
@@ -82,8 +83,7 @@ public class HttpClientUtils {
 		try {
 			HttpGet httpGet = new HttpGet(url);
 			httpGet.setConfig(requestConfig);
-			httpGet.addHeader("fn", serverRootPath+File.separator+fileName);
-
+			httpGet.addHeader("fn", URLEncoder.encode(serverRootPath+File.separator+fileName,"UTF-8"));
 			httpResponse = httpClient.execute(httpGet);
 			HttpEntity entity = httpResponse.getEntity();
 			in = new BufferedReader(new InputStreamReader(entity.getContent(), "UTF-8"));
