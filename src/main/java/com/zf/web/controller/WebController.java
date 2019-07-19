@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -132,7 +133,7 @@ public class WebController {
 		String path = workspaceDir + File.separator + basePath;
 		File file = new File(path);
 		Map<String, Object> map = new HashMap<>();
-		map.put("isFile",0);
+		map.put("isFile", 0);
 		List<String> files = new ArrayList<>();
 		map.put("files", files);
 		if (!file.exists()) {
@@ -140,7 +141,7 @@ public class WebController {
 		}
 		if (file.isFile()) {
 			files.add(basePath);
-			map.put("isFile",1);
+			map.put("isFile", 1);
 			return map;
 		}
 		FileUtils.getAllFilePaths(files, path);
@@ -155,7 +156,7 @@ public class WebController {
 	@RequestMapping(value = "/download")
 	@ResponseBody
 	public ResponseEntity<String> download(HttpServletRequest request) throws Exception {
-		String fn = request.getHeader("fn");
+		String fn = URLDecoder.decode(request.getHeader("fn"), "UTF-8");
 		File f = new File(fn);
 		File wd = new File(workspaceDir);
 		String filePath = wd.getPath() + File.separator + f.getPath();
