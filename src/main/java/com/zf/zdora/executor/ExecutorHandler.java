@@ -1,6 +1,8 @@
 package com.zf.zdora.executor;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.zf.zdora.client.Run;
 import com.zf.zdora.client.ZdoraClient;
 import com.zf.zdora.common.CommandUtil;
@@ -100,6 +102,9 @@ public class ExecutorHandler extends Thread {
 			list = Arrays.stream(serverRootFile.getPath().split(Matcher.quoteReplacement(File.separator))).filter(StringUtils::isNotBlank).collect(Collectors.toList());
 		}
 		File root = new File(clientRootPath);
+		if(root.isFile()){
+			return list;
+		}
 		clientRootPath = root.getAbsolutePath();
 		path = path.substring(0, path.lastIndexOf(File.separator));
 		path = path.substring(clientRootPath.length());
@@ -113,11 +118,17 @@ public class ExecutorHandler extends Thread {
 
 	private void downloadFormServerToClient(String clientRootPath, String serverRootPath) {
 		String res = HttpClientUtils.get("http://" + Run.serverHost + ":" + Run.serverPort + "/all/files?basePath=" + serverRootPath);
-		List<String> paths = JSON.parseArray(res, String.class);
-		for (String path : paths) {
-			File file = new File(path);
-			File srp = new File(serverRootPath);
-			HttpClientUtils.downLoad("http://" + Run.serverHost + ":" + Run.serverPort + "/download", srp.getPath(), file.getPath(), clientRootPath);
+		JSONObject json = JSON.parseObject(res);
+		JSONArray paths = json.getJSONArray("files");
+		int isFile = json.getIntValue("isFile");
+		for (Object path : paths) {
+			File file = new File(path.toString());
+			String sp = "";
+			if(isFile==0){
+				File srp = new File(serverRootPath);
+				sp = srp.getPath();
+			}
+			HttpClientUtils.downLoad("http://" + Run.serverHost + ":" + Run.serverPort + "/download", sp, file.getPath(), clientRootPath);
 		}
 	}
 
