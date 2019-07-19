@@ -28,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -127,22 +128,28 @@ public class WebController {
 
 	@RequestMapping(value = "/all/files")
 	@ResponseBody
-	public List<String> allFiles(String basePath) {
+	public Map<String, Object> allFiles(String basePath) {
 		String path = workspaceDir + File.separator + basePath;
 		File file = new File(path);
+		Map<String, Object> map = new HashMap<>();
+		map.put("isFile",0);
 		List<String> files = new ArrayList<>();
+		map.put("files", files);
 		if (!file.exists()) {
-			return files;
+			return map;
 		}
 		if (file.isFile()) {
 			files.add(basePath);
-			return files;
+			map.put("isFile",1);
+			return map;
 		}
 		FileUtils.getAllFilePaths(files, path);
-		return files.stream().map(t -> {
+		files = files.stream().map(t -> {
 			File f = new File(t);
 			return f.getAbsolutePath().substring(file.getAbsolutePath().length() + 1);
 		}).collect(Collectors.toList());
+		map.put("files", files);
+		return map;
 	}
 
 	@RequestMapping(value = "/download")
