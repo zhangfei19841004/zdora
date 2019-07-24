@@ -18,7 +18,10 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.List;
 
@@ -73,26 +76,22 @@ public class HttpClientUtils {
 		return null;
 	}
 
-	public static void downLoad(String url, String serverRootPath,String fileName, String localDir) {
+	public static void downLoad(String url, String serverRootPath, String fileName, String localDir) {
 		CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 		CloseableHttpResponse httpResponse;
 		RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(TIMOUT).setSocketTimeout(TIMOUT).build();
-		BufferedWriter out = null;
-		BufferedReader in = null;
-
+		ByteArrayOutputStream bo = null;
+		FileOutputStream fos = null;
 		try {
 			HttpGet httpGet = new HttpGet(url);
 			httpGet.setConfig(requestConfig);
-			httpGet.addHeader("fn", URLEncoder.encode(serverRootPath+File.separator+fileName,"UTF-8"));
+			httpGet.addHeader("fn", URLEncoder.encode(serverRootPath + File.separator + fileName, "UTF-8"));
 			httpResponse = httpClient.execute(httpGet);
 			HttpEntity entity = httpResponse.getEntity();
-			in = new BufferedReader(new InputStreamReader(entity.getContent(), "UTF-8"));
-
 			long length = entity.getContentLength();
 			if (length <= 0) {
 				return;
 			}
-
 			File file = new File(localDir + File.separator + fileName);
 			if (!file.getParentFile().exists()) {
 				file.getParentFile().mkdirs();
@@ -100,34 +99,26 @@ public class HttpClientUtils {
 			if (file.exists()) {
 				file.delete();
 			}
-			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
-			String line;
-			boolean flag = false;
-			while ((line = in.readLine()) != null) {
-				if (flag) {
-					out.write("\r\n");
-				} else {
-					flag = true;
-				}
-				out.write(line);
-			}
-			out.flush();
+			bo = new ByteArrayOutputStream();
+			entity.writeTo(bo);
+			fos = new FileOutputStream(file);
+			bo.writeTo(fos);
+			bo.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (in != null) {
-					in.close();
+				if (fos != null) {
+					fos.close();
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
 			try {
-				if (out != null) {
-					out.close();
+				if (bo != null) {
+					bo.close();
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
