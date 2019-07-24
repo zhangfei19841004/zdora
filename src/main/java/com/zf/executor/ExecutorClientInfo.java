@@ -57,7 +57,7 @@ public class ExecutorClientInfo {
 		this.executeStatus = executeStatus;
 	}
 
-	public static ExecutorClientInfo getInstance(int type, int executeId, String message, int executeStatus){
+	public static ExecutorClientInfo getInstance(int type, int executeId, String message, int executeStatus) {
 		return new ExecutorClientInfo(type, executeId, message, executeStatus);
 	}
 

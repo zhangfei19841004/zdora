@@ -26,169 +26,169 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class WebSocketServer {
 
-    private static Logger log = LoggerFactory.getLogger(WebSocketServer.class);
+	private static Logger log = LoggerFactory.getLogger(WebSocketServer.class);
 
-    //静态变量，用来记录当前在线连接数。
-    private static AtomicInteger atomic = new AtomicInteger(0);
+	//静态变量，用来记录当前在线连接数。
+	private static AtomicInteger atomic = new AtomicInteger(0);
 
-    //concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。
-    public static ConcurrentHashMap<String, WebSocketServer> WEBSOCKET_INFOS = new ConcurrentHashMap();
+	//concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。
+	public static ConcurrentHashMap<String, WebSocketServer> WEBSOCKET_INFOS = new ConcurrentHashMap();
 
-    private WebSocketInfo webSocketInfo = new WebSocketInfo();
+	private WebSocketInfo webSocketInfo = new WebSocketInfo();
 
-    public WebSocketInfo getWebSocketInfo() {
-        return webSocketInfo;
-    }
+	public WebSocketInfo getWebSocketInfo() {
+		return webSocketInfo;
+	}
 
-    /**
-     * 连接建立成功调用的方法
-     */
-    @OnOpen
-    public void onOpen(Session session, @PathParam("cid") String cid, @PathParam("mt") int messageType) {
-        webSocketInfo.setSession(session);
-        webSocketInfo.setCid(cid);
-        webSocketInfo.setMessageType(messageType);
-        if (messageType == MessageType.BROWSER.getType()) {
+	/**
+	 * 连接建立成功调用的方法
+	 */
+	@OnOpen
+	public void onOpen(Session session, @PathParam("cid") String cid, @PathParam("mt") int messageType) {
+		webSocketInfo.setSession(session);
+		webSocketInfo.setCid(cid);
+		webSocketInfo.setMessageType(messageType);
+		if (messageType == MessageType.BROWSER.getType()) {
 
-        } else if (messageType == MessageType.CLIENT.getType()) {
-            try {
-                this.sendMessage(MessageInfo.getInstance(MessageType.SESSIONID, session.getId()));
-                this.sendMessage(MessageType.MESSAGE, "欢迎你: " + cid);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            return;
-        }
-        WEBSOCKET_INFOS.put(session.getId(), this); //加入set中
-        addOnlineCount(); //在线数加1
-        log.info("欢迎:" + cid + ",sessionId为:" + session.getId() + ",当前在线人数为:" + getOnlineCount());
-    }
+		} else if (messageType == MessageType.CLIENT.getType()) {
+			try {
+				this.sendMessage(MessageInfo.getInstance(MessageType.SESSIONID, session.getId()));
+				this.sendMessage(MessageType.MESSAGE, "欢迎你: " + cid);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			return;
+		}
+		WEBSOCKET_INFOS.put(session.getId(), this); //加入set中
+		addOnlineCount(); //在线数加1
+		log.info("欢迎:" + cid + ",sessionId为:" + session.getId() + ",当前在线人数为:" + getOnlineCount());
+	}
 
-    /**
-     * 连接关闭调用的方法
-     */
-    @OnClose
-    public void onClose() {
-        WEBSOCKET_INFOS.remove(this.webSocketInfo.getSession().getId()); //从set中删除
-        subOnlineCount(); //在线数减1
-        log.info("连接关闭" + this.webSocketInfo.getCid() + ", 当前在线人数为:" + getOnlineCount());
-        this.webSocketInfo.setSession(null);
-        this.webSocketInfo = null;
-        for (Integer lookingClient : ExecutorCenter.LOOKING_CLIENTS.keySet()) {
-            Iterator<WebSocketServer> it = ExecutorCenter.LOOKING_CLIENTS.get(lookingClient).iterator();
-            while (it.hasNext()) {
-                WebSocketServer ws = it.next();
-                if (ws.getWebSocketInfo() == null || ws.getWebSocketInfo().getSession() == null) {
-                    it.remove();
-                }
-            }
-        }
-    }
+	/**
+	 * 连接关闭调用的方法
+	 */
+	@OnClose
+	public void onClose() {
+		WEBSOCKET_INFOS.remove(this.webSocketInfo.getSession().getId()); //从set中删除
+		subOnlineCount(); //在线数减1
+		log.info("连接关闭" + this.webSocketInfo.getCid() + ", 当前在线人数为:" + getOnlineCount());
+		this.webSocketInfo.setSession(null);
+		this.webSocketInfo = null;
+		for (Integer lookingClient : ExecutorCenter.LOOKING_CLIENTS.keySet()) {
+			Iterator<WebSocketServer> it = ExecutorCenter.LOOKING_CLIENTS.get(lookingClient).iterator();
+			while (it.hasNext()) {
+				WebSocketServer ws = it.next();
+				if (ws.getWebSocketInfo() == null || ws.getWebSocketInfo().getSession() == null) {
+					it.remove();
+				}
+			}
+		}
+	}
 
-    /**
-     * 收到客户端消息后调用的方法 * * @param message 客户端发送过来的消息
-     */
-    @OnMessage
-    public void onMessage(String message, Session session) {
-        //log.info("收到来自窗口" + this.webSocketInfo.getCid() + "的信息:" + message);
-        WebSocketServer serverInfo = WebSocketServer.WEBSOCKET_INFOS.get(session.getId());
-        try {
-            ExecutorClientInfo clientInfo = JSON.parseObject(message, ExecutorClientInfo.class);
-            if (clientInfo.getType() == MessageType.MESSAGE.getType()) {//从JAVA CLIENT传过来的clientInfo
-                if (clientInfo.getExecuteStatus() == ExecutorStatus.STATUS3.getStatus()) {
-                    ExecutorCenter.ALL_EXECUTOR.get(clientInfo.getExecuteId()).setStatus(ExecutorStatus.STATUS3);
-                }
-                ExecutorCenter.EXECUTE_LOGS.get(clientInfo.getExecuteId()).add(clientInfo.getMessage());
-                for (WebSocketServer webSocketServer : ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId())) {
-                    if (webSocketServer.getWebSocketInfo() != null && serverInfo.webSocketInfo.getSession() != null) {
-                        webSocketServer.sendMessage(ExecutorClientInfo.getInstance(MessageType.MESSAGE.getType(), clientInfo.getExecuteId(), clientInfo.getMessage(), clientInfo.getExecuteStatus()).toString());
-                    }
-                }
-            } else if (clientInfo.getType() == MessageType.LOOK.getType()) {//从浏览器过来的
-                ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId()).add(WEBSOCKET_INFOS.get(session.getId()));
-                ExecutorInfo executorInfo = ExecutorCenter.ALL_EXECUTOR.get(clientInfo.getExecuteId());
-                ExecutorCenter.EXECUTE_LOGS.get(clientInfo.getExecuteId()).forEach(t -> {
-                    try {
-                        //serverInfo.sendMessage(MessageType.MESSAGE, t);
-                        if (serverInfo.webSocketInfo != null && serverInfo.webSocketInfo.getSession() != null) {
-                            serverInfo.sendMessage(ExecutorClientInfo.getInstance(MessageType.MESSAGE.getType(), clientInfo.getExecuteId(), t, executorInfo.getStatus().getStatus()).toString());
-                        }
-                    } catch (IOException e) {
-                    }
-                });
-            } else if (clientInfo.getType() == MessageType.UNLOOK.getType()) {//从浏览器过来的
-                Iterator<WebSocketServer> it = ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId()).iterator();
-                while (it.hasNext()) {
-                    WebSocketServer info = it.next();
-                    if (info.getWebSocketInfo() != null && info.getWebSocketInfo().getSession() != null && info.getWebSocketInfo().getSession().getId().equals(session.getId())) {
-                        it.remove();
-                    }
-                }
-            }
-        } catch (Exception e) {
+	/**
+	 * 收到客户端消息后调用的方法 * * @param message 客户端发送过来的消息
+	 */
+	@OnMessage
+	public void onMessage(String message, Session session) {
+		//log.info("收到来自窗口" + this.webSocketInfo.getCid() + "的信息:" + message);
+		WebSocketServer serverInfo = WebSocketServer.WEBSOCKET_INFOS.get(session.getId());
+		try {
+			ExecutorClientInfo clientInfo = JSON.parseObject(message, ExecutorClientInfo.class);
+			if (clientInfo.getType() == MessageType.MESSAGE.getType()) {//从JAVA CLIENT传过来的clientInfo
+				if (clientInfo.getExecuteStatus() == ExecutorStatus.STATUS3.getStatus()) {
+					ExecutorCenter.ALL_EXECUTOR.get(clientInfo.getExecuteId()).setStatus(ExecutorStatus.STATUS3);
+				}
+				ExecutorCenter.EXECUTE_LOGS.get(clientInfo.getExecuteId()).add(clientInfo.getMessage());
+				for (WebSocketServer webSocketServer : ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId())) {
+					if (webSocketServer.getWebSocketInfo() != null && serverInfo.webSocketInfo.getSession() != null) {
+						webSocketServer.sendMessage(ExecutorClientInfo.getInstance(MessageType.MESSAGE.getType(), clientInfo.getExecuteId(), clientInfo.getMessage(), clientInfo.getExecuteStatus()).toString());
+					}
+				}
+			} else if (clientInfo.getType() == MessageType.LOOK.getType()) {//从浏览器过来的
+				ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId()).add(WEBSOCKET_INFOS.get(session.getId()));
+				ExecutorInfo executorInfo = ExecutorCenter.ALL_EXECUTOR.get(clientInfo.getExecuteId());
+				ExecutorCenter.EXECUTE_LOGS.get(clientInfo.getExecuteId()).forEach(t -> {
+					try {
+						//serverInfo.sendMessage(MessageType.MESSAGE, t);
+						if (serverInfo.webSocketInfo != null && serverInfo.webSocketInfo.getSession() != null) {
+							serverInfo.sendMessage(ExecutorClientInfo.getInstance(MessageType.MESSAGE.getType(), clientInfo.getExecuteId(), t, executorInfo.getStatus().getStatus()).toString());
+						}
+					} catch (IOException e) {
+					}
+				});
+			} else if (clientInfo.getType() == MessageType.UNLOOK.getType()) {//从浏览器过来的
+				Iterator<WebSocketServer> it = ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId()).iterator();
+				while (it.hasNext()) {
+					WebSocketServer info = it.next();
+					if (info.getWebSocketInfo() != null && info.getWebSocketInfo().getSession() != null && info.getWebSocketInfo().getSession().getId().equals(session.getId())) {
+						it.remove();
+					}
+				}
+			}
+		} catch (Exception e) {
 
-        }
-    }
+		}
+	}
 
-    /**
-     * * @param session * @param error
-     */
-    @OnError
-    public void onError(Session session, Throwable error) {
-        log.error("发生错误:" + this.webSocketInfo.getCid());
-    }
+	/**
+	 * * @param session * @param error
+	 */
+	@OnError
+	public void onError(Session session, Throwable error) {
+		log.error("发生错误:" + this.webSocketInfo.getCid());
+	}
 
-    /**
-     * 实现服务器主动推送
-     */
-    public void sendMessage(MessageInfo info) throws IOException {
-        this.webSocketInfo.getSession().getBasicRemote().sendText(info.toString());
-    }
+	/**
+	 * 实现服务器主动推送
+	 */
+	public void sendMessage(MessageInfo info) throws IOException {
+		this.webSocketInfo.getSession().getBasicRemote().sendText(info.toString());
+	}
 
-    public void sendMessage(MessageType messageType, String message) throws IOException {
-        this.webSocketInfo.getSession().getBasicRemote().sendText(MessageInfo.getInstance(messageType, message).toString());
-    }
+	public void sendMessage(MessageType messageType, String message) throws IOException {
+		this.webSocketInfo.getSession().getBasicRemote().sendText(MessageInfo.getInstance(messageType, message).toString());
+	}
 
-    public void sendMessage(String message) throws IOException {
-        this.webSocketInfo.getSession().getBasicRemote().sendText(message);
-    }
+	public void sendMessage(String message) throws IOException {
+		this.webSocketInfo.getSession().getBasicRemote().sendText(message);
+	}
 
-    /**
-     * 群发自定义消息 *
-     */
-    public static void sendInfo(String cid, String sessionId, MessageType messageType, String message) throws IOException {
-        log.info("推送消息到" + cid + "，推送内容:" + message);
-        if (cid == null && sessionId == null) {
-            for (WebSocketServer item : WEBSOCKET_INFOS.values()) {
-                try {
-                    item.sendMessage(messageType, message);
-                } catch (IOException e) {
+	/**
+	 * 群发自定义消息 *
+	 */
+	public static void sendInfo(String cid, String sessionId, MessageType messageType, String message) throws IOException {
+		log.info("推送消息到" + cid + "，推送内容:" + message);
+		if (cid == null && sessionId == null) {
+			for (WebSocketServer item : WEBSOCKET_INFOS.values()) {
+				try {
+					item.sendMessage(messageType, message);
+				} catch (IOException e) {
 
-                }
-            }
-            return;
-        }
-        WebSocketServer item = WEBSOCKET_INFOS.get(sessionId);
-        if (item == null) {
-            return;
-        }
-        if (item.webSocketInfo.getCid().equals(cid) && item.webSocketInfo.getSession().getId().equals(sessionId)) {
-            item.sendMessage(messageType, message);
-        }
-    }
+				}
+			}
+			return;
+		}
+		WebSocketServer item = WEBSOCKET_INFOS.get(sessionId);
+		if (item == null) {
+			return;
+		}
+		if (item.webSocketInfo.getCid().equals(cid) && item.webSocketInfo.getSession().getId().equals(sessionId)) {
+			item.sendMessage(messageType, message);
+		}
+	}
 
-    public static int getOnlineCount() {
-        return atomic.get();
-    }
+	public static int getOnlineCount() {
+		return atomic.get();
+	}
 
-    public static void addOnlineCount() {
-        atomic.incrementAndGet();
-    }
+	public static void addOnlineCount() {
+		atomic.incrementAndGet();
+	}
 
-    public static void subOnlineCount() {
-        atomic.decrementAndGet();
-    }
+	public static void subOnlineCount() {
+		atomic.decrementAndGet();
+	}
 
 
 }

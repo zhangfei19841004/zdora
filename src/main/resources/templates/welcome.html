@@ -85,6 +85,7 @@
             e.cancelBubble = true;   //ie兼容
         }
     }
+
     var cid = [[${cid}]];
 
     function executor() {
@@ -109,7 +110,7 @@
                 tpath += ',' + $(this).attr('tpath');
             }
         });
-        if(tpath!=''){
+        if (tpath != '') {
             $.post(ctx + "/push", {cid: cid, path: tpath}, function (data) {
                 if (data.retCode != '200') {
                     layer.close(index);
@@ -122,7 +123,7 @@
     }
 
     var socket;
-    if (typeof(WebSocket) == "undefined") {
+    if (typeof (WebSocket) == "undefined") {
         console.log("您的浏览器不支持WebSocket");
     } else {
         console.log("您的浏览器支持WebSocket");
@@ -137,13 +138,13 @@
         //获得消息事件
         socket.onmessage = function (msg) {
             var message = JSON.parse(msg.data);
-            if(message.type==1){
+            if (message.type == 1) {
                 $("#content").text(message.message);
-            }else if(message.type==2){
+            } else if (message.type == 2) {
                 if ($("#executorProcess")) {
                     $("#executorProcess").append("<p style='color:white; margin-left: 10px'>" + message.message + "</p>");
                 }
-            }else if(message.type==3){
+            } else if (message.type == 3) {
                 layer.closeAll();
             }
         };

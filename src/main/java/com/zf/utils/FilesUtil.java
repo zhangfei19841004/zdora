@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by zhangfei on 2019/7/14.
  */
-public class FileUtils {
+public class FilesUtil {
 
 	public static void getAllFilePaths(List<String> paths, String path) {
 		File file = new File(path);

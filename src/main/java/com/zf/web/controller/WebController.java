@@ -10,9 +10,10 @@ import com.zf.service.CommonService;
 import com.zf.service.WebService;
 import com.zf.service.WebSocketInfo;
 import com.zf.service.WebSocketServer;
-import com.zf.utils.FileUtils;
+import com.zf.utils.FilesUtil;
 import com.zf.utils.ResponseUtil;
 import com.zf.utils.ResponseUtil.ResponseInfo;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -144,7 +145,7 @@ public class WebController {
 			map.put("isFile", 1);
 			return map;
 		}
-		FileUtils.getAllFilePaths(files, path);
+		FilesUtil.getAllFilePaths(files, path);
 		files = files.stream().map(t -> {
 			File f = new File(t);
 			return f.getAbsolutePath().substring(file.getAbsolutePath().length() + 1);
@@ -155,7 +156,7 @@ public class WebController {
 
 	@RequestMapping(value = "/download")
 	@ResponseBody
-	public ResponseEntity<String> download(HttpServletRequest request) throws Exception {
+	public ResponseEntity<byte[]> download(HttpServletRequest request) throws Exception {
 		String fn = URLDecoder.decode(request.getHeader("fn"), "UTF-8");
 		File f = new File(fn);
 		File wd = new File(workspaceDir);
@@ -170,7 +171,7 @@ public class WebController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 		headers.setContentDispositionFormData("attachment", file.getName());
-		return new ResponseEntity<>(org.apache.commons.io.FileUtils.readFileToString(file, "UTF-8"), headers, HttpStatus.CREATED);
+		return new ResponseEntity<>(FileUtils.readFileToByteArray(file), headers, HttpStatus.OK);
 	}
 
 }

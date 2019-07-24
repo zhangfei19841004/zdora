@@ -56,7 +56,8 @@
                             <div class="layui-form-item" pane="">
                                 <label class="layui-form-label">传递执行ID</label>
                                 <div class="layui-input-block">
-                                    <input type="checkbox" name="isExecutorId" value="0" lay-filter="switchExecutorId" lay-skin="switch" lay-text="是|否">
+                                    <input type="checkbox" name="isExecutorId" value="0" lay-filter="switchExecutorId"
+                                           lay-skin="switch" lay-text="是|否">
                                 </div>
                             </div>
                         </div>
@@ -178,9 +179,9 @@
         //因此你需要在相应的地方，执行下述方法来手动渲染，跟这类似的还有 element.init();
         form.render();
         form.on('switch(switchExecutorId)', function (data) {
-            if(this.checked){
+            if (this.checked) {
                 $(this).val("1");
-            }else{
+            } else {
                 $(this).val("0");
             }
         });
@@ -249,7 +250,7 @@
     }
 
     var socket;
-    if (typeof(WebSocket) == "undefined") {
+    if (typeof (WebSocket) == "undefined") {
         console.log("您的浏览器不支持WebSocket");
     } else {
         console.log("您的浏览器支持WebSocket");

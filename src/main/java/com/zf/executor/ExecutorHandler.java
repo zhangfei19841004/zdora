@@ -1,14 +1,6 @@
 package com.zf.executor;
 
-import com.zf.message.MessageInfo;
-import com.zf.message.MessageType;
-import com.zf.service.WebSocketServer;
 import org.springframework.context.ApplicationContext;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.concurrent.Callable;
 
 /**
  * Created by zhangfei on 2018/10/31.

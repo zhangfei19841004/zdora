@@ -37,7 +37,7 @@ public class MessageInfo {
 		this.message = message;
 	}
 
-	public static MessageInfo getInstance(MessageType type, String message){
+	public static MessageInfo getInstance(MessageType type, String message) {
 		return new MessageInfo(type, message);
 	}
 

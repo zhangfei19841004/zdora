@@ -6,14 +6,7 @@ import com.zf.executor.ExecutorStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
-import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -22,17 +15,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 public class WebService {
 
-    @Autowired
-    private ApplicationContext applicationContext;
+	@Autowired
+	private ApplicationContext applicationContext;
 
-    private AtomicInteger atomic = new AtomicInteger(0);
+	private AtomicInteger atomic = new AtomicInteger(0);
 
-    public void executor(ExecutorInfo info) {
-        int executeId = atomic.incrementAndGet();
-        info.setExecuteId(executeId);
-        info.setStatus(ExecutorStatus.STATUS1);
-        applicationContext.publishEvent(new ExecutorEvent(info));
-        //executorCenter.executorCenter(1);
-    }
+	public void executor(ExecutorInfo info) {
+		int executeId = atomic.incrementAndGet();
+		info.setExecuteId(executeId);
+		info.setStatus(ExecutorStatus.STATUS1);
+		applicationContext.publishEvent(new ExecutorEvent(info));
+		//executorCenter.executorCenter(1);
+	}
 
 }
