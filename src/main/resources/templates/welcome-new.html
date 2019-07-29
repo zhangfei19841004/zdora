@@ -202,6 +202,7 @@
     });
 
     var cid = [[${cid}]];
+    var browserSessionId = "-1";
 
     function showMore(obj) {
         var p = $(obj).parent().eq(0).parent().eq(0);
@@ -223,7 +224,7 @@
         $(f).find("input[name]").each(function (i) {
             params[$(this).attr("name")] = $(this).val();
         });
-        console.log(params);
+        params["browserSessionId"] = browserSessionId;
         $.post(ctx + "/push", params, function (data) {
             if (data.retCode == '200') {
                 layer.alert('执行ID:' + data.data.executeId, {
@@ -259,6 +260,7 @@
         socket = new WebSocket((ctx + "/websocket/" + cid + "/4").replace("http", "ws"));
         //打开事件
         socket.onopen = function () {
+            socket.send(JSON.stringify({type: 10}));
         };
         //获得消息事件
         socket.onmessage = function (msg) {
@@ -269,6 +271,8 @@
                 if (message.executeStatus == 2) {//执行完成
                     $("#status_" + ei).text("执行完成");
                 }
+            } else if (message.type == 6) {
+                browserSessionId = message.message;
             }
         };
         //关闭事件

@@ -16,6 +16,7 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -49,7 +50,11 @@ public class WebSocketServer {
 		webSocketInfo.setCid(cid);
 		webSocketInfo.setMessageType(messageType);
 		if (messageType == MessageType.BROWSER.getType()) {
-
+			try {
+				this.sendMessage(MessageInfo.getInstance(MessageType.SESSIONID, session.getId()));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} else if (messageType == MessageType.CLIENT.getType()) {
 			try {
 				this.sendMessage(MessageInfo.getInstance(MessageType.SESSIONID, session.getId()));
@@ -75,15 +80,8 @@ public class WebSocketServer {
 		log.info("连接关闭" + this.webSocketInfo.getCid() + ", 当前在线人数为:" + getOnlineCount());
 		this.webSocketInfo.setSession(null);
 		this.webSocketInfo = null;
-		for (Integer lookingClient : ExecutorCenter.LOOKING_CLIENTS.keySet()) {
-			Iterator<WebSocketServer> it = ExecutorCenter.LOOKING_CLIENTS.get(lookingClient).iterator();
-			while (it.hasNext()) {
-				WebSocketServer ws = it.next();
-				if (ws.getWebSocketInfo() == null || ws.getWebSocketInfo().getSession() == null) {
-					it.remove();
-				}
-			}
-		}
+		closeWebSocket(ExecutorCenter.LOOKING_CLIENTS);
+		closeWebSocket(ExecutorCenter.EXECUTING_CLIENTS);
 	}
 
 	/**
@@ -98,6 +96,15 @@ public class WebSocketServer {
 			if (clientInfo.getType() == MessageType.MESSAGE.getType()) {//从JAVA CLIENT传过来的clientInfo
 				if (clientInfo.getExecuteStatus() == ExecutorStatus.STATUS3.getStatus()) {
 					ExecutorCenter.ALL_EXECUTOR.get(clientInfo.getExecuteId()).setStatus(ExecutorStatus.STATUS3);
+					if (ExecutorCenter.EXECUTING_CLIENTS.containsKey(clientInfo.getExecuteId())) {
+						ExecutorCenter.EXECUTING_CLIENTS.get(clientInfo.getExecuteId()).forEach(t -> {
+							try {
+								t.sendMessage(ExecutorClientInfo.getInstance(MessageType.MESSAGE.getType(), clientInfo.getExecuteId(), clientInfo.getMessage(), clientInfo.getExecuteStatus()).toString());
+							} catch (IOException e) {
+							}
+						});
+						ExecutorCenter.EXECUTING_CLIENTS.remove(clientInfo.getExecuteId());
+					}
 				}
 				ExecutorCenter.EXECUTE_LOGS.get(clientInfo.getExecuteId()).add(clientInfo.getMessage());
 				for (WebSocketServer webSocketServer : ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId())) {
@@ -110,7 +117,6 @@ public class WebSocketServer {
 				ExecutorInfo executorInfo = ExecutorCenter.ALL_EXECUTOR.get(clientInfo.getExecuteId());
 				ExecutorCenter.EXECUTE_LOGS.get(clientInfo.getExecuteId()).forEach(t -> {
 					try {
-						//serverInfo.sendMessage(MessageType.MESSAGE, t);
 						if (serverInfo.webSocketInfo != null && serverInfo.webSocketInfo.getSession() != null) {
 							serverInfo.sendMessage(ExecutorClientInfo.getInstance(MessageType.MESSAGE.getType(), clientInfo.getExecuteId(), t, executorInfo.getStatus().getStatus()).toString());
 						}
@@ -123,6 +129,14 @@ public class WebSocketServer {
 					WebSocketServer info = it.next();
 					if (info.getWebSocketInfo() != null && info.getWebSocketInfo().getSession() != null && info.getWebSocketInfo().getSession().getId().equals(session.getId())) {
 						it.remove();
+					}
+				}
+			} else if (clientInfo.getType() == MessageType.OPEN.getType()) {
+				for (Integer executing : ExecutorCenter.EXECUTING_CLIENTS.keySet()) {
+					List<WebSocketServer> list = ExecutorCenter.EXECUTING_CLIENTS.get(executing);
+					WebSocketServer ws = getWebSocket(list, session);
+					if (ws == null) {
+						list.add(serverInfo);
 					}
 				}
 			}
@@ -190,5 +204,24 @@ public class WebSocketServer {
 		atomic.decrementAndGet();
 	}
 
+	private static WebSocketServer getWebSocket(List<WebSocketServer> list, Session session) {
+		for (WebSocketServer webSocketServer : list) {
+			if (webSocketServer.getWebSocketInfo().getSession().getId().equals(session.getId())) {
+				return webSocketServer;
+			}
+		}
+		return null;
+	}
 
+	private static void closeWebSocket(ConcurrentHashMap<Integer, List<WebSocketServer>> map) {
+		for (Integer key : map.keySet()) {
+			Iterator<WebSocketServer> it = map.get(key).iterator();
+			while (it.hasNext()) {
+				WebSocketServer ws = it.next();
+				if (ws.getWebSocketInfo() == null || ws.getWebSocketInfo().getSession() == null) {
+					it.remove();
+				}
+			}
+		}
+	}
 }

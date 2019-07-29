@@ -15,6 +15,8 @@ public class ExecutorInfo {
 
 	private String sessionId;
 
+	private String browserSessionId;
+
 	private int executeId;
 
 	private int isExecutorId;
@@ -147,5 +149,13 @@ public class ExecutorInfo {
 
 	public void setAfterToServerPath(String afterToServerPath) {
 		this.afterToServerPath = afterToServerPath;
+	}
+
+	public String getBrowserSessionId() {
+		return browserSessionId;
+	}
+
+	public void setBrowserSessionId(String browserSessionId) {
+		this.browserSessionId = browserSessionId;
 	}
 }

@@ -5,6 +5,7 @@ package com.zf.executor;
  */
 public enum ExecutorStatus {
 
+	STATUS0(-1, "无状态"),
 	STATUS1(0, "等待执行"),
 	STATUS2(1, "正在执行"),
 	STATUS3(2, "执行完成");

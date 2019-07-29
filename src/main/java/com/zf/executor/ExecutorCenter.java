@@ -19,9 +19,11 @@ public class ExecutorCenter {
 
 	public static ConcurrentHashMap<Integer, ExecutorInfo> ALL_EXECUTOR = new ConcurrentHashMap<>();
 
-	public static ConcurrentHashMap<Integer, List<String>> EXECUTE_LOGS = new ConcurrentHashMap();
+	public static ConcurrentHashMap<Integer, List<String>> EXECUTE_LOGS = new ConcurrentHashMap();//执行LOG
 
-	public static ConcurrentHashMap<Integer, List<WebSocketServer>> LOOKING_CLIENTS = new ConcurrentHashMap();
+	public static ConcurrentHashMap<Integer, List<WebSocketServer>> LOOKING_CLIENTS = new ConcurrentHashMap();//浏览器中正在执行或执行完成或等待执行的，用于回显运行LOG
+
+	public static ConcurrentHashMap<Integer, List<WebSocketServer>> EXECUTING_CLIENTS = new ConcurrentHashMap();//浏览器中正在执行的，用于回显运行状态
 
 	public void executor(ExecutorInfo info) {
 		try {
