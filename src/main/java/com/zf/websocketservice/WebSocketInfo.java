@@ -1,4 +1,4 @@
-package com.zf.service;
+package com.zf.websocketservice;
 
 import javax.websocket.Session;
 

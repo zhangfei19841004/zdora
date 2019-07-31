@@ -3,7 +3,7 @@ package com.zf.executor;
 import com.alibaba.fastjson.JSON;
 import com.zf.message.MessageType;
 import com.zf.pojo.ExecutorToClientInfo;
-import com.zf.service.WebSocketServer;
+import com.zf.websocketservice.WebSocketServer;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 

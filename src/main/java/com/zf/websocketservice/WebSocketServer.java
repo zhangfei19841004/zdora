@@ -1,12 +1,11 @@
-package com.zf.service;
+package com.zf.websocketservice;
 
 import com.alibaba.fastjson.JSON;
 import com.zf.executor.ExecutorCenter;
 import com.zf.executor.ExecutorClientInfo;
-import com.zf.executor.ExecutorInfo;
-import com.zf.executor.ExecutorStatus;
 import com.zf.message.MessageInfo;
 import com.zf.message.MessageType;
+import com.zf.websocketservice.messagehandler.MessageHandlerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -90,55 +89,11 @@ public class WebSocketServer {
 	@OnMessage
 	public void onMessage(String message, Session session) {
 		//log.info("收到来自窗口" + this.webSocketInfo.getCid() + "的信息:" + message);
-		WebSocketServer serverInfo = WebSocketServer.WEBSOCKET_INFOS.get(session.getId());
 		try {
 			ExecutorClientInfo clientInfo = JSON.parseObject(message, ExecutorClientInfo.class);
-			if (clientInfo.getType() == MessageType.MESSAGE.getType()) {//从JAVA CLIENT传过来的clientInfo
-				if (clientInfo.getExecuteStatus() == ExecutorStatus.STATUS3.getStatus()) {
-					ExecutorCenter.ALL_EXECUTOR.get(clientInfo.getExecuteId()).setStatus(ExecutorStatus.STATUS3);
-					if (ExecutorCenter.EXECUTING_CLIENTS.containsKey(clientInfo.getExecuteId())) {
-						ExecutorCenter.EXECUTING_CLIENTS.get(clientInfo.getExecuteId()).forEach(t -> {
-							try {
-								t.sendMessage(ExecutorClientInfo.getInstance(MessageType.MESSAGE.getType(), clientInfo.getExecuteId(), clientInfo.getMessage(), clientInfo.getExecuteStatus()).toString());
-							} catch (IOException e) {
-							}
-						});
-						ExecutorCenter.EXECUTING_CLIENTS.remove(clientInfo.getExecuteId());
-					}
-				}
-				ExecutorCenter.EXECUTE_LOGS.get(clientInfo.getExecuteId()).add(clientInfo.getMessage());
-				for (WebSocketServer webSocketServer : ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId())) {
-					if (webSocketServer.getWebSocketInfo() != null && serverInfo.webSocketInfo.getSession() != null) {
-						webSocketServer.sendMessage(ExecutorClientInfo.getInstance(MessageType.MESSAGE.getType(), clientInfo.getExecuteId(), clientInfo.getMessage(), clientInfo.getExecuteStatus()).toString());
-					}
-				}
-			} else if (clientInfo.getType() == MessageType.LOOK.getType()) {//从浏览器过来的
-				ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId()).add(WEBSOCKET_INFOS.get(session.getId()));
-				ExecutorInfo executorInfo = ExecutorCenter.ALL_EXECUTOR.get(clientInfo.getExecuteId());
-				ExecutorCenter.EXECUTE_LOGS.get(clientInfo.getExecuteId()).forEach(t -> {
-					try {
-						if (serverInfo.webSocketInfo != null && serverInfo.webSocketInfo.getSession() != null) {
-							serverInfo.sendMessage(ExecutorClientInfo.getInstance(MessageType.MESSAGE.getType(), clientInfo.getExecuteId(), t, executorInfo.getStatus().getStatus()).toString());
-						}
-					} catch (IOException e) {
-					}
-				});
-			} else if (clientInfo.getType() == MessageType.UNLOOK.getType()) {//从浏览器过来的
-				Iterator<WebSocketServer> it = ExecutorCenter.LOOKING_CLIENTS.get(clientInfo.getExecuteId()).iterator();
-				while (it.hasNext()) {
-					WebSocketServer info = it.next();
-					if (info.getWebSocketInfo() != null && info.getWebSocketInfo().getSession() != null && info.getWebSocketInfo().getSession().getId().equals(session.getId())) {
-						it.remove();
-					}
-				}
-			} else if (clientInfo.getType() == MessageType.OPEN.getType()) {
-				for (Integer executing : ExecutorCenter.EXECUTING_CLIENTS.keySet()) {
-					List<WebSocketServer> list = ExecutorCenter.EXECUTING_CLIENTS.get(executing);
-					WebSocketServer ws = getWebSocket(list, session);
-					if (ws == null) {
-						list.add(serverInfo);
-					}
-				}
+			IMessageHandler messageHandler = MessageHandlerFactory.getMessageHandler(clientInfo.getType());
+			if (messageHandler != null) {
+				messageHandler.messageHandler(clientInfo, session);
 			}
 		} catch (Exception e) {
 
@@ -202,15 +157,6 @@ public class WebSocketServer {
 
 	public static void subOnlineCount() {
 		atomic.decrementAndGet();
-	}
-
-	private static WebSocketServer getWebSocket(List<WebSocketServer> list, Session session) {
-		for (WebSocketServer webSocketServer : list) {
-			if (webSocketServer.getWebSocketInfo().getSession().getId().equals(session.getId())) {
-				return webSocketServer;
-			}
-		}
-		return null;
 	}
 
 	private static void closeWebSocket(ConcurrentHashMap<Integer, List<WebSocketServer>> map) {
