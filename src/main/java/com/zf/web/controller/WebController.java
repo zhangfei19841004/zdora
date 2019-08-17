@@ -71,6 +71,12 @@ public class WebController {
 		return ResponseUtil.getSuccessResponse();
 	}
 
+	@RequestMapping("/executorInfo")
+	@ResponseBody
+	public ExecutorInfo getExecutorInfo(int executeId){
+		return ExecutorCenter.ALL_EXECUTOR.get(executeId);
+	}
+
 	@ResponseBody
 	@RequestMapping("/push")
 	public ResponseInfo push(ExecutorInfo info) {

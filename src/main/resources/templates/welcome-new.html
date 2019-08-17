@@ -155,11 +155,12 @@
         <div class="layui-card-body">
             <div class="layui-collapse" lay-filter="executor" id="executorDetails">
                 <div class="layui-colla-item" name="executorLogs" th:each="executor,executorsStat:${executors}">
-                    <h2 class="layui-colla-title"
+                    <h2 class="layui-colla-title layui-inline" style="width: 92%"
                         th:text="${executor.cid}+ ':' +${executor.executeCommand}+' '+${executor.executeArgs}+ ' 执行ID:'+${executor.executeId}+' '+${executor.status.statusName}">
                         <span th:id="'status_'+${executor.executeId}"></span>
                     </h2>
                     <input name="executeId" type="hidden" th:value="${executor.executeId}">
+                    <a class="layui-icon layui-icon-upload-drag layui-inline" th:onclick="'reExecutor('+${executor.executeId}+')'"></a>
                     <div class="layui-colla-content" th:attr="id='logs_'+${executor.executeId}" name="logs"></div>
                 </div>
             </div>
@@ -232,10 +233,11 @@
                     , closeBtn: 0
                 });
                 $("#executorDetails").prepend("<div class=\"layui-colla-item\" name=\"executorLogs\">" +
-                    "                    <h2 class=\"layui-colla-title\">" + data.data.cid + ":" + data.data.executeCommand + " " + data.data.executeArgs + " 执行ID:" + data.data.executeId + " " +
+                    "                    <h2 class=\"layui-colla-title layui-inline\" style=\"width: 92%\">" + data.data.cid + ":" + data.data.executeCommand + " " + data.data.executeArgs + " 执行ID:" + data.data.executeId + " " +
                     "                    <span id='status_" + data.data.executeId + "'>" + data.data.status.statusName + "</span>" +
                     "                    </h2>" +
                     "                    <input name=\"executeId\" type=\"hidden\" value=\"" + data.data.executeId + "\">" +
+                    "                    <a class=\"layui-icon layui-icon-upload-drag layui-inline\" onclick='reExecutor("+data.data.executeId+")'></a>" +
                     "                    <div class=\"layui-colla-content\" id=\"logs_" + data.data.executeId + "\" name=\"logs\"></div>" +
                     "                </div>");
                 layui.element.render('collapse', 'executor');
@@ -247,6 +249,14 @@
             }
             //socket.send("开始执行啦！")
             //alert(data.retCode);
+        });
+    }
+
+    function reExecutor(executorId) {
+        $.post(ctx + "/executorInfo", {executeId:executorId}, function (data) {
+            if(data){
+                console.log(data);
+            }
         });
     }
 
