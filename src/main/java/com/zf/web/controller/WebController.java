@@ -8,11 +8,11 @@ import com.zf.executor.ExecutorStatus;
 import com.zf.message.MessageType;
 import com.zf.service.CommonService;
 import com.zf.service.WebService;
-import com.zf.websocketservice.WebSocketInfo;
-import com.zf.websocketservice.WebSocketServer;
 import com.zf.utils.FilesUtil;
 import com.zf.utils.ResponseUtil;
 import com.zf.utils.ResponseUtil.ResponseInfo;
+import com.zf.websocketservice.WebSocketInfo;
+import com.zf.websocketservice.WebSocketServer;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,8 +73,14 @@ public class WebController {
 
 	@RequestMapping("/executorInfo")
 	@ResponseBody
-	public ExecutorInfo getExecutorInfo(int executeId){
+	public ExecutorInfo getExecutorInfo(int executeId) {
 		return ExecutorCenter.ALL_EXECUTOR.get(executeId);
+	}
+
+	@RequestMapping("/workspace/files")
+	@ResponseBody
+	public List<Map<String, String>> getWorkspaceFiles() {
+		return FilesUtil.getAllFilePaths(workspaceDir);
 	}
 
 	@ResponseBody

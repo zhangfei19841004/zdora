@@ -148,6 +148,27 @@
         <div class="layui-card-header">
             <fieldset class="layui-elem-field layui-field-title">
                 <legend>
+                    <button class="layui-btn layui-btn-primary" style="border: none">服务端工作区</button>
+                </legend>
+            </fieldset>
+        </div>
+        <div class="layui-card-body">
+            <div class="layui-collapse" lay-filter="workspace">
+                <div class="layui-colla-item">
+                    <h2 class="layui-colla-title">
+                        workspace
+                    </h2>
+                    <div class="layui-colla-content" id="workspaceContent">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-card">
+        <div class="layui-card-header">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>
                     <button class="layui-btn layui-btn-primary" style="border: none">执行详情</button>
                 </legend>
             </fieldset>
@@ -194,6 +215,22 @@
             } else {
                 $("#logs_" + executeId).empty();
                 socket.send(JSON.stringify({type: 9, executeId: executeId}));
+            }
+        });
+
+        element.on('collapse(workspace)', function (data) {
+            if (data.show) {
+                $.post(ctx + "/workspace/files",{}, function(data){
+                    $.each(data,function(i,n){
+                        if(n.type=='dir'){
+                            $("#workspaceContent").append("<p>" + n.fn + "</p>");
+                        }else if(n.type=='file'){
+                            $("#workspaceContent").append("<p><a href='"+ctx+"/server/"+n.fn+"' target='_blank'>" + n.fn + "</a></p>");
+                        }
+                    });
+                });
+            } else {
+                $("#workspaceContent").empty();
             }
         });
     });
@@ -243,8 +280,6 @@
                     , closeBtn: 0
                 });
             }
-            //socket.send("开始执行啦！")
-            //alert(data.retCode);
         });
     }
 
