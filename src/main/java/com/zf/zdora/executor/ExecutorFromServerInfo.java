@@ -9,7 +9,7 @@ public class ExecutorFromServerInfo {
 
     private String args;
 
-    private int executeId;
+    private long executeId;
     private int isExecutorId;
     private String beforeFromServerPath;
     private String beforeToClientPath;
@@ -37,11 +37,11 @@ public class ExecutorFromServerInfo {
         this.args = args;
     }
 
-    public int getExecuteId() {
+    public long getExecuteId() {
         return executeId;
     }
 
-    public void setExecuteId(int executeId) {
+    public void setExecuteId(long executeId) {
         this.executeId = executeId;
     }
 

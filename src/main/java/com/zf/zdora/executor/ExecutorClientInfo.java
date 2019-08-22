@@ -9,17 +9,17 @@ public class ExecutorClientInfo {
 
 	private int type;
 
-	private int executeId;
+	private long executeId;
 
 	private String message;
 
 	private int executeStatus;
 
-	public int getExecuteId() {
+	public long getExecuteId() {
 		return executeId;
 	}
 
-	public void setExecuteId(int executeId) {
+	public void setExecuteId(long executeId) {
 		this.executeId = executeId;
 	}
 

@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 public class CommandUtil {
 
-	public static void executeCommand(ZdoraClient zdoraClient, String command, String args, int executeId, int isExecutorId) {
+	public static void executeCommand(ZdoraClient zdoraClient, String command, String args, long executeId, int isExecutorId) {
 		try {
 			PumpStreamHandler streamHandler = new PumpStreamHandler(new CollectingLogOutputStream(zdoraClient, executeId));
 			CommandLine commandline = new CommandLine(command);
@@ -40,9 +40,9 @@ public class CommandUtil {
 
 		private ZdoraClient zdoraClient;
 
-		private int executeId;
+		private long executeId;
 
-		public CollectingLogOutputStream(ZdoraClient zdoraClient, int executeId) {
+		public CollectingLogOutputStream(ZdoraClient zdoraClient, long executeId) {
 			this.zdoraClient = zdoraClient;
 			this.executeId = executeId;
 		}
