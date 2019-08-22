@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="ZdoraTestProject" parallel="false">
+    <listeners>
+        <listener class-name="com.zf.zdora.common.ZTestReport"/>
+    </listeners>
+    <test name="ZdoraTest">
+        <classes>
+            <class name="com.zf.zdora.test.TestDemo1"></class>
+            <class name="com.zf.zdora.test.ZdoraTest"></class>
+        </classes>
+    </test>
+</suite>
