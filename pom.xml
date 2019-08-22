@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.zf</groupId>
-    <artifactId>zdora-client</artifactId>
+    <artifactId>zdora-test</artifactId>
     <version>1.0</version>
-    <name>zdora-client</name>
+    <name>zdora-test</name>
 
     <description>zdora测试</description>
     <properties>
@@ -32,8 +32,9 @@
                 <version>2.20.1</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/resources/testng.xml</suiteXmlFile>
+                        <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <forkMode>never</forkMode>
                 </configuration>
             </plugin>
         </plugins>

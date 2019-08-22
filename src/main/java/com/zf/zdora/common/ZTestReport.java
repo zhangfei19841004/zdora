@@ -129,14 +129,14 @@ public class ZTestReport implements IReporter {
 			result.put("totalTime", totalTime + "ms");
 			result.put("testResult", listInfo);
 			Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
-			InputStream is = this.getClass().getResourceAsStream("template");
+			InputStream is = ZTestReport.class.getClassLoader().getResourceAsStream("template");
 			String template = this.read(is);
+			System.out.println(template);
 			BufferedWriter output = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("reports" + File.separator + "report" + name + ".html")), "UTF-8"));
 			template = template.replaceFirst("\\$\\{resultData\\}", Matcher.quoteReplacement(gson.toJson(result)));
 			output.write(template);
 			output.flush();
 			output.close();
-			is.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -250,11 +250,13 @@ public class ZTestReport implements IReporter {
 
 	private String read(InputStream is) {
 		StringBuffer sb = new StringBuffer();
+		BufferedReader br = null;
 		try {
-			int index = 0;
-			byte[] b = new byte[1024];
-			while ((index = is.read(b)) != -1) {
-				sb.append(new String(b, 0, index));
+			br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+			String line;
+			while ((line = br.readLine()) != null) {
+				sb.append(line);
+				sb.append("\r\n");
 			}
 			return sb.toString();
 		} catch (FileNotFoundException e) {
@@ -265,6 +267,9 @@ public class ZTestReport implements IReporter {
 			try {
 				if (is != null) {
 					is.close();
+				}
+				if (br != null) {
+					br.close();
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
