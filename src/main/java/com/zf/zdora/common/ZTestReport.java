@@ -131,7 +131,6 @@ public class ZTestReport implements IReporter {
 			Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 			InputStream is = ZTestReport.class.getClassLoader().getResourceAsStream("template");
 			String template = this.read(is);
-			System.out.println(template);
 			BufferedWriter output = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("reports" + File.separator + "report" + name + ".html")), "UTF-8"));
 			template = template.replaceFirst("\\$\\{resultData\\}", Matcher.quoteReplacement(gson.toJson(result)));
 			output.write(template);
