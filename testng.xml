@@ -1,8 +1,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="ZdoraTestProject" parallel="false">
+    <parameter name="eid" value="${eid}"/>
     <listeners>
         <listener class-name="com.zf.zdora.common.ZTestReport"/>
     </listeners>
+    <test name="beforeSuite">
+        <classes>
+            <class name="com.zf.zdora.common.TestNgBeforeSuite"/>
+        </classes>
+    </test>
     <test name="ZdoraTest">
         <classes>
             <class name="com.zf.zdora.test.TestDemo1"></class>

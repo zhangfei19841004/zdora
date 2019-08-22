@@ -1,1 +1,1 @@
-mvn test
+mvn clean test pom.xml -Deid=$0

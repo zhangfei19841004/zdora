@@ -26,18 +26,20 @@ public class ZTestReport implements IReporter {
 
 	private long totalTime;
 
-	private String name;
+	public static String name;
 
 	public ZTestReport() {
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-		name = formatter.format(System.currentTimeMillis());
+		if (ZTestReport.name == null || "".equals(ZTestReport.name.trim())) {
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+			ZTestReport.name = formatter.format(System.currentTimeMillis());
+		}
 	}
 
 	public ZTestReport(String name) {
-		this.name = name;
-		if (this.name == null) {
+		ZTestReport.name = name;
+		if (ZTestReport.name == null || "".equals(ZTestReport.name.trim())) {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-			this.name = formatter.format(System.currentTimeMillis());
+			ZTestReport.name = formatter.format(System.currentTimeMillis());
 		}
 	}
 
@@ -120,7 +122,7 @@ public class ZTestReport implements IReporter {
 				listInfo.add(info);
 			}
 			Map<String, Object> result = new HashMap<String, Object>();
-			result.put("testName", name);
+			result.put("testName", ZTestReport.name);
 			result.put("testPass", testsPass);
 			result.put("testFail", testsFail);
 			result.put("testSkip", testsSkip);
@@ -131,7 +133,7 @@ public class ZTestReport implements IReporter {
 			Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 			InputStream is = ZTestReport.class.getClassLoader().getResourceAsStream("template");
 			String template = this.read(is);
-			BufferedWriter output = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("reports" + File.separator + "report" + name + ".html")), "UTF-8"));
+			BufferedWriter output = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("reports" + File.separator + "report" + ZTestReport.name + ".html")), "UTF-8"));
 			template = template.replaceFirst("\\$\\{resultData\\}", Matcher.quoteReplacement(gson.toJson(result)));
 			output.write(template);
 			output.flush();
