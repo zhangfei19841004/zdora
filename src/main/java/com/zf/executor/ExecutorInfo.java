@@ -17,7 +17,7 @@ public class ExecutorInfo {
 
 	private String browserSessionId;
 
-	private int executeId;
+	private long executeId;
 
 	private int isExecutorId;
 
@@ -71,11 +71,11 @@ public class ExecutorInfo {
 		this.executeArgs = executeArgs;
 	}
 
-	public int getExecuteId() {
+	public long getExecuteId() {
 		return executeId;
 	}
 
-	public void setExecuteId(int executeId) {
+	public void setExecuteId(long executeId) {
 		this.executeId = executeId;
 	}
 

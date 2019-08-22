@@ -22,7 +22,7 @@ public class OpenHandler implements IMessageHandler {
 	public void messageHandler(ExecutorClientInfo clientInfo, Session session) {
 		WebSocketServer serverInfo = WebSocketServer.WEBSOCKET_INFOS.get(session.getId());
 		try {
-			for (Integer executing : ExecutorCenter.EXECUTING_CLIENTS.keySet()) {
+			for (Long executing : ExecutorCenter.EXECUTING_CLIENTS.keySet()) {
 				List<WebSocketServer> list = ExecutorCenter.EXECUTING_CLIENTS.get(executing);
 				WebSocketServer ws = getWebSocket(list, session);
 				if (ws == null) {

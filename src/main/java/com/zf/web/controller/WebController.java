@@ -53,7 +53,7 @@ public class WebController {
 				.filter(ws -> ws != null).map(ws -> ws.getWebSocketInfo()).collect(Collectors.toList());
 		map.put("clients", list);
 		map.put("clientsCount", list.size());
-		List<ExecutorInfo> executors = ExecutorCenter.ALL_EXECUTOR.values().stream().sorted((o1, o2) -> o2.getExecuteId() - o1.getExecuteId()).collect(Collectors.toList());
+		List<ExecutorInfo> executors = ExecutorCenter.ALL_EXECUTOR.values().stream().sorted((o1, o2) -> (int) (o2.getExecuteId() - o1.getExecuteId())).collect(Collectors.toList());
 		map.put("executors", executors);
 		return "welcome-new";
 	}

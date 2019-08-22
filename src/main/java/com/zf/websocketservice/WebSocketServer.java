@@ -159,8 +159,8 @@ public class WebSocketServer {
 		atomic.decrementAndGet();
 	}
 
-	private static void closeWebSocket(ConcurrentHashMap<Integer, List<WebSocketServer>> map) {
-		for (Integer key : map.keySet()) {
+	private static void closeWebSocket(ConcurrentHashMap<Long, List<WebSocketServer>> map) {
+		for (Long key : map.keySet()) {
 			Iterator<WebSocketServer> it = map.get(key).iterator();
 			while (it.hasNext()) {
 				WebSocketServer ws = it.next();
