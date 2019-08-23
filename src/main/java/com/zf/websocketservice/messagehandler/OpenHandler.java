@@ -30,6 +30,7 @@ public class OpenHandler implements IMessageHandler {
 				}
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

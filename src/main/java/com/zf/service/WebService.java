@@ -4,6 +4,7 @@ import com.zf.executor.ExecutorArgs;
 import com.zf.executor.ExecutorEvent;
 import com.zf.executor.ExecutorInfo;
 import com.zf.executor.ExecutorStatus;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,7 @@ public class WebService {
 	}
 
 	private void executorInfoReplace(ExecutorInfo info) {
+		info.setExecuteArgs(this.replaceArg(info.getExecuteArgs(), info));
 		info.setBeforeFromServerPath(this.replaceArg(info.getBeforeFromServerPath(), info));
 		info.setBeforeToClientPath(this.replaceArg(info.getBeforeToClientPath(), info));
 		info.setBeforeFromClientPath(this.replaceArg(info.getBeforeFromClientPath(), info));
@@ -44,10 +46,14 @@ public class WebService {
 	}
 
 	private String replaceArg(String arg, ExecutorInfo info) {
+		if (StringUtils.isBlank(arg)) {
+			return arg;
+		}
 		for (ExecutorArgs value : ExecutorArgs.values()) {
 			String vn = value.getValueName();
 			try {
-				Field vnField = info.getClass().getField(vn);
+				Field vnField = info.getClass().getDeclaredField(vn);
+				vnField.setAccessible(true);
 				String vnValue = vnField.get(info).toString();
 				arg = arg.replaceAll("\\$\\{" + Matcher.quoteReplacement(value.getArgName()) + "}", vnValue);
 			} catch (Exception e) {

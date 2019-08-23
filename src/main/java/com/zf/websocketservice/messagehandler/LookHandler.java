@@ -30,6 +30,7 @@ public class LookHandler implements IMessageHandler {
 					serverInfo.sendMessage(ExecutorClientInfo.getInstance(MessageType.MESSAGE.getType(), clientInfo.getExecuteId(), t, executorInfo.getStatus().getStatus()).toString());
 				}
 			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		});
 	}

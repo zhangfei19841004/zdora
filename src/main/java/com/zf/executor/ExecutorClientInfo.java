@@ -9,17 +9,17 @@ public class ExecutorClientInfo {
 
 	private int type;
 
-	private int executeId;
+	private long executeId;
 
 	private String message;
 
 	private int executeStatus;
 
-	public int getExecuteId() {
+	public long getExecuteId() {
 		return executeId;
 	}
 
-	public void setExecuteId(int executeId) {
+	public void setExecuteId(long executeId) {
 		this.executeId = executeId;
 	}
 
@@ -50,14 +50,14 @@ public class ExecutorClientInfo {
 	public ExecutorClientInfo() {
 	}
 
-	public ExecutorClientInfo(int type, int executeId, String message, int executeStatus) {
+	public ExecutorClientInfo(int type, long executeId, String message, int executeStatus) {
 		this.type = type;
 		this.executeId = executeId;
 		this.message = message;
 		this.executeStatus = executeStatus;
 	}
 
-	public static ExecutorClientInfo getInstance(int type, int executeId, String message, int executeStatus) {
+	public static ExecutorClientInfo getInstance(int type, long executeId, String message, int executeStatus) {
 		return new ExecutorClientInfo(type, executeId, message, executeStatus);
 	}
 

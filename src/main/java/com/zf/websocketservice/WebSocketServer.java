@@ -96,7 +96,7 @@ public class WebSocketServer {
 				messageHandler.messageHandler(clientInfo, session);
 			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 	}
 

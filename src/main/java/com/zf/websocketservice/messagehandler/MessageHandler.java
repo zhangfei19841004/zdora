@@ -30,6 +30,7 @@ public class MessageHandler implements IMessageHandler {
 						try {
 							t.sendMessage(ExecutorClientInfo.getInstance(MessageType.MESSAGE.getType(), clientInfo.getExecuteId(), clientInfo.getMessage(), clientInfo.getExecuteStatus()).toString());
 						} catch (IOException e) {
+							e.printStackTrace();
 						}
 					});
 					ExecutorCenter.EXECUTING_CLIENTS.remove(clientInfo.getExecuteId());
@@ -41,7 +42,8 @@ public class MessageHandler implements IMessageHandler {
 					webSocketServer.sendMessage(ExecutorClientInfo.getInstance(MessageType.MESSAGE.getType(), clientInfo.getExecuteId(), clientInfo.getMessage(), clientInfo.getExecuteStatus()).toString());
 				}
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

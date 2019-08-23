@@ -31,6 +31,7 @@ public class UnlookHandler implements IMessageHandler {
 				}
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

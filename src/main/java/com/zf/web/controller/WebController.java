@@ -73,7 +73,7 @@ public class WebController {
 
 	@RequestMapping("/executorInfo")
 	@ResponseBody
-	public ExecutorInfo getExecutorInfo(int executeId) {
+	public ExecutorInfo getExecutorInfo(long executeId) {
 		return ExecutorCenter.ALL_EXECUTOR.get(executeId);
 	}
 
