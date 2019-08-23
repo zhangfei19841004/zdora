@@ -1,1 +1,1 @@
-mvn clean test pom.xml -Deid=$0
+\usr\bin\maven\mvn clean test -f/home/zdora-test/pom.xml -Deid=$0
