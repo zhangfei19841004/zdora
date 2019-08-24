@@ -36,6 +36,7 @@ public class FilesUtil {
 	public static List<Map<String, String>> getAllFilePaths(String rootPath) {
 		File rootFile = new File(rootPath);
 		Collection<File> files = FileUtils.listFiles(rootFile, null, true);
+		files = files.stream().filter(t->t.isFile() || (t.isDirectory() && !t.getName().startsWith("."))).collect(Collectors.toList());
 		List<String> dirs = new ArrayList<>();
 		List<Map<String, String>> result = new ArrayList<>();
 		files.forEach(t -> {

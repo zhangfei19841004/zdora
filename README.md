@@ -1,6 +1,8 @@
 zdora介绍
 ===
 
+![image](https://raw.githubusercontent.com/zhangfei19841004/zdora/master/img/zdora.gif)
+
 ### 环境
 
 1. jdk1.8 
