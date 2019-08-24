@@ -1,1 +1,1 @@
-/Users/zhangfei/Desktop/tools/apache-maven-3.5.2/bin/mvn clean test -f/Users/zhangfei/Desktop/zdora-test/pom.xml -Deid=$1
+/Users/zhangfei/Desktop/zhangfei/tools/apache-maven-3.5.2/bin/mvn clean test -f/Users/zhangfei/Desktop/zdora-test/pom.xml -Deid=$1
