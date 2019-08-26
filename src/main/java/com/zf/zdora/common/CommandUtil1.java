@@ -1,8 +1,6 @@
 package com.zf.zdora.common;
 
-import org.apache.commons.exec.CommandLine;
-import org.apache.commons.exec.DefaultExecutor;
-import org.apache.commons.exec.PumpStreamHandler;
+import org.apache.commons.exec.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
@@ -49,6 +47,7 @@ public class CommandUtil1 {
 	public static void main(String[] args) {
 		//CommandUtil1.executeCommand();
 		System.out.println(System.getProperty("os.name"));
+		System.out.println(System.getProperty("sun.jnu.encoding"));
 	}
 
 }

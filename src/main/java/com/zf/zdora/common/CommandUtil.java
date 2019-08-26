@@ -5,7 +5,6 @@ import com.zf.zdora.executor.ExecutorClientInfo;
 import com.zf.zdora.executor.ExecutorStatus;
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
-import org.apache.commons.exec.LogOutputStream;
 import org.apache.commons.exec.PumpStreamHandler;
 import org.apache.commons.lang3.StringUtils;
 
@@ -16,10 +15,13 @@ import java.io.IOException;
  */
 public class CommandUtil {
 
+	private static final String os = System.getProperty("os.name");
+
+	private static String charset = "UTF-8";
+
 	public static void executeCommand(ZdoraClient zdoraClient, String command, String args, long executeId, int isExecutorId) {
 		try {
-			PumpStreamHandler streamHandler = new PumpStreamHandler(new CollectingLogOutputStream(zdoraClient, executeId));
-			CommandLine commandline = new CommandLine(command);
+			CommandLine commandline = CommandLine.parse(command);
 			if (StringUtils.isNotBlank(args)) {
 				String[] argss = args.split("(?<!\\\\)\\s+");//参数以空格进行分割，如果有参数中确实带有空格的，则加上转义符号\
 				commandline.addArguments(argss);
@@ -29,6 +31,13 @@ public class CommandUtil {
 			}
 			DefaultExecutor exec = new DefaultExecutor();
 			exec.setExitValues(null);
+
+			if (os.toLowerCase().startsWith("win") && StringUtils.isNotBlank(commandline.getExecutable()) &&
+					(commandline.getExecutable().toLowerCase().endsWith("cmd") ||
+							commandline.getExecutable().toLowerCase().endsWith("bat"))) {
+				charset = "GBK";
+			}
+			PumpStreamHandler streamHandler = new PumpStreamHandler(new CollectingLogOutputStream(zdoraClient, executeId, charset));
 			exec.setStreamHandler(streamHandler);
 			exec.execute(commandline);// exit code: 0=success, 1=error
 		} catch (IOException e) {
@@ -42,7 +51,8 @@ public class CommandUtil {
 
 		private long executeId;
 
-		public CollectingLogOutputStream(ZdoraClient zdoraClient, long executeId) {
+		public CollectingLogOutputStream(ZdoraClient zdoraClient, long executeId, String charset) {
+			super(charset);
 			this.zdoraClient = zdoraClient;
 			this.executeId = executeId;
 		}
