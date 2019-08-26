@@ -96,7 +96,6 @@ public class WebController {
 			String s = JSON.toJSONString(info, config);
 			return ResponseUtil.getSuccessResponse(JSON.parseObject(s));
 		} catch (Exception e) {
-			e.printStackTrace();
 			return ResponseUtil.getFailedResponse(e.getMessage());
 		}
 	}
