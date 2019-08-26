@@ -15,7 +15,17 @@ zdora介绍
 
 ### 打包
 
-工程下有两个分支:master/client,master是server端，client是客户端，代码下载下来后，通过maven打成两个jar包:zdora-1.0.jar/zdora-client-jar-with-dependencies.jar
+工程下有三个分支:master/client/test,master是server端，client是客户端，代码下载下来后，通过maven打成两个jar包:zdora-1.0.jar/zdora-client-jar-with-dependencies.jar
+
+test分支是个示例代码分支，示例代码中包含如下知识点：
+
+1. http接口请求及zson的使用
+
+2. ztest的使用
+
+3. maven与testng.xml的结合使用
+
+4. 参数的传递
 
 ### 启动
 
