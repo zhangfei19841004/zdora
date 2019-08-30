@@ -11,17 +11,12 @@ import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * ExecutorTask与ExecutorTask1主要是为了动态设置定时任务的调试，
- * 在接收到添加定时任务的命令后，就new一个ExecutorTask对象，configureTasks方法会把当前task任务给添加进去
- * 目前整个流程已调通，在TestController中可以去cancel已添加进去的task任务。
- */
 //@Component
-public class ExecutorTask implements SchedulingConfigurer {
+public class ExecutorTask1 implements SchedulingConfigurer {
 
 	private String cron = "0/10 * * * * ?";
 
-	private String name = "测试";
+	private String name = "测试1";
 
 	private boolean stop = false;
 
@@ -41,16 +36,14 @@ public class ExecutorTask implements SchedulingConfigurer {
 		this.cron = cron;
 	}
 
-	public static ScheduledTaskRegistrar TASK_REGISTRAR = null;
-
-	public static Map<String, Runnable> SCHEDULED_RUNABLE = new ConcurrentHashMap<>();
-
 	@Override
 	public void configureTasks(ScheduledTaskRegistrar scheduledTaskRegistrar) {
-		Runnable runable = doTask();
-		scheduledTaskRegistrar.addTriggerTask(runable, getTrigger());
-		TASK_REGISTRAR = scheduledTaskRegistrar;
-		SCHEDULED_RUNABLE.put(name, runable);
+		scheduledTaskRegistrar.addTriggerTask(doTask(), getTrigger());
+		/*Iterator<ScheduledTask> it = scheduledTaskRegistrar.getScheduledTasks().iterator();
+		while(it.hasNext()){
+			ScheduledTask task = it.next();
+			System.out.println(task.getTask().toString());
+		}*/
 	}
 
 	/**
